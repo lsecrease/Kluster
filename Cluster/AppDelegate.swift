@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        Parse.setApplicationId(“yourapplicationkey”, clientKey: “yourclientkey”)
+        Parse.enableLocalDatastore()
+        
+        
+        Parse.setApplicationId("x2X4qfklv87fys08IPwRGrV8ZTK8ZiK0BOCyw0PL", clientKey: "fmh7ckro2uB3WSfwlUjv3HII2JiokuINTwp3kwl2")
         
         
         return true
