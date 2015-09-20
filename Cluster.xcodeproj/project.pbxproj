@@ -19,12 +19,15 @@
 		CE89912D1B8A618E00B2B6BC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89912C1B8A618E00B2B6BC /* StoreKit.framework */; };
 		CE89912F1B8A619900B2B6BC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89912E1B8A619900B2B6BC /* SystemConfiguration.framework */; };
 		CE8991311B8A61A200B2B6BC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8991301B8A61A200B2B6BC /* libsqlite3.dylib */; };
+		CE9A30C01BAE074300BC79FE /* BondoluoPeek.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */; };
 		CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */; };
 		CEA8EA171B854B2100DC2AA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA151B854B2100DC2AA5 /* Main.storyboard */; };
 		CEA8EA191B854B2100DC2AA5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA181B854B2100DC2AA5 /* Images.xcassets */; };
 		CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */; };
 		CEA8EA281B854B2100DC2AA5 /* ClusterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */; };
 		CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */; };
+		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
+		CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,7 @@
 		CE89912E1B8A619900B2B6BC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE8991301B8A61A200B2B6BC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CE8991321B8A61DF00B2B6BC /* Cluster-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cluster-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BondoluoPeek.ttf; sourceTree = "<group>"; };
 		CEA8EA0C1B854B2100DC2AA5 /* Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cluster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA8EA101B854B2100DC2AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 		CEA8EA261B854B2100DC2AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTests.swift; sourceTree = "<group>"; };
 		CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CED4489C1BA5111900F11808 /* Kluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kluster.swift; sourceTree = "<group>"; };
+		CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,10 +153,12 @@
 			isa = PBXGroup;
 			children = (
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
-				CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */,
+				CED448A01BA5136500F11808 /* Home Screen */,
+				CED4489F1BA5135E00F11808 /* Model */,
 				CEA8EA151B854B2100DC2AA5 /* Main.storyboard */,
 				CEA8EA181B854B2100DC2AA5 /* Images.xcassets */,
 				CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */,
+				CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */,
 				CEA8EA0F1B854B2100DC2AA5 /* Supporting Files */,
 				CE8991321B8A61DF00B2B6BC /* Cluster-Bridging-Header.h */,
 			);
@@ -180,6 +188,23 @@
 				CEA8EA261B854B2100DC2AA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CED4489F1BA5135E00F11808 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CED4489C1BA5111900F11808 /* Kluster.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CED448A01BA5136500F11808 /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */,
+				CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */,
+			);
+			name = "Home Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9A30C01BAE074300BC79FE /* BondoluoPeek.ttf in Resources */,
 				CEA8EA171B854B2100DC2AA5 /* Main.storyboard in Resources */,
 				CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */,
 				CEA8EA191B854B2100DC2AA5 /* Images.xcassets in Resources */,
@@ -318,7 +344,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */,
+				CED4489D1BA5111900F11808 /* Kluster.swift in Sources */,
 				CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */,
+				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
