@@ -33,6 +33,11 @@ class HomeViewController: UIViewController {
        profileAvatar.layer.cornerRadius = 10.0
         profileAvatar.clipsToBounds = true
         
+        var object = PFObject(className: "TestClass")
+        object.addObject("iOS-Developers", forKey: "bestSlackGroup")
+        object.addObject("iPhone", forKey: "bestSmartPhone")
+        object.save()
+        
     }
 
 }
