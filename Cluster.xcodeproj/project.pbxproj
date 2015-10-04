@@ -50,12 +50,24 @@
 		CE8BE93A1BB2448C00BBEC24 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8BE91D1BB2448C00BBEC24 /* TransitionZoom.swift */; };
 		CE8BE93B1BB2448C00BBEC24 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8BE91E1BB2448C00BBEC24 /* UnwindSegue.swift */; };
 		CE9A30C01BAE074300BC79FE /* BondoluoPeek.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */; };
+		CE9C42E61BC081F100504B69 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42DB1BC081F100504B69 /* AnimationController.swift */; };
+		CE9C42E71BC081F100504B69 /* ImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42DC1BC081F100504B69 /* ImageAction.swift */; };
+		CE9C42E81BC081F100504B69 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42DD1BC081F100504B69 /* ImageCollectionViewCell.swift */; };
+		CE9C42E91BC081F100504B69 /* ImagePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42DE1BC081F100504B69 /* ImagePickerCollectionView.swift */; };
+		CE9C42EA1BC081F100504B69 /* ImagePickerSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42E01BC081F100504B69 /* ImagePickerSheetController.swift */; };
+		CE9C42EB1BC081F100504B69 /* ImagePreviewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42E11BC081F100504B69 /* ImagePreviewFlowLayout.swift */; };
+		CE9C42EC1BC081F100504B69 /* ImagePreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42E21BC081F100504B69 /* ImagePreviewTableViewCell.swift */; };
+		CE9C42ED1BC081F100504B69 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9C42E31BC081F100504B69 /* Images.xcassets */; };
+		CE9C42EE1BC081F100504B69 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9C42E41BC081F100504B69 /* Info.plist */; };
+		CE9C42EF1BC081F100504B69 /* PreviewSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C42E51BC081F100504B69 /* PreviewSupplementaryView.swift */; };
 		CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */; };
 		CEA8EA171B854B2100DC2AA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA151B854B2100DC2AA5 /* Main.storyboard */; };
 		CEA8EA191B854B2100DC2AA5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA181B854B2100DC2AA5 /* Images.xcassets */; };
 		CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */; };
 		CEA8EA281B854B2100DC2AA5 /* ClusterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */; };
 		CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */; };
+		CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F131BB45772009BE41C /* SWRevealViewController.m */; };
+		CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F161BB45C10009BE41C /* MenuController.swift */; };
 		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
 		CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -118,6 +130,17 @@
 		CE8BE91D1BB2448C00BBEC24 /* TransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionZoom.swift; sourceTree = "<group>"; };
 		CE8BE91E1BB2448C00BBEC24 /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
 		CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BondoluoPeek.ttf; sourceTree = "<group>"; };
+		CE9C42DB1BC081F100504B69 /* AnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
+		CE9C42DC1BC081F100504B69 /* ImageAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAction.swift; sourceTree = "<group>"; };
+		CE9C42DD1BC081F100504B69 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE9C42DE1BC081F100504B69 /* ImagePickerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionView.swift; sourceTree = "<group>"; };
+		CE9C42DF1BC081F100504B69 /* ImagePickerSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerSheetController.h; sourceTree = "<group>"; };
+		CE9C42E01BC081F100504B69 /* ImagePickerSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerSheetController.swift; sourceTree = "<group>"; };
+		CE9C42E11BC081F100504B69 /* ImagePreviewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewFlowLayout.swift; sourceTree = "<group>"; };
+		CE9C42E21BC081F100504B69 /* ImagePreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewTableViewCell.swift; sourceTree = "<group>"; };
+		CE9C42E31BC081F100504B69 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CE9C42E41BC081F100504B69 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE9C42E51BC081F100504B69 /* PreviewSupplementaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewSupplementaryView.swift; sourceTree = "<group>"; };
 		CEA8EA0C1B854B2100DC2AA5 /* Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cluster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA8EA101B854B2100DC2AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +151,9 @@
 		CEA8EA261B854B2100DC2AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTests.swift; sourceTree = "<group>"; };
 		CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CEC88F121BB45772009BE41C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		CEC88F131BB45772009BE41C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		CEC88F161BB45C10009BE41C /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		CED4489C1BA5111900F11808 /* Kluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kluster.swift; sourceTree = "<group>"; };
 		CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,11 +261,30 @@
 			path = Spring;
 			sourceTree = "<group>";
 		};
+		CE9C42DA1BC081F100504B69 /* ImagePickerSheet6.4 */ = {
+			isa = PBXGroup;
+			children = (
+				CE9C42DB1BC081F100504B69 /* AnimationController.swift */,
+				CE9C42DC1BC081F100504B69 /* ImageAction.swift */,
+				CE9C42DD1BC081F100504B69 /* ImageCollectionViewCell.swift */,
+				CE9C42DE1BC081F100504B69 /* ImagePickerCollectionView.swift */,
+				CE9C42DF1BC081F100504B69 /* ImagePickerSheetController.h */,
+				CE9C42E01BC081F100504B69 /* ImagePickerSheetController.swift */,
+				CE9C42E11BC081F100504B69 /* ImagePreviewFlowLayout.swift */,
+				CE9C42E21BC081F100504B69 /* ImagePreviewTableViewCell.swift */,
+				CE9C42E31BC081F100504B69 /* Images.xcassets */,
+				CE9C42E41BC081F100504B69 /* Info.plist */,
+				CE9C42E51BC081F100504B69 /* PreviewSupplementaryView.swift */,
+			);
+			path = ImagePickerSheet6.4;
+			sourceTree = "<group>";
+		};
 		CEA8EA031B854B2100DC2AA5 = {
 			isa = PBXGroup;
 			children = (
 				CEA8EA0E1B854B2100DC2AA5 /* Cluster */,
 				CEA8EA241B854B2100DC2AA5 /* ClusterTests */,
+				CE9C42DA1BC081F100504B69 /* ImagePickerSheet6.4 */,
 				CEA8EA0D1B854B2100DC2AA5 /* Products */,
 				98754A9F4EFC7751C3C68DCC /* Pods */,
 				B7F7862424CD11C144F1CC5E /* Frameworks */,
@@ -259,12 +304,14 @@
 			isa = PBXGroup;
 			children = (
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
+				CEC88F161BB45C10009BE41C /* MenuController.swift */,
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
 				CED4489F1BA5135E00F11808 /* Model */,
 				CEA8EA151B854B2100DC2AA5 /* Main.storyboard */,
 				CEA8EA181B854B2100DC2AA5 /* Images.xcassets */,
 				CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */,
+				CEC88F151BB4578D009BE41C /* SWRevealViewController */,
 				CE8BE9001BB2448C00BBEC24 /* Spring */,
 				CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */,
 				CEA8EA0F1B854B2100DC2AA5 /* Supporting Files */,
@@ -296,6 +343,15 @@
 				CEA8EA261B854B2100DC2AA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEC88F151BB4578D009BE41C /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC88F121BB45772009BE41C /* SWRevealViewController.h */,
+				CEC88F131BB45772009BE41C /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		CED4489F1BA5135E00F11808 /* Model */ = {
@@ -397,8 +453,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9C42EE1BC081F100504B69 /* Info.plist in Resources */,
 				CE9A30C01BAE074300BC79FE /* BondoluoPeek.ttf in Resources */,
 				CEA8EA171B854B2100DC2AA5 /* Main.storyboard in Resources */,
+				CE9C42ED1BC081F100504B69 /* Images.xcassets in Resources */,
 				CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */,
 				CE8BE92E1BB2448C00BBEC24 /* LoadingView.xib in Resources */,
 				CE8BE92B1BB2448C00BBEC24 /* Info.plist in Resources */,
@@ -457,10 +515,16 @@
 				CE8BE9301BB2448C00BBEC24 /* SoundPlayer.swift in Sources */,
 				CE8BE9241BB2448C00BBEC24 /* DesignableImageView.swift in Sources */,
 				CE8BE9361BB2448C00BBEC24 /* SpringTextField.swift in Sources */,
+				CE9C42E61BC081F100504B69 /* AnimationController.swift in Sources */,
+				CE9C42E71BC081F100504B69 /* ImageAction.swift in Sources */,
 				CED4489D1BA5111900F11808 /* Kluster.swift in Sources */,
 				CE8BE9271BB2448C00BBEC24 /* DesignableTextField.swift in Sources */,
 				CE8BE9391BB2448C00BBEC24 /* TransitionManager.swift in Sources */,
+				CE9C42EC1BC081F100504B69 /* ImagePreviewTableViewCell.swift in Sources */,
 				CE8BE9321BB2448C00BBEC24 /* SpringAnimation.swift in Sources */,
+				CE9C42EB1BC081F100504B69 /* ImagePreviewFlowLayout.swift in Sources */,
+				CE9C42EA1BC081F100504B69 /* ImagePickerSheetController.swift in Sources */,
+				CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */,
 				CE8BE91F1BB2448C00BBEC24 /* AsyncButton.swift in Sources */,
 				CE8BE92C1BB2448C00BBEC24 /* KeyboardLayoutConstraint.swift in Sources */,
 				CE8BE9231BB2448C00BBEC24 /* DesignableButton.swift in Sources */,
@@ -468,9 +532,12 @@
 				CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */,
 				CE8BE9291BB2448C00BBEC24 /* DesignableView.swift in Sources */,
 				CE8BE93A1BB2448C00BBEC24 /* TransitionZoom.swift in Sources */,
+				CE9C42EF1BC081F100504B69 /* PreviewSupplementaryView.swift in Sources */,
 				CE8BE9221BB2448C00BBEC24 /* BlurView.swift in Sources */,
 				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
+				CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */,
 				CE8BE92A1BB2448C00BBEC24 /* ImageLoader.swift in Sources */,
+				CE9C42E81BC081F100504B69 /* ImageCollectionViewCell.swift in Sources */,
 				CE8BE9381BB2448C00BBEC24 /* SpringView.swift in Sources */,
 				CE8BE9351BB2448C00BBEC24 /* SpringLabel.swift in Sources */,
 				CE8BE92F1BB2448C00BBEC24 /* Misc.swift in Sources */,
@@ -482,6 +549,7 @@
 				CE8BE93B1BB2448C00BBEC24 /* UnwindSegue.swift in Sources */,
 				CE8BE9251BB2448C00BBEC24 /* DesignableLabel.swift in Sources */,
 				CE8BE9341BB2448C00BBEC24 /* SpringImageView.swift in Sources */,
+				CE9C42E91BC081F100504B69 /* ImagePickerCollectionView.swift in Sources */,
 				CE8BE92D1BB2448C00BBEC24 /* LoadingView.swift in Sources */,
 				CE8BE9371BB2448C00BBEC24 /* SpringTextView.swift in Sources */,
 				CE8BE9201BB2448C00BBEC24 /* AsyncImageView.swift in Sources */,
