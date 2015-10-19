@@ -66,6 +66,7 @@
 		CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */; };
 		CEA8EA281B854B2100DC2AA5 /* ClusterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */; };
 		CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */; };
+		CEAA8FAA1BCEFD9700004349 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */; };
 		CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F131BB45772009BE41C /* SWRevealViewController.m */; };
 		CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F161BB45C10009BE41C /* MenuController.swift */; };
 		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
@@ -151,6 +152,7 @@
 		CEA8EA261B854B2100DC2AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTests.swift; sourceTree = "<group>"; };
 		CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		CEC88F121BB45772009BE41C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CEC88F131BB45772009BE41C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CEC88F161BB45C10009BE41C /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8BE8FD1BB23FFE00BBEC24 /* ProfileViewController.swift */,
+				CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */,
 			);
 			name = "Profile Screen";
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				CE9C42EB1BC081F100504B69 /* ImagePreviewFlowLayout.swift in Sources */,
 				CE9C42EA1BC081F100504B69 /* ImagePickerSheetController.swift in Sources */,
 				CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */,
+				CEAA8FAA1BCEFD9700004349 /* EditProfileTableViewController.swift in Sources */,
 				CE8BE91F1BB2448C00BBEC24 /* AsyncButton.swift in Sources */,
 				CE8BE92C1BB2448C00BBEC24 /* KeyboardLayoutConstraint.swift in Sources */,
 				CE8BE9231BB2448C00BBEC24 /* DesignableButton.swift in Sources */,
