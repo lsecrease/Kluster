@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var backgroundImageView:UIImageView!
     @IBOutlet weak var collectionView:UICollectionView!
     
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var currentUserProfileImageButton:UIButton!
     @IBOutlet weak var currentUserFullNameButton:UIButton!
     @IBOutlet weak var profileAvatar: UIImageView!
@@ -32,6 +33,12 @@ class HomeViewController: UIViewController {
 
        profileAvatar.layer.cornerRadius = 10.0
         profileAvatar.clipsToBounds = true
+        
+        //Side Menu
+        if self.revealViewController() != nil {
+            menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
 //        var object = PFObject(className: "TestClass")
 //        object.addObject("iOS-Developers", forKey: "bestSlackGroup")

@@ -15,6 +15,9 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileImageOverlay: UIVisualEffectView!
     @IBOutlet weak var aboutMeTextView: UITextView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
     
     private var profilePic: UIImage!
     private var coverPic: UIImage!
@@ -35,8 +38,33 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         profileImageOverlay.layer.cornerRadius = profileImageOverlay.bounds.width / 2
         profileImageOverlay.layer.masksToBounds = true
         
+        //For the Text View Handler
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        
         
     }
+    
+    //MARK: Text View Handler
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        self.aboutMeTextView.contentInset = UIEdgeInsetsZero
+        self.aboutMeTextView.scrollIndicatorInsets = UIEdgeInsetsZero
+        
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo ?? [:]
+        self.aboutMeTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.aboutMeTextView.scrollIndicatorInsets = self.aboutMeTextView.contentInset
+        
+    }
+
 
     
 
