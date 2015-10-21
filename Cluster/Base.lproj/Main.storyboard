@@ -1139,10 +1139,10 @@
             </objects>
             <point key="canvasLocation" x="1090" y="840"/>
         </scene>
-        <!--View Controller-->
+        <!--Kluster View Controller-->
         <scene sceneID="Jch-qc-lSc">
             <objects>
-                <viewController id="Ijb-VL-lZe" sceneMemberID="viewController">
+                <viewController id="Ijb-VL-lZe" customClass="KlusterViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Abr-br-9ST"/>
                         <viewControllerLayoutGuide type="bottom" id="9Mv-OY-qHj"/>
@@ -1151,7 +1151,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="523-yi-W3S">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="523-yi-W3S" customClass="KlusterHeaderView" customModule="Cluster" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red-hand-apple-desk" translatesAutoresizingMaskIntoConstraints="NO" id="D2p-ig-hjx">
@@ -1163,12 +1163,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull To Close" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiO-GJ-8fe">
-                                                    <rect key="frame" x="270" y="16" width="61" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Miami Clique" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-1c-ADf">
                                                     <rect key="frame" x="10" y="37" width="182" height="41"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="30"/>
@@ -1181,6 +1175,9 @@
                                                     <state key="normal" image="CloseButton">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="closeButtonTapped:" destination="523-yi-W3S" eventType="touchUpInside" id="Vgp-oD-fbG"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anC-YJ-mfa">
                                                     <rect key="frame" x="519" y="102" width="73" height="20"/>
@@ -1206,9 +1203,7 @@
                                                 <constraint firstItem="ILw-2I-tip" firstAttribute="leading" secondItem="AAX-cX-7Ux" secondAttribute="leading" constant="8" id="BBS-PQ-fYY"/>
                                                 <constraint firstItem="cb2-iv-hsB" firstAttribute="top" secondItem="AAX-cX-7Ux" secondAttribute="top" constant="43" id="EgC-fk-u23"/>
                                                 <constraint firstAttribute="trailing" secondItem="cb2-iv-hsB" secondAttribute="trailing" constant="8" id="F52-t3-8H8"/>
-                                                <constraint firstAttribute="centerX" secondItem="YiO-GJ-8fe" secondAttribute="centerX" constant="-0.5" id="Fkm-x8-a02"/>
                                                 <constraint firstAttribute="bottom" secondItem="anC-YJ-mfa" secondAttribute="bottom" constant="8" id="KUp-gK-Cr0"/>
-                                                <constraint firstItem="YiO-GJ-8fe" firstAttribute="top" secondItem="AAX-cX-7Ux" secondAttribute="top" constant="16" id="MtI-KI-ZFi"/>
                                                 <constraint firstAttribute="bottom" secondItem="ILw-2I-tip" secondAttribute="bottom" constant="8" id="gb7-NH-hRc"/>
                                             </constraints>
                                         </view>
@@ -1227,6 +1222,11 @@
                                     <constraint firstAttribute="bottom" secondItem="D2p-ig-hjx" secondAttribute="bottom" id="d7i-z3-1Bi"/>
                                     <constraint firstItem="eow-Ru-ERL" firstAttribute="leading" secondItem="523-yi-W3S" secondAttribute="leading" id="lId-ii-x4y"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="backgroundImageView" destination="D2p-ig-hjx" id="ULg-b9-ePI"/>
+                                    <outlet property="klusterTitleLabel" destination="vYN-1c-ADf" id="lFl-BO-gtM"/>
+                                    <outlet property="numberOfMembers" destination="anC-YJ-mfa" id="e0V-iT-6l5"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

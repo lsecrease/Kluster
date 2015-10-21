@@ -8,14 +8,46 @@
 
 import UIKit
 
+protocol KlusterHeaderViewDelegate {
+    func closeButtonClicked()
+}
+
 class KlusterHeaderView: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    //MARK: - Public API
+    var kluster: Kluster! {
+        didSet {
+            updateUI()
+        }
     }
-    */
+    
+    var delegate: KlusterHeaderViewDelegate! {
+        didSet {
+            println("Kluster Header View delegate did set")
+        }
+    }
+
+    
+    private func updateUI() {
+        backgroundImageView?.image! = kluster.featuredImage
+        klusterTitleLabel.text! = kluster.title
+        numberOfMembers.text! = "\(kluster.numberOfMembers) members"
+       
+        
+    }
+    
+@IBOutlet weak var backgroundImageView: UIImageView!
+@IBOutlet weak var klusterTitleLabel: UILabel!
+@IBOutlet weak var numberOfMembers: UILabel!
+    
+    
+    @IBAction func closeButtonTapped(sender: UIButton) {
+        
+        println("close button tapped")
+        delegate.closeButtonClicked()
+        
+    }
+
+
 
 }

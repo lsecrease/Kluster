@@ -68,6 +68,7 @@
 		CEA8EA281B854B2100DC2AA5 /* ClusterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */; };
 		CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */; };
 		CEAA8FAA1BCEFD9700004349 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */; };
+		CEC1E7441BD7515F00203E41 /* KlusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1E7431BD7515F00203E41 /* KlusterViewController.swift */; };
 		CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F131BB45772009BE41C /* SWRevealViewController.m */; };
 		CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F161BB45C10009BE41C /* MenuController.swift */; };
 		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
@@ -155,6 +156,7 @@
 		CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTests.swift; sourceTree = "<group>"; };
 		CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		CEC1E7431BD7515F00203E41 /* KlusterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterViewController.swift; sourceTree = "<group>"; };
 		CEC88F121BB45772009BE41C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		CEC88F131BB45772009BE41C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CEC88F161BB45C10009BE41C /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */,
+				CEC1E7431BD7515F00203E41 /* KlusterViewController.swift */,
 			);
 			name = "Kluster Screens";
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				CE8BE93A1BB2448C00BBEC24 /* TransitionZoom.swift in Sources */,
 				CE9C42EF1BC081F100504B69 /* PreviewSupplementaryView.swift in Sources */,
 				CE8BE9221BB2448C00BBEC24 /* BlurView.swift in Sources */,
+				CEC1E7441BD7515F00203E41 /* KlusterViewController.swift in Sources */,
 				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
 				CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */,
 				CE8BE92A1BB2448C00BBEC24 /* ImageLoader.swift in Sources */,
