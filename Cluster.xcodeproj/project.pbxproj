@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D2ACF6F2CBE666F0651BC7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B255B4D666AF91CF21B4DDEE /* libPods.a */; };
+		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
 		CE89911D1B8A614B00B2B6BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */; };
 		CE89911F1B8A615300B2B6BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911E1B8A615300B2B6BC /* CFNetwork.framework */; };
 		CE8991211B8A615A00B2B6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */; };
@@ -87,6 +88,7 @@
 		3546CD1362BCE0677D077A57 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B255B4D666AF91CF21B4DDEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30D58564BAC072F96024A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterHeaderView.swift; sourceTree = "<group>"; };
 		CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CE89911E1B8A615300B2B6BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -218,6 +220,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE0F3C551BD729DD0012B7D7 /* Kluster Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */,
+			);
+			name = "Kluster Screens";
+			sourceTree = "<group>";
+		};
 		CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +318,7 @@
 			children = (
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
+				CE0F3C551BD729DD0012B7D7 /* Kluster Screens */,
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
 				CED4489F1BA5135E00F11808 /* Model */,
@@ -550,6 +561,7 @@
 				CE8BE9281BB2448C00BBEC24 /* DesignableTextView.swift in Sources */,
 				CE8BE9311BB2448C00BBEC24 /* Spring.swift in Sources */,
 				CE8BE9331BB2448C00BBEC24 /* SpringButton.swift in Sources */,
+				CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */,
 				CE8BE93B1BB2448C00BBEC24 /* UnwindSegue.swift in Sources */,
 				CE8BE9251BB2448C00BBEC24 /* DesignableLabel.swift in Sources */,
 				CE8BE9341BB2448C00BBEC24 /* SpringImageView.swift in Sources */,
