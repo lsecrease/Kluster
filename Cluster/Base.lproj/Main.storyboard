@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LJv-Xc-H7n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zcG-qR-lUM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -208,6 +208,9 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="U1Z-pW-EXH" kind="presentation" id="rMu-De-hLk"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKP-tJ-SBJ">
                                             <rect key="frame" x="496" y="1153" width="79" height="37"/>
@@ -300,7 +303,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oZs-S1-gyu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cHu-4R-aQs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -414,6 +417,201 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EMD-9G-EQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1053" y="1715"/>
+        </scene>
+        <!--New Kluster View Controller-->
+        <scene sceneID="QuD-eV-CAh">
+            <objects>
+                <viewController id="U1Z-pW-EXH" customClass="NewKlusterViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nbR-zn-fOV"/>
+                        <viewControllerLayoutGuide type="bottom" id="zbS-Ub-Jew"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yWf-Gg-8xu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Tl-lA-F3k">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EGN-7T-2WD">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vfk-C6-eDh">
+                                        <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Ryf-cq-udB"/>
+                                            <constraint firstAttribute="width" constant="40" id="mrT-Ed-wIJ"/>
+                                        </constraints>
+                                        <state key="normal" image="CloseButton2">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dismiss:" destination="U1Z-pW-EXH" eventType="touchUpInside" id="sWr-Ek-b2r"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Kluster Title..." borderStyle="bezel" clearsOnBeginEditing="YES" minimumFontSize="16" background="frame" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZpZ-As-ewx" customClass="DesignableTextField" customModule="Cluster" customModuleProvider="target">
+                                        <rect key="frame" x="48" y="20" width="536" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Emv-Yh-5gR"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.99991267919540405" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe Your New Kluster..." translatesAutoresizingMaskIntoConstraints="NO" id="98z-IN-5AK">
+                                        <rect key="frame" x="150" y="85" width="300" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="aG9-Yj-8Ck"/>
+                                            <constraint firstAttribute="height" constant="200" id="axp-jv-e2B"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.99991267919540405" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Talk About Your Kluster Plans..." translatesAutoresizingMaskIntoConstraints="NO" id="yEA-qj-JWc">
+                                        <rect key="frame" x="150" y="305" width="300" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="owL-0c-uVl"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.99991267919540405" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEo-Pe-Tr2" customClass="DesignableButton" customModule="Cluster" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="544" width="568" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="I9R-yC-a6G"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="✨ Create Kluster" backgroundImage="frame">
+                                            <color key="titleColor" red="0.99991267919540405" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createNewKlusterButtonClicked:" destination="U1Z-pW-EXH" eventType="touchUpInside" id="8wd-53-QRv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOR-Qy-KY4" customClass="DesignableButton" customModule="Cluster" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="496" width="568" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="FNC-ZI-k61"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="o7o-t7-2kt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="📷 Pick Featured Image" backgroundImage="frame">
+                                            <color key="titleColor" red="0.99991267919540405" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="o7o-t7-2kt"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="selectFeaturedImageButtonClicked:" destination="U1Z-pW-EXH" eventType="touchUpInside" id="ZyL-OP-jQm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIm-AK-Fou" customClass="DesignableButton" customModule="Cluster" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="448" width="568" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Clp-40-4N9"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="hw9-LX-2gj"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="zuT-dp-uKb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="📍 Choose A Location" backgroundImage="frame">
+                                            <color key="titleColor" red="0.99991267919540405" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="hw9-LX-2gj"/>
+                                                <exclude reference="zuT-dp-uKb"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="chooseLocationButtonClicked:" destination="U1Z-pW-EXH" eventType="touchUpInside" id="Dj8-A2-npc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1723097562789917" green="0.63554561138153076" blue="0.7321661114692688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ZpZ-As-ewx" secondAttribute="trailing" constant="16" id="3Nh-gv-z4G"/>
+                                    <constraint firstAttribute="centerX" secondItem="yEA-qj-JWc" secondAttribute="centerX" id="3og-OI-D4R"/>
+                                    <constraint firstAttribute="trailing" secondItem="BIm-AK-Fou" secondAttribute="trailing" constant="16" id="C1t-EL-UdQ"/>
+                                    <constraint firstItem="Vfk-C6-eDh" firstAttribute="top" secondItem="EGN-7T-2WD" secondAttribute="top" constant="20" id="C5f-2g-8zz"/>
+                                    <constraint firstItem="aEo-Pe-Tr2" firstAttribute="top" secondItem="rOR-Qy-KY4" secondAttribute="bottom" constant="8" id="I2l-c2-eEg"/>
+                                    <constraint firstItem="rOR-Qy-KY4" firstAttribute="top" secondItem="BIm-AK-Fou" secondAttribute="bottom" constant="8" id="JSg-TN-Npc"/>
+                                    <constraint firstItem="yEA-qj-JWc" firstAttribute="top" secondItem="98z-IN-5AK" secondAttribute="bottom" constant="20" id="Jbb-bG-Z2H"/>
+                                    <constraint firstItem="BIm-AK-Fou" firstAttribute="leading" secondItem="EGN-7T-2WD" secondAttribute="leading" constant="16" id="Jgc-PC-DcL"/>
+                                    <constraint firstItem="ZpZ-As-ewx" firstAttribute="top" secondItem="EGN-7T-2WD" secondAttribute="top" constant="20" id="K9e-Oz-R2E"/>
+                                    <constraint firstAttribute="bottom" secondItem="yEA-qj-JWc" secondAttribute="bottom" constant="95" id="NxU-qd-2UP"/>
+                                    <constraint firstItem="rOR-Qy-KY4" firstAttribute="leading" secondItem="EGN-7T-2WD" secondAttribute="leading" constant="16" id="R8H-l0-CJh"/>
+                                    <constraint firstAttribute="bottom" secondItem="aEo-Pe-Tr2" secondAttribute="bottom" constant="16" id="RZV-4r-ips"/>
+                                    <constraint firstAttribute="centerX" secondItem="98z-IN-5AK" secondAttribute="centerX" id="VZA-EW-mYg"/>
+                                    <constraint firstAttribute="trailing" secondItem="aEo-Pe-Tr2" secondAttribute="trailing" constant="16" id="hE5-ei-F85"/>
+                                    <constraint firstAttribute="trailing" secondItem="rOR-Qy-KY4" secondAttribute="trailing" constant="16" id="hev-16-udo"/>
+                                    <constraint firstItem="aEo-Pe-Tr2" firstAttribute="leading" secondItem="EGN-7T-2WD" secondAttribute="leading" constant="16" id="izv-Mx-ms4"/>
+                                    <constraint firstItem="Vfk-C6-eDh" firstAttribute="leading" secondItem="EGN-7T-2WD" secondAttribute="leading" id="l6w-UI-zhU"/>
+                                    <constraint firstItem="98z-IN-5AK" firstAttribute="top" secondItem="ZpZ-As-ewx" secondAttribute="bottom" constant="25" id="n1E-kB-Tgn"/>
+                                    <constraint firstItem="ZpZ-As-ewx" firstAttribute="leading" secondItem="Vfk-C6-eDh" secondAttribute="trailing" constant="8" id="oii-VD-Kx4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EGN-7T-2WD" firstAttribute="top" secondItem="yWf-Gg-8xu" secondAttribute="top" id="AUd-WZ-X1F"/>
+                            <constraint firstItem="9Tl-lA-F3k" firstAttribute="leading" secondItem="yWf-Gg-8xu" secondAttribute="leading" id="EQA-T8-Wx9"/>
+                            <constraint firstAttribute="trailing" secondItem="EGN-7T-2WD" secondAttribute="trailing" id="FME-ve-viL"/>
+                            <constraint firstItem="zbS-Ub-Jew" firstAttribute="top" secondItem="9Tl-lA-F3k" secondAttribute="bottom" id="H0x-7u-nme"/>
+                            <constraint firstAttribute="trailing" secondItem="9Tl-lA-F3k" secondAttribute="trailing" id="MIC-ko-ppT"/>
+                            <constraint firstItem="zbS-Ub-Jew" firstAttribute="top" secondItem="EGN-7T-2WD" secondAttribute="bottom" id="VEl-fy-MVC"/>
+                            <constraint firstItem="EGN-7T-2WD" firstAttribute="leading" secondItem="yWf-Gg-8xu" secondAttribute="leading" id="W8M-RS-dTP"/>
+                            <constraint firstItem="9Tl-lA-F3k" firstAttribute="top" secondItem="yWf-Gg-8xu" secondAttribute="top" id="bMF-1Y-BfQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundColorView" destination="EGN-7T-2WD" id="4qX-Wa-REQ"/>
+                        <outlet property="backgroundImageView" destination="9Tl-lA-F3k" id="bUL-WO-pvs"/>
+                        <outlet property="chooseLocationButton" destination="BIm-AK-Fou" id="IcP-rU-P0C"/>
+                        <outlet property="closeButton" destination="Vfk-C6-eDh" id="z5v-br-f5o"/>
+                        <outlet property="createNewKlusterButton" destination="aEo-Pe-Tr2" id="HvG-fM-Rwm"/>
+                        <outlet property="hideKeyboardInputAccessoryView" destination="6qB-wp-wQ1" id="eYZ-bS-qun"/>
+                        <outlet property="newKlusterDescriptionTextView" destination="98z-IN-5AK" id="vLc-vD-ehp"/>
+                        <outlet property="newKlusterPlansTextView" destination="yEA-qj-JWc" id="fFP-w4-Qnl"/>
+                        <outlet property="newKlusterTitleTextField" destination="ZpZ-As-ewx" id="4pc-1T-VrW"/>
+                        <outlet property="selectFeaturedImageButton" destination="rOR-Qy-KY4" id="Nta-3v-nne"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="twc-Za-7Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="6qB-wp-wQ1" userLabel="hideKeyboardInputAccessoryView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-KX-hfV">
+                            <rect key="frame" x="562" y="9" width="30" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="Q6K-wj-wNu"/>
+                            </constraints>
+                            <state key="normal" image="hideKeyboardButton">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="hideKeyboard" destination="U1Z-pW-EXH" eventType="touchUpInside" id="U8b-A6-okK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="1bC-KX-hfV" secondAttribute="trailing" constant="8" id="196-Pg-n1Y"/>
+                        <constraint firstItem="1bC-KX-hfV" firstAttribute="top" secondItem="6qB-wp-wQ1" secondAttribute="top" constant="9" id="K5v-2N-7Ow"/>
+                        <constraint firstAttribute="bottom" secondItem="1bC-KX-hfV" secondAttribute="bottom" constant="9" id="jut-Co-nDJ"/>
+                    </constraints>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="-280" y="1740"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="OZa-sa-H3w">
@@ -1120,7 +1318,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-yg-vtd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jJZ-fa-3SQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-301" y="1877"/>
+            <point key="canvasLocation" x="-293" y="2764"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xUI-md-wIJ">
@@ -1137,7 +1335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pln-Jk-4Mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="840"/>
+            <point key="canvasLocation" x="1193" y="349"/>
         </scene>
         <!--Kluster View Controller-->
         <scene sceneID="Jch-qc-lSc">
@@ -1241,7 +1439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqO-KC-XBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="840"/>
+            <point key="canvasLocation" x="1957" y="674"/>
         </scene>
     </scenes>
     <resources>
@@ -1250,13 +1448,16 @@
         <image name="Add" width="20" height="17"/>
         <image name="Back Arrow" width="10" height="18"/>
         <image name="CloseButton" width="30" height="30"/>
+        <image name="CloseButton2" width="17" height="17"/>
         <image name="MessageIcon" width="20" height="21"/>
         <image name="Plus Icon" width="20" height="20"/>
         <image name="Rectangle 62" width="226" height="9"/>
         <image name="Search" width="20" height="20"/>
         <image name="camera" width="17" height="16"/>
         <image name="fashion" width="7360" height="4912"/>
+        <image name="frame" width="343" height="44"/>
         <image name="green_oval" width="17" height="17"/>
+        <image name="hideKeyboardButton" width="30" height="22"/>
         <image name="menu" width="20" height="15"/>
         <image name="profile1" width="167" height="251"/>
         <image name="red-hand-apple-desk" width="5472" height="3648"/>

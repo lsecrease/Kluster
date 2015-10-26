@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8D2ACF6F2CBE666F0651BC7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B255B4D666AF91CF21B4DDEE /* libPods.a */; };
+		CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */; };
+		CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */; };
 		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
+		CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */; };
 		CE89911D1B8A614B00B2B6BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */; };
 		CE89911F1B8A615300B2B6BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911E1B8A615300B2B6BC /* CFNetwork.framework */; };
 		CE8991211B8A615A00B2B6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */; };
@@ -73,6 +76,7 @@
 		CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F161BB45C10009BE41C /* MenuController.swift */; };
 		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
 		CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */; };
+		CEFEBF4A1BDC9CB500E4070D /* NewKlusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +93,10 @@
 		3546CD1362BCE0677D077A57 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B255B4D666AF91CF21B4DDEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30D58564BAC072F96024A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewController.swift; sourceTree = "<group>"; };
+		CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterHeaderView.swift; sourceTree = "<group>"; };
+		CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CE89911E1B8A615300B2B6BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -162,6 +169,7 @@
 		CEC88F161BB45C10009BE41C /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		CED4489C1BA5111900F11808 /* Kluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kluster.swift; sourceTree = "<group>"; };
 		CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewKlusterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +329,9 @@
 			children = (
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
+				CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */,
+				CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */,
+				CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */,
 				CE0F3C551BD729DD0012B7D7 /* Kluster Screens */,
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
@@ -383,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */,
+				CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */,
 				CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */,
 			);
 			name = "Home Screen";
@@ -528,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFEBF4A1BDC9CB500E4070D /* NewKlusterViewController.swift in Sources */,
 				CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */,
 				CE8BE9301BB2448C00BBEC24 /* SoundPlayer.swift in Sources */,
 				CE8BE9241BB2448C00BBEC24 /* DesignableImageView.swift in Sources */,
@@ -537,6 +550,7 @@
 				CED4489D1BA5111900F11808 /* Kluster.swift in Sources */,
 				CE8BE9271BB2448C00BBEC24 /* DesignableTextField.swift in Sources */,
 				CE8BE9391BB2448C00BBEC24 /* TransitionManager.swift in Sources */,
+				CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */,
 				CE9C42EC1BC081F100504B69 /* ImagePreviewTableViewCell.swift in Sources */,
 				CE8BE9321BB2448C00BBEC24 /* SpringAnimation.swift in Sources */,
 				CE9C42EB1BC081F100504B69 /* ImagePreviewFlowLayout.swift in Sources */,
@@ -556,6 +570,7 @@
 				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
 				CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */,
 				CE8BE92A1BB2448C00BBEC24 /* ImageLoader.swift in Sources */,
+				CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */,
 				CE9C42E81BC081F100504B69 /* ImageCollectionViewCell.swift in Sources */,
 				CE8BE9381BB2448C00BBEC24 /* SpringView.swift in Sources */,
 				CE8BE9351BB2448C00BBEC24 /* SpringLabel.swift in Sources */,
@@ -573,6 +588,7 @@
 				CE8BE92D1BB2448C00BBEC24 /* LoadingView.swift in Sources */,
 				CE8BE9371BB2448C00BBEC24 /* SpringTextView.swift in Sources */,
 				CE8BE9201BB2448C00BBEC24 /* AsyncImageView.swift in Sources */,
+				CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
