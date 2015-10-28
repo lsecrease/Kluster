@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       profileAvatar.layer.cornerRadius = 10.0
+        profileAvatar.layer.cornerRadius = 10.0
         profileAvatar.clipsToBounds = true
         
         //Side Menu
@@ -65,10 +65,25 @@ extension HomeViewController : UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! KlusterCollectionViewCell
         
         cell.kluster = self.klusters[indexPath.item]
+        cell.joinKlusterButton.tag = indexPath.row
+        cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
         
         return cell
     }
+    
+    func joinKluster(sender: UIButton) {
+        // let k = self.klusters[sender.tag] as? Kluster
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
+
+        // Show kluster
+        let navigationController = UINavigationController.init(rootViewController: klusterVC)
+        self.presentViewController(navigationController, animated: true, completion: nil);
+    }
 }
+
+
 
 //MARK: - Scrolling Experience
 extension HomeViewController : UIScrollViewDelegate

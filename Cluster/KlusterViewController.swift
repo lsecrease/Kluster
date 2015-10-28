@@ -10,8 +10,7 @@ import UIKit
 
 class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     
-    private var headerView: KlusterHeaderView!
-    
+    @IBOutlet weak var headerView: KlusterHeaderView!
     
     var pageMenu: CAPSPageMenu?
     
@@ -26,29 +25,18 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        
-        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.origin.x, height: self.view.bounds.origin.y)
-        headerView = KlusterHeaderView(frame: frame)
-        
-        //HeaderView Delegate
-        headerView.delegate = self
-        view.addSubview(headerView)
-        
-       
-        
-       
-        
+        self.headerView.closeButton!.addTarget(self, action: "dismissViewController:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         
-        let controller1 : MembersTableViewController = MembersTableViewController()
+        let controller1 = storyBoard.instantiateViewControllerWithIdentifier("MembersTableViewController") as! MembersTableViewController
         controller1.parentNavigationController = self.navigationController
         controller1.title = "MEMBERS"
         controllerArray.append(controller1)
         
-        let controller2 : MessagesTableViewController = MessagesTableViewController()
+        let controller2 = storyBoard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
         controller2.title = "MESSAGES"
         controller2.parentNavigationController = self.navigationController
         controllerArray.append(controller2)
@@ -78,9 +66,6 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         pageMenu!.delegate = self
         
         self.view.addSubview(pageMenu!.view)
-        
-      
-        
     }
     
     func didMoveToPage(controller: UIViewController, index: Int) {
@@ -89,15 +74,8 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     func willMoveToPage(controller: UIViewController, index: Int) {
         print("will move to page")
     }
-
-
-}
-
-//Header View Delegate
-extension KlusterViewController : KlusterHeaderViewDelegate {
-    func closeButtonClicked() {
-        
-        print("Close button clicked gets called-dismiss VC")
+    
+    func dismissViewController(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
