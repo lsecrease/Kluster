@@ -23,7 +23,7 @@ class KlusterHeaderView: UIView {
     
     var delegate: KlusterHeaderViewDelegate! {
         didSet {
-            println("Kluster Header View delegate did set")
+            print("Kluster Header View delegate did set")
         }
     }
 
@@ -43,7 +43,7 @@ class KlusterHeaderView: UIView {
     
     @IBAction func closeButtonTapped(sender: UIButton) {
         
-        println("close button tapped")
+        print("close button tapped")
         delegate.closeButtonClicked()
         
     }

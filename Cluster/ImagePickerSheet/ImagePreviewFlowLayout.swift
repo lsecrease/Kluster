@@ -30,7 +30,7 @@ class ImagePreviewFlowLayout: UICollectionViewFlowLayout {
     }
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         
         initialize()
     }
@@ -94,20 +94,23 @@ class ImagePreviewFlowLayout: UICollectionViewFlowLayout {
         return super.targetContentOffsetForProposedContentOffset(contentOffset)
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return layoutAttributes.filter { CGRectIntersectsRect(rect, $0.frame) }.reduce([UICollectionViewLayoutAttributes]()) { memo, attributes in
             let supplementaryAttributes = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: attributes.indexPath)
-            return memo + [attributes, supplementaryAttributes]
+            var allAttributes = memo
+            allAttributes.append(attributes)
+            allAttributes.append(supplementaryAttributes!)
+            return allAttributes
         }
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         return layoutAttributes[indexPath.section]
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         if let collectionView = collectionView,
-            dataSource = collectionView.dataSource,
+            _ = collectionView.dataSource,
             delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout {
             let itemAttributes = layoutAttributesForItemAtIndexPath(indexPath)
             
@@ -129,12 +132,12 @@ class ImagePreviewFlowLayout: UICollectionViewFlowLayout {
             let visibleFrame = CGRect(origin: contentOffset, size: visibleSize)
             
             let size = delegate.collectionView?(collectionView, layout: self, referenceSizeForHeaderInSection: indexPath.section) ?? CGSizeZero
-            let originX = max(itemAttributes.frame.minX, min(itemAttributes.frame.maxX - size.width, visibleFrame.maxX - size.width))
+            let originX = max(itemAttributes!.frame.minX, min(itemAttributes!.frame.maxX - size.width, visibleFrame.maxX - size.width))
             
             let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
             attributes.zIndex = 1
             attributes.hidden = !showsSupplementaryViews
-            attributes.frame = CGRect(origin: CGPoint(x: originX, y: itemAttributes.frame.minY), size: size)
+            attributes.frame = CGRect(origin: CGPoint(x: originX, y: itemAttributes!.frame.minY), size: size)
             
             return attributes
         }

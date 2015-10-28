@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 
+
 class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var backgroundImageView: UIImageView!

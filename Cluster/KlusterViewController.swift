@@ -43,18 +43,18 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
         
-        var controller1 : MembersTableViewController = MembersTableViewController()
+        let controller1 : MembersTableViewController = MembersTableViewController()
         controller1.parentNavigationController = self.navigationController
         controller1.title = "MEMBERS"
         controllerArray.append(controller1)
         
-        var controller2 : MessagesTableViewController = MessagesTableViewController()
+        let controller2 : MessagesTableViewController = MessagesTableViewController()
         controller2.title = "MESSAGES"
         controller2.parentNavigationController = self.navigationController
         controllerArray.append(controller2)
         
         // Customize menu (Optional)
-        var parameters: [CAPSPageMenuOption] = [
+        let parameters: [CAPSPageMenuOption] = [
             .MenuItemSeparatorWidth(4.3),
             .ScrollMenuBackgroundColor(UIColor.whiteColor()),
             .ViewBackgroundColor(UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1.0)),
@@ -84,10 +84,10 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     }
     
     func didMoveToPage(controller: UIViewController, index: Int) {
-        println("did move to page")
+        print("did move to page")
     }
     func willMoveToPage(controller: UIViewController, index: Int) {
-        println("will move to page")
+        print("will move to page")
     }
 
 
@@ -97,7 +97,7 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
 extension KlusterViewController : KlusterHeaderViewDelegate {
     func closeButtonClicked() {
         
-        println("Close button clicked gets called-dismiss VC")
+        print("Close button clicked gets called-dismiss VC")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

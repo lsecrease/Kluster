@@ -71,7 +71,7 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
     }
 
     required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         initialize()
     }
     
@@ -132,7 +132,7 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
         
         let action = actions[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self), forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self), forIndexPath: indexPath) as UITableViewCell
         cell.textLabel?.textAlignment = .Center
         cell.textLabel?.textColor = tableView.tintColor
         cell.textLabel?.font = UIFont.systemFontOfSize(21)
@@ -153,7 +153,7 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
         
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         
-        actions[indexPath.row].handle(numberOfPhotos: selectedPhotoIndices.count)
+        actions[indexPath.row].handle(selectedPhotoIndices.count)
     }
     
     // MARK: - UICollectionViewDataSource
@@ -183,7 +183,7 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(PreviewSupplementaryView.self), forIndexPath: indexPath) as! PreviewSupplementaryView
         view.userInteractionEnabled = false
         view.buttonInset = UIEdgeInsetsMake(0.0, collectionViewCheckmarkInset, collectionViewCheckmarkInset, 0.0)
-        view.selected = contains(selectedPhotoIndices, indexPath.section)
+        view.selected = selectedPhotoIndices.contains(indexPath.section)
         
         supplementaryViews[indexPath.section] = view
         
@@ -219,9 +219,10 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
     }
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let selected = contains(selectedPhotoIndices, indexPath.section)
+        let selected = selectedPhotoIndices.contains(indexPath.section)
         
         if !selected {
+            selectedPhotoIndices.removeAll(keepCapacity: false)
             selectedPhotoIndices.append(indexPath.section)
             
             if !enlargedPreviews {
@@ -252,8 +253,14 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
             }
         }
         else {
-            selectedPhotoIndices.removeAtIndex(find(selectedPhotoIndices, indexPath.section)!)
+            selectedPhotoIndices.removeAtIndex(selectedPhotoIndices.indexOf(indexPath.section)!)
             reloadButtonTitles()
+        }
+        
+        for (section, sectionView) in supplementaryViews {
+            if sectionView.selected {
+                sectionView.selected = false
+            }
         }
         
         if let sectionView = supplementaryViews[indexPath.section] {
@@ -315,7 +322,7 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
         // Workaround because PHImageManager.requestImageForAsset doesn't work for burst images
         if asset.representsBurst {
             imageManager.requestImageDataForAsset(asset, options: options) { data, _, _, _ in
-                let image = UIImage(data: data)
+                let image = UIImage(data: data!)
                 completion(image: image)
             }
         }
@@ -363,7 +370,7 @@ public class ImagePickerSheetController: UIViewController, UITableViewDataSource
         
         let cancelActions = actions.filter { $0.style == ImageActionStyle.Cancel }
         if let cancelAction = cancelActions.first {
-            cancelAction.handle(numberOfPhotos: selectedPhotoIndices.count)
+            cancelAction.handle(selectedPhotoIndices.count)
         }
     }
     

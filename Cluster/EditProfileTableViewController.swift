@@ -165,7 +165,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
 
     @IBAction func deleteAccountButtonTapped(sender: DesignableButton) {
         
-        println("Delete Account Button Tapped")
+        print("Delete Account Button Tapped")
     }
    
 }
