@@ -10,7 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    
     @IBAction func loginWithFacebookPressed(sender: AnyObject) {
         
         let permissions = ["email", "public_profile", "user_friends"]
@@ -61,10 +60,6 @@ class LoginViewController: UIViewController {
                             }
                         }
                     })
-                    
-                    
-                    
-            
                 } else {
                     // Successful login
                     self.dismissViewControllerAnimated(true, completion: nil)
