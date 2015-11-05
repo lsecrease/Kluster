@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class HomeViewController: UIViewController {
     
     //MARK: - IBOutlets
@@ -39,14 +37,22 @@ class HomeViewController: UIViewController {
             menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
-//        var object = PFObject(className: "TestClass")
-//        object.addObject("iOS-Developers", forKey: "bestSlackGroup")
-//        object.addObject("iPhone", forKey: "bestSmartPhone")
-//        object.save()
-//        
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if (PFUser.currentUser() == nil) {
+            // show login
+            self.showLogin()
+        }
+    }
+    
+    private func showLogin() {
+        let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        self.presentViewController(loginVC, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController : UICollectionViewDataSource

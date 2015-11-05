@@ -21,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("x2X4qfklv87fys08IPwRGrV8ZTK8ZiK0BOCyw0PL", clientKey: "fmh7ckro2uB3WSfwlUjv3HII2JiokuINTwp3kwl2")
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
+        if (PFUser.currentUser() == nil) {
+            // Show login
+            let storyboard: UIStoryboard = UIStoryboard.init(name: "Login", bundle: nil)
+            let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            self.window?.rootViewController = loginVC
+        } else {
+            // Show home controller
+            let homeVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController() as! HomeViewController
+            self.window?.rootViewController = homeVC
+        }
+        
         return true
     }
 

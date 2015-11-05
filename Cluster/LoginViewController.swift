@@ -22,11 +22,9 @@ class LoginViewController: UIViewController {
                     print("User signed up and logged in through Facebook!")
                     
                     // Make graph request for current user and get their information
-                    let params: Dictionary = [
-                        "fields" : ["first_name, last_name, email, name, id, picture"]
-                    ]
+                    let params = ["fields" : "first_name, last_name, email, name, id, picture"]
                     
-                    let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "/me", parameters: params as Dictionary, HTTPMethod: "GET")
+                    let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "me", parameters: params, HTTPMethod: "GET")
                     request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject?, graphRequestError: NSError?) -> Void in
                         if let result = result {
                             print(result)
@@ -38,8 +36,8 @@ class LoginViewController: UIViewController {
                             user.setObject(dict["id"]!, forKey: "facebookId")
                             
                             // Get the data for the user's facebook photo
-                            let avatarUrlString: NSString = dict.valueForKey("picture.data.url") as! String
-                            let imageData = NSData(contentsOfFile: avatarUrlString as String)
+                            let avatarUrlString: String = dict.valueForKeyPath("picture.data.url") as! String
+                            let imageData = NSData(contentsOfURL: NSURL(string: avatarUrlString)!) // NSData(contentsOfFile: avatarUrlString)
                             let file: PFFile = PFFile.init(name: "avatar.png", data: imageData!)
                             user.setObject(file, forKey: "avatar")
                             user.saveInBackgroundWithBlock({ (succeed: Bool, saveError: NSError?) -> Void in
