@@ -53,6 +53,9 @@ class ProfileViewController: UIViewController {
         self.scroller.contentSize.width = 0
     }
 
+    @IBAction func klusterNowButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
  
     @IBAction func addPhotoClicked(sender: DesignableButton) {
         let authorization = PHPhotoLibrary.authorizationStatus()

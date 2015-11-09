@@ -2,16 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
+	<key>CFBundleURLTypes</key>
 	<array>
-		<string>BondoluoPeek.ttf</string>
+	  <dict>
+	  <key>CFBundleURLSchemes</key>
+	  <array>
+	    <string>fb638088506334383</string>
+	  </array>
+	  </dict>
 	</array>
+	  <key>FacebookAppID</key>
+	  <string>638088506334383</string>
+	  <key>FacebookDisplayName</key>
+	<string>Kluster</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>io.ImagineME.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,6 +35,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BondoluoPeek.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -39,6 +52,37 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+	  <key>NSExceptionDomains</key>
+	  <dict>
+	    <key>facebook.com</key>
+	    <dict>
+	      <key>NSIncludesSubdomains</key>
+	      <true/>
+	      <key>NSExceptionRequiresForwardSecrecy</key>
+	      <false/>
+	    </dict>
+	    <key>fbcdn.net</key>
+	    <dict>
+	      <key>NSIncludesSubdomains</key>
+	      <true/>
+	      <key>NSExceptionRequiresForwardSecrecy</key>
+	      <false/>
+	    </dict>
+	    <key>akamaihd.net</key>
+	    <dict>
+	      <key>NSIncludesSubdomains</key>
+	      <true/>
+	      <key>NSExceptionRequiresForwardSecrecy</key>
+	      <false/>
+	    </dict>
+	  </dict>
+	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	    <string>fbauth2</string>
 	</array>
 </dict>
 </plist>

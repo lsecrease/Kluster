@@ -18,9 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        
         Parse.setApplicationId("x2X4qfklv87fys08IPwRGrV8ZTK8ZiK0BOCyw0PL", clientKey: "fmh7ckro2uB3WSfwlUjv3HII2JiokuINTwp3kwl2")
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
+        if (PFUser.currentUser() == nil) {
+            // Show login
+            let storyboard: UIStoryboard = UIStoryboard.init(name: "Login", bundle: nil)
+            let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            self.window?.rootViewController = loginVC
+        } else {
+            // Show home controller
+            let homeVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController() as! HomeViewController
+            self.window?.rootViewController = homeVC
+        }
         
         return true
     }
@@ -41,12 +51,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application,
+            openURL: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation)
+    }
 }
 

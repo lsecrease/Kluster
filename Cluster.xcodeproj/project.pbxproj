@@ -47,6 +47,10 @@
 		28EE23741BDF1FF9009161AE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28EE236A1BDF1FF9009161AE /* Info.plist */; };
 		28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EE236B1BDF1FF9009161AE /* PreviewSupplementaryView.swift */; };
 		8D2ACF6F2CBE666F0651BC7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B255B4D666AF91CF21B4DDEE /* libPods.a */; };
+		9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */; };
+		9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */; };
+		9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */; };
+		9DBA24741BE2B2D2005D6AD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */; };
 		CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */; };
 		CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */; };
 		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
@@ -132,6 +136,10 @@
 		28EE236A1BDF1FF9009161AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28EE236B1BDF1FF9009161AE /* PreviewSupplementaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewSupplementaryView.swift; sourceTree = "<group>"; };
 		3546CD1362BCE0677D077A57 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewCell.swift; sourceTree = "<group>"; };
+		9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		B255B4D666AF91CF21B4DDEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30D58564BAC072F96024A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewController.swift; sourceTree = "<group>"; };
@@ -329,13 +337,17 @@
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
 				CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */,
-				CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */,
 				CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */,
+				9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */,
+				CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */,
+				9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */,
+				9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */,
 				CE0F3C551BD729DD0012B7D7 /* Kluster Screens */,
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
 				CED4489F1BA5135E00F11808 /* Model */,
 				CEA8EA151B854B2100DC2AA5 /* Main.storyboard */,
+				9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */,
 				CEA8EA181B854B2100DC2AA5 /* Images.xcassets */,
 				CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */,
 				28EE23241BDF1F83009161AE /* Spring */,
@@ -448,7 +460,7 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = ImagineME;
 				TargetAttributes = {
 					CEA8EA0B1B854B2100DC2AA5 = {
@@ -492,6 +504,7 @@
 				28EE23521BDF1F83009161AE /* LoadingView.xib in Resources */,
 				CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */,
 				CEA8EA191B854B2100DC2AA5 /* Images.xcassets in Resources */,
+				9DBA24741BE2B2D2005D6AD6 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +579,7 @@
 				28EE234C1BDF1F83009161AE /* DesignableTextView.swift in Sources */,
 				CE8BE8FE1BB23FFE00BBEC24 /* ProfileViewController.swift in Sources */,
 				28EE236C1BDF1FF9009161AE /* AnimationController.swift in Sources */,
+				9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */,
 				28EE234E1BDF1F83009161AE /* ImageLoader.swift in Sources */,
 				CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */,
 				28EE23501BDF1F83009161AE /* KeyboardLayoutConstraint.swift in Sources */,
@@ -584,7 +598,9 @@
 				28EE235E1BDF1F83009161AE /* TransitionZoom.swift in Sources */,
 				CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */,
 				28EE23481BDF1F83009161AE /* DesignableImageView.swift in Sources */,
+				9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */,
 				28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */,
+				9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */,
 				28EE23471BDF1F83009161AE /* DesignableButton.swift in Sources */,
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
 				28EE23571BDF1F83009161AE /* SpringButton.swift in Sources */,
@@ -653,6 +669,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -719,8 +736,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Cluster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ImagineME.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/Cluster-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -733,8 +752,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Cluster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ImagineME.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/Cluster-Bridging-Header.h";
 			};
@@ -754,6 +775,7 @@
 				);
 				INFOPLIST_FILE = ClusterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ImagineME.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cluster.app/Cluster";
 			};
@@ -769,6 +791,7 @@
 				);
 				INFOPLIST_FILE = ClusterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ImagineME.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cluster.app/Cluster";
 			};

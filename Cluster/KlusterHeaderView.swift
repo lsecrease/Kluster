@@ -21,7 +21,7 @@ class KlusterHeaderView: UIView {
         }
     }
     
-    var delegate: KlusterHeaderViewDelegate! {
+    var delegate: KlusterHeaderViewDelegate? {
         didSet {
             print("Kluster Header View delegate did set")
         }
@@ -39,15 +39,6 @@ class KlusterHeaderView: UIView {
 @IBOutlet weak var backgroundImageView: UIImageView!
 @IBOutlet weak var klusterTitleLabel: UILabel!
 @IBOutlet weak var numberOfMembers: UILabel!
+@IBOutlet var closeButton: UIButton!
     
-    
-    @IBAction func closeButtonTapped(sender: UIButton) {
-        
-        print("close button tapped")
-        delegate.closeButtonClicked()
-        
-    }
-
-
-
 }
