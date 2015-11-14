@@ -47,6 +47,9 @@
 		28EE23741BDF1FF9009161AE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28EE236A1BDF1FF9009161AE /* Info.plist */; };
 		28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EE236B1BDF1FF9009161AE /* PreviewSupplementaryView.swift */; };
 		8D2ACF6F2CBE666F0651BC7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B255B4D666AF91CF21B4DDEE /* libPods.a */; };
+		9D2EFA3D1BF6257000D91812 /* KlusterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */; };
+		9D2EFA3F1BF6344E00D91812 /* KlusterImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */; };
+		9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */; };
 		9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */; };
 		9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */; };
 		9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */; };
@@ -136,6 +139,9 @@
 		28EE236A1BDF1FF9009161AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28EE236B1BDF1FF9009161AE /* PreviewSupplementaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewSupplementaryView.swift; sourceTree = "<group>"; };
 		3546CD1362BCE0677D077A57 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterDataSource.swift; sourceTree = "<group>"; };
+		9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterImageResizer.swift; sourceTree = "<group>"; };
+		9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterSearchController.swift; sourceTree = "<group>"; };
 		9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +280,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9D2EFA421BF65A2B00D91812 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9D2EFA431BF65A3200D91812 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		B7F7862424CD11C144F1CC5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +376,9 @@
 				CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */,
 				CEA8EA0F1B854B2100DC2AA5 /* Supporting Files */,
 				CE8991321B8A61DF00B2B6BC /* Cluster-Bridging-Header.h */,
+				9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */,
+				9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */,
+				9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */,
 			);
 			path = Cluster;
 			sourceTree = "<group>";
@@ -371,6 +394,8 @@
 		CEA8EA241B854B2100DC2AA5 /* ClusterTests */ = {
 			isa = PBXGroup;
 			children = (
+				9D2EFA431BF65A3200D91812 /* Helpers */,
+				9D2EFA421BF65A2B00D91812 /* Models */,
 				CEA8EA271B854B2100DC2AA5 /* ClusterTests.swift */,
 				CEA8EA251B854B2100DC2AA5 /* Supporting Files */,
 			);
@@ -562,6 +587,7 @@
 				CED4489D1BA5111900F11808 /* Kluster.swift in Sources */,
 				28EE23561BDF1F83009161AE /* SpringAnimation.swift in Sources */,
 				28EE234D1BDF1F83009161AE /* DesignableView.swift in Sources */,
+				9D2EFA3F1BF6344E00D91812 /* KlusterImageResizer.swift in Sources */,
 				28EE234B1BDF1F83009161AE /* DesignableTextField.swift in Sources */,
 				28EE23711BDF1FF9009161AE /* ImagePreviewFlowLayout.swift in Sources */,
 				28EE23511BDF1F83009161AE /* LoadingView.swift in Sources */,
@@ -572,6 +598,7 @@
 				CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */,
 				28EE23461BDF1F83009161AE /* BlurView.swift in Sources */,
 				28EE23541BDF1F83009161AE /* SoundPlayer.swift in Sources */,
+				9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */,
 				28EE23701BDF1FF9009161AE /* ImagePickerSheetController.swift in Sources */,
 				28EE23721BDF1FF9009161AE /* ImagePreviewTableViewCell.swift in Sources */,
 				28EE235A1BDF1F83009161AE /* SpringTextField.swift in Sources */,
@@ -591,6 +618,7 @@
 				CEC1E7441BD7515F00203E41 /* KlusterViewController.swift in Sources */,
 				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
 				CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */,
+				9D2EFA3D1BF6257000D91812 /* KlusterDataSource.swift in Sources */,
 				28EE23441BDF1F83009161AE /* AsyncImageView.swift in Sources */,
 				28EE23431BDF1F83009161AE /* AsyncButton.swift in Sources */,
 				28EE235F1BDF1F83009161AE /* UnwindSegue.swift in Sources */,

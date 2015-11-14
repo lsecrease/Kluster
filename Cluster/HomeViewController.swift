@@ -53,6 +53,13 @@ class HomeViewController: UIViewController {
         let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         self.presentViewController(loginVC, animated: true, completion: nil)
     }
+    
+    @IBAction func searchButtonPressed(sender: AnyObject) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let searchController = storyboard.instantiateViewControllerWithIdentifier("KlusterSearchController") as! KlusterSearchController
+        let navigationController = UINavigationController.init(rootViewController: searchController)
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController : UICollectionViewDataSource
@@ -88,8 +95,6 @@ extension HomeViewController : UICollectionViewDataSource
         self.presentViewController(navigationController, animated: true, completion: nil);
     }
 }
-
-
 
 //MARK: - Scrolling Experience
 extension HomeViewController : UIScrollViewDelegate

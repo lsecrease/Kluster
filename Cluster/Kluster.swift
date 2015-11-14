@@ -19,7 +19,7 @@ class Kluster
     var numberOfMembers = 0
     var numberOfPosts = 0
     var featuredImage: UIImage!
-    
+
     init(id: String, title: String, description: String, distance: String, featuredImage: UIImage!)
     {
         self.id = id

@@ -28,6 +28,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var hideKeyboardInputAccessoryView: UIView!
     private var featuredImage: UIImage!
 
+    @IBOutlet weak var chooseLocationPressed: DesignableButton!
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -42,7 +43,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         newKlusterTitleTextField.becomeFirstResponder()
         newKlusterTitleTextField.delegate = self
         newKlusterDescriptionTextView.delegate = self
-         newKlusterPlansTextView.delegate = self
+        newKlusterPlansTextView.delegate = self
         
         // handle text view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
@@ -118,9 +119,10 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
             
             presentViewController(controller, animated: true, completion: nil)
             
+        } else {
+            // User has not authorized the camera
+            self.promptForCameraAuthorization()
         }
-        
-
     }
     
     
@@ -131,22 +133,49 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    func promptForCameraAuthorization() {
+        let alertController = UIAlertController.init(title: "Camera Access Denied", message: "Please allow Kluster to access your camera in the iOS Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+        let dismissAction = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alertController.addAction(dismissAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
 
     
     
     @IBAction func createNewKlusterButtonClicked(sender: DesignableButton) {
         
-        if newKlusterDescriptionTextView.text == "Describe Your New Kluster..." || newKlusterTitleTextField.text!.isEmpty {
+        
+        if self.invalidTextData() {
             shakeTextField()
         } else if featuredImage == nil {
             shakePhotoButton()
         } else {
             //Create New Interest
             self.hideKeyboard()
-            self.dismissViewControllerAnimated(true, completion: nil)
+            let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            let name = newKlusterTitleTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let summary = newKlusterDescriptionTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let plans = newKlusterPlansTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            
+            let imageData = KlusterImageResizer.resizeImageToWidth(featuredImage, width: 320)
+            let base64String = imageData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+            
+            let params = ["name": name!,
+                       "summary": summary!,
+                         "plans": plans!,
+                         "photo": base64String!] as Dictionary<String, String>
+            
+            KlusterDataSource.createKlusterWithParams(params, completion: { (object, error) -> Void in
+                if error != nil {
+                    hud.removeFromSuperview()
+                } else {
+                    hud.removeFromSuperview()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
         }
-
-        
     }
     
     
@@ -162,6 +191,12 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         selectFeaturedImageButton.curve = "spring"
         selectFeaturedImageButton.duration = 1.2
         selectFeaturedImageButton.animate()
+    }
+    
+    func invalidTextData() -> Bool {
+        return newKlusterDescriptionTextView.text == "Describe Your New Kluster..." ||
+            newKlusterTitleTextField.text!.isEmpty ||
+            newKlusterDescriptionTextView.text.isEmpty
     }
     
     @IBAction func hideKeyboard() {
