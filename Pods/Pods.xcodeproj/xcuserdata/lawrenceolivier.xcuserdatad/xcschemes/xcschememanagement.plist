@@ -4,6 +4,36 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Parse.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>ParseFacebookUtilsV4.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -22,12 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>27EC8DA983EDB967CA7E6D2BF007158A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>36E4F25D09B2485C9D8999033C8E9321</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4AE2EAD3A178DF977CFFA4F5AF051380</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5A63829D907FBCB2A15B9E5DAF4A0BB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>682B22B53FDC1BF5FF518976</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6C503F2DAB3F67E23F4E2F44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6E91111DA2F4FE3235FD41841852EDA5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CCF8EA1823B280B75CFEDBE20975B1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83BD753E3E369BFD37A5441CD20190A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

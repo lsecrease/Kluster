@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="59u-wa-A5m">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7T-xu-GBs">
                                 <rect key="frame" x="20" y="550" width="560" height="30"/>
                                 <constraints>
@@ -31,8 +34,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="59u-wa-A5m" firstAttribute="leading" secondItem="w4B-pY-5Jh" secondAttribute="leading" id="86s-wt-mAL"/>
                             <constraint firstAttribute="leadingMargin" secondItem="T7T-xu-GBs" secondAttribute="leading" id="9VA-Wo-MCt"/>
+                            <constraint firstItem="i2x-R9-0vp" firstAttribute="top" secondItem="59u-wa-A5m" secondAttribute="bottom" id="BTr-cg-vnm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="T7T-xu-GBs" secondAttribute="trailing" id="EhT-X4-6Uj"/>
+                            <constraint firstItem="59u-wa-A5m" firstAttribute="top" secondItem="w4B-pY-5Jh" secondAttribute="top" id="UWz-UW-rIt"/>
+                            <constraint firstAttribute="trailing" secondItem="59u-wa-A5m" secondAttribute="trailing" id="a6m-OR-ePP"/>
                             <constraint firstItem="i2x-R9-0vp" firstAttribute="top" secondItem="T7T-xu-GBs" secondAttribute="bottom" constant="20" id="hVv-Gw-ioy"/>
                         </constraints>
                     </view>
@@ -42,4 +49,7 @@
             <point key="canvasLocation" x="836" y="419"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Background" width="375" height="667"/>
+    </resources>
 </document>

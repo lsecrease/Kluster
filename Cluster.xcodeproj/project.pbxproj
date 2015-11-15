@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */; };
+		28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ADC5C71BF9385B001599D5 /* KlusterInviteTableViewCell.swift */; };
 		28EE23431BDF1F83009161AE /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EE23251BDF1F83009161AE /* AsyncButton.swift */; };
 		28EE23441BDF1F83009161AE /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EE23261BDF1F83009161AE /* AsyncImageView.swift */; };
 		28EE23451BDF1F83009161AE /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EE23271BDF1F83009161AE /* AutoTextView.swift */; };
@@ -97,6 +99,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterInviteViewController.swift; sourceTree = "<group>"; };
+		28ADC5C71BF9385B001599D5 /* KlusterInviteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterInviteTableViewCell.swift; sourceTree = "<group>"; };
 		28EE23251BDF1F83009161AE /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		28EE23261BDF1F83009161AE /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		28EE23271BDF1F83009161AE /* AutoTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoTextView.swift; sourceTree = "<group>"; };
@@ -216,6 +220,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28ADC5C31BF93474001599D5 /* New Kluster Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */,
+				28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */,
+				28ADC5C71BF9385B001599D5 /* KlusterInviteTableViewCell.swift */,
+			);
+			name = "New Kluster Screens";
+			sourceTree = "<group>";
+		};
 		28EE23241BDF1F83009161AE /* Spring */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +379,7 @@
 				CE0F3C551BD729DD0012B7D7 /* Kluster Screens */,
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
+				28ADC5C31BF93474001599D5 /* New Kluster Screens */,
 				CED4489F1BA5135E00F11808 /* Model */,
 				CEA8EA151B854B2100DC2AA5 /* Main.storyboard */,
 				9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */,
@@ -431,7 +446,6 @@
 			isa = PBXGroup;
 			children = (
 				CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */,
-				CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */,
 				CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */,
 			);
 			name = "Home Screen";
@@ -624,12 +638,14 @@
 				28EE235F1BDF1F83009161AE /* UnwindSegue.swift in Sources */,
 				28EE236E1BDF1FF9009161AE /* ImageCollectionViewCell.swift in Sources */,
 				28EE235E1BDF1F83009161AE /* TransitionZoom.swift in Sources */,
+				28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */,
 				CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */,
 				28EE23481BDF1F83009161AE /* DesignableImageView.swift in Sources */,
 				9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */,
 				28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */,
 				9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */,
 				28EE23471BDF1F83009161AE /* DesignableButton.swift in Sources */,
+				28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */,
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
 				28EE23571BDF1F83009161AE /* SpringButton.swift in Sources */,
 				CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */,
