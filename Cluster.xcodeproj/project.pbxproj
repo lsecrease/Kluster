@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		287147851BFAEFB6007FDB36 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287147841BFAEFB6007FDB36 /* NotificationsViewController.swift */; };
+		287147871BFAF00E007FDB36 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287147861BFAF00E007FDB36 /* NotificationsTableViewCell.swift */; };
 		28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */; };
 		28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ADC5C71BF9385B001599D5 /* KlusterInviteTableViewCell.swift */; };
 		28EE23431BDF1F83009161AE /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EE23251BDF1F83009161AE /* AsyncButton.swift */; };
@@ -99,6 +101,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		287147841BFAEFB6007FDB36 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		287147861BFAF00E007FDB36 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterInviteViewController.swift; sourceTree = "<group>"; };
 		28ADC5C71BF9385B001599D5 /* KlusterInviteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterInviteTableViewCell.swift; sourceTree = "<group>"; };
 		28EE23251BDF1F83009161AE /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				CE8BE8FD1BB23FFE00BBEC24 /* ProfileViewController.swift */,
+				287147841BFAEFB6007FDB36 /* NotificationsViewController.swift */,
+				287147861BFAF00E007FDB36 /* NotificationsTableViewCell.swift */,
 				CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */,
 			);
 			name = "Profile Screen";
@@ -605,6 +611,7 @@
 				28EE234B1BDF1F83009161AE /* DesignableTextField.swift in Sources */,
 				28EE23711BDF1FF9009161AE /* ImagePreviewFlowLayout.swift in Sources */,
 				28EE23511BDF1F83009161AE /* LoadingView.swift in Sources */,
+				287147871BFAF00E007FDB36 /* NotificationsTableViewCell.swift in Sources */,
 				CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */,
 				28EE234A1BDF1F83009161AE /* DesignableTabBarController.swift in Sources */,
 				28EE236F1BDF1FF9009161AE /* ImagePickerCollectionView.swift in Sources */,
@@ -649,6 +656,7 @@
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
 				28EE23571BDF1F83009161AE /* SpringButton.swift in Sources */,
 				CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */,
+				287147851BFAEFB6007FDB36 /* NotificationsViewController.swift in Sources */,
 				28EE23491BDF1F83009161AE /* DesignableLabel.swift in Sources */,
 				CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */,
 			);
