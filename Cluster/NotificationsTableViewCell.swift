@@ -10,15 +10,43 @@ import UIKit
 
 class NotificationsTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var invitationTypeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var acceptButton: DesignableButton!
+    @IBOutlet weak var declineButton: DesignableButton!
+   
+    
+    
+    
+    
+    @IBAction func acceptButtonClicked(sender: DesignableButton) {
+        
+        print("Accept Button Clicked")
+        
+        
+        //Animation
+        sender.animation = "pop"
+        sender.curve = "spring"
+        sender.duration = 1.5
+        sender.damping = 0.1
+        sender.velocity = 0.2
+        sender.animate()
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBAction func declineButtonClicked(sender: DesignableButton) {
+        
+         print("Decline Button Clicked")
+        
+        
+        //Animation
+        sender.animation = "pop"
+        sender.curve = "spring"
+        sender.duration = 1.5
+        sender.damping = 0.1
+        sender.velocity = 0.2
+        sender.animate()
     }
 
 }

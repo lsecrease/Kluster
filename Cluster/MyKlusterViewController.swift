@@ -1,14 +1,14 @@
 //
-//  NotificationsViewController.swift
+//  MyKlusterViewController.swift
 //  Cluster
 //
-//  Created by Lawrence Olivier on 11/16/15.
+//  Created by Lawrence Olivier on 12/1/15.
 //  Copyright © 2015 ImagineME. All rights reserved.
 //
 
 import UIKit
 
-class NotificationsViewController: UIViewController {
+class MyKlusterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,17 +18,22 @@ class NotificationsViewController: UIViewController {
         return .LightContent
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func dismiss(sender: UIButton) {
+      
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
 
-extension NotificationsViewController: UITableViewDataSource {
-    
+extension MyKlusterViewController : UITableViewDataSource
+{
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -38,17 +43,17 @@ extension NotificationsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = "Notification"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NotificationsTableViewCell
+        let cellIdentifier = "My Kluster Cell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MyKlusterTableViewCell
         
-        cell.dateLabel.text = "Today"
-        cell.userNameLabel.text = "Michael"
-        cell.invitationTypeLabel.text = "invited you to join Houston Night Life."
-        cell.profileImage.image = UIImage(named: "profile1")
+        
+        //Cell Elements
+        cell.klusterRoleLabel.text = "Creator"
+        cell.klusterNameLabel.text = "Houston Night Out"
+        cell.numberOfMembersLabel.text = "7 Members"
+        cell.klusterImage.image = UIImage(named: "2.jpg")
         
         return cell
     }
-    
-    
     
 }

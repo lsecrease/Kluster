@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		283E05691C0E1302001220D3 /* MyKlusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283E05681C0E1302001220D3 /* MyKlusterViewController.swift */; };
+		286563F21C0E8B6E00C21668 /* MyKlusterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286563F11C0E8B6E00C21668 /* MyKlusterTableViewCell.swift */; };
 		287147851BFAEFB6007FDB36 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287147841BFAEFB6007FDB36 /* NotificationsViewController.swift */; };
 		287147871BFAF00E007FDB36 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287147861BFAF00E007FDB36 /* NotificationsTableViewCell.swift */; };
 		28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */; };
@@ -101,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		283E05681C0E1302001220D3 /* MyKlusterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyKlusterViewController.swift; sourceTree = "<group>"; };
+		286563F11C0E8B6E00C21668 /* MyKlusterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyKlusterTableViewCell.swift; sourceTree = "<group>"; };
 		287147841BFAEFB6007FDB36 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		287147861BFAF00E007FDB36 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		28ADC5C51BF9350F001599D5 /* KlusterInviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterInviteViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 				287147841BFAEFB6007FDB36 /* NotificationsViewController.swift */,
 				287147861BFAF00E007FDB36 /* NotificationsTableViewCell.swift */,
 				CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */,
+				283E05681C0E1302001220D3 /* MyKlusterViewController.swift */,
+				286563F11C0E8B6E00C21668 /* MyKlusterTableViewCell.swift */,
 			);
 			name = "Profile Screen";
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */,
 				28EE234A1BDF1F83009161AE /* DesignableTabBarController.swift in Sources */,
 				28EE236F1BDF1FF9009161AE /* ImagePickerCollectionView.swift in Sources */,
+				286563F21C0E8B6E00C21668 /* MyKlusterTableViewCell.swift in Sources */,
 				28EE236D1BDF1FF9009161AE /* ImageAction.swift in Sources */,
 				CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */,
 				28EE23461BDF1F83009161AE /* BlurView.swift in Sources */,
@@ -651,6 +658,7 @@
 				9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */,
 				28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */,
 				9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */,
+				283E05691C0E1302001220D3 /* MyKlusterViewController.swift in Sources */,
 				28EE23471BDF1F83009161AE /* DesignableButton.swift in Sources */,
 				28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */,
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
