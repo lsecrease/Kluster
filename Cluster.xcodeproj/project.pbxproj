@@ -316,6 +316,27 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		9DEFE5D71C73E5F5005B3B1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9DEFE5D81C73E5FB005B3B1A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9DEFE5D91C73E601005B3B1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B7F7862424CD11C144F1CC5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +401,9 @@
 		CEA8EA0E1B854B2100DC2AA5 /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				9DEFE5D91C73E601005B3B1A /* Models */,
+				9DEFE5D81C73E5FB005B3B1A /* Controllers */,
+				9DEFE5D71C73E5F5005B3B1A /* Views */,
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
 				CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */,
