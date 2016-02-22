@@ -27,6 +27,15 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Load profile info
+        let user = PFUser.currentUser()
+        self.profileImageView.file = user!.objectForKey("avatar") as? PFFile
+        self.profileImageView.loadInBackground()
+        
+        let firstName = user?.objectForKey("firstName") as! String
+        let lastName = user?.objectForKey("lastName") as! String
+        self.nameLabel.text = firstName + " " + lastName
+        
         //Side Menu
         if self.revealViewController() != nil {
             menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -40,19 +49,6 @@ class ProfileViewController: UIViewController {
         
         editButton.layer.cornerRadius = editButton.bounds.width / 2
         editButton.layer.masksToBounds = true
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Load profile info
-        let user = PFUser.currentUser()
-        self.profileImageView.file = user!.objectForKey("avatar") as? PFFile
-        self.profileImageView.loadInBackground()
-        
-        let firstName = user?.objectForKey("firstName") as! String
-        let lastName = user?.objectForKey("lastName") as! String
-        self.nameLabel.text = firstName + " " + lastName
     }
     
     override func viewWillLayoutSubviews() {
