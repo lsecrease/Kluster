@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cluster/LoginViewController.swift"
-            timestampString = "469119866.505887"
+            filePath = "Cluster/Controllers/HomeViewController.swift"
+            timestampString = "477519586.059292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "loginWithFacebookPressed(_:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "featureImageTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,29 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cluster/LoginViewController.swift"
-            timestampString = "469119869.588651"
+            filePath = "Cluster/ProfileViewController.swift"
+            timestampString = "477857364.1742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "loginWithFacebookPressed(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cluster/LoginViewController.swift"
-            timestampString = "469119870.376238"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "loginWithFacebookPressed(_:)"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "addPhotoClicked(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
