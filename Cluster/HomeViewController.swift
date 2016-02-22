@@ -17,7 +17,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var currentUserProfileImageButton:UIButton!
     @IBOutlet weak var currentUserFullNameButton:UIButton!
-    @IBOutlet weak var profileAvatar: UIImageView!
+    @IBOutlet weak var profileAvatar: PFImageView!
+    
     //MARK: - UICollectionViewDataSource
     private var klusters = Kluster.createKlusters()
     
@@ -28,7 +29,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Update the user profile information
+        let user = PFUser.currentUser()
+        self.profileAvatar.file = user?.objectForKey("avatarThumbnail") as? PFFile
+        self.profileAvatar.loadInBackground()
+        
+        let firstName = user?.objectForKey("firstName") as? String
+        self.currentUserFullNameButton.setTitle(firstName, forState: .Normal)
+        
         profileAvatar.layer.cornerRadius = 10.0
         profileAvatar.clipsToBounds = true
         
@@ -36,15 +45,6 @@ class HomeViewController: UIViewController {
         if self.revealViewController() != nil {
             menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        
-        if (PFUser.currentUser() == nil) {
-            // show login
-            self.showLogin()
         }
     }
     
@@ -81,7 +81,19 @@ extension HomeViewController : UICollectionViewDataSource
         cell.joinKlusterButton.tag = indexPath.row
         cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
         
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "featuredImageViewTapped:")
+        cell.featuredImageView.addGestureRecognizer(tapRecognizer)
+        
         return cell
+    }
+    
+    func featuredImageViewTapped(sender: UITapGestureRecognizer) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
+        
+        // Show kluster
+        let navigationController = UINavigationController.init(rootViewController: klusterVC)
+        self.presentViewController(navigationController, animated: true, completion: nil);
     }
     
     func joinKluster(sender: UIButton) {

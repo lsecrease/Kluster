@@ -316,6 +316,27 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		9DEFE5D71C73E5F5005B3B1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9DEFE5D81C73E5FB005B3B1A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9DEFE5D91C73E601005B3B1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B7F7862424CD11C144F1CC5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +401,9 @@
 		CEA8EA0E1B854B2100DC2AA5 /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				9DEFE5D91C73E601005B3B1A /* Models */,
+				9DEFE5D81C73E5FB005B3B1A /* Controllers */,
+				9DEFE5D71C73E5F5005B3B1A /* Views */,
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
 				CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */,
@@ -475,6 +499,7 @@
 				CEA8EA091B854B2100DC2AA5 /* Frameworks */,
 				CEA8EA0A1B854B2100DC2AA5 /* Resources */,
 				67C7258CA93F6017F945BE8E /* Copy Pods Resources */,
+				91D3F04E5B04B3B231BC4B43 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -582,6 +607,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91D3F04E5B04B3B231BC4B43 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E5B909E5E21E55AF0E88B3DA /* Check Pods Manifest.lock */ = {

@@ -12,15 +12,12 @@ import Photos
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var coverImage: UIImageView!
-    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var editButton: DesignableButton!
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var scroller: UIScrollView!
-    
-    private var profilePic: UIImage!
-    
+    @IBOutlet weak var profileImageView: PFImageView!
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -38,11 +35,24 @@ class ProfileViewController: UIViewController {
         
         scroller.contentInset = UIEdgeInsetsMake(0, 0, 400, 0)
         
-        profileImage.layer.cornerRadius = profileImage.bounds.width / 2
-        profileImage.layer.masksToBounds = true
+        self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.width / 2
+        self.profileImageView.layer.masksToBounds = true
         
         editButton.layer.cornerRadius = editButton.bounds.width / 2
         editButton.layer.masksToBounds = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Load profile info
+        let user = PFUser.currentUser()
+        self.profileImageView.file = user!.objectForKey("avatar") as? PFFile
+        self.profileImageView.loadInBackground()
+        
+        let firstName = user?.objectForKey("firstName") as! String
+        let lastName = user?.objectForKey("lastName") as! String
+        self.nameLabel.text = firstName + " " + lastName
     }
     
     override func viewWillLayoutSubviews() {
@@ -78,8 +88,17 @@ class ProfileViewController: UIViewController {
                 
                 }, secondaryHandler: { (action, numberOfPhotos) -> () in
                     controller.getSelectedImagesWithCompletion({ (images) -> Void in
-                        self.profilePic = images[0]
-                        self.profileImage.image = self.profilePic
+                        let image = images[0]
+                        let imageData = UIImagePNGRepresentation(image!)
+                        let file = PFFile.init(name: "avatar.png", data: imageData!)
+                        self.profileImageView.image = image
+                        let user = PFUser.currentUser()
+                        user?.setObject(file!, forKey: "avatar")
+                        user?.saveInBackgroundWithBlock({ (save: Bool, error: NSError?) -> Void in
+                            if ((error) != nil) {
+                                print("We have an error...")
+                            }
+                        })
                     })
             }))
             

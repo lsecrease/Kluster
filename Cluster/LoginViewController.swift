@@ -17,11 +17,12 @@ class LoginViewController: UIViewController {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
                 
-                let shouldMakeFacebookRequest: Bool = (user.isNew || user.objectForKey("firstName") == nil)
+                let shouldMakeFacebookRequest: Bool = true // (user.isNew || user.objectForKey("firstName") == nil)
                 if  shouldMakeFacebookRequest {
                     print("User signed up and logged in through Facebook!")
                     
                     // Make graph request for current user and get their information
+                    // user_location, user_birthday, user_about_me
                     let params = ["fields" : "first_name, last_name, email, name, id, picture"]
                     
                     let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "me", parameters: params, HTTPMethod: "GET")
@@ -38,15 +39,15 @@ class LoginViewController: UIViewController {
                             // Get the data for the user's facebook photo
                             let avatarUrlString: String = dict.valueForKeyPath("picture.data.url") as! String
                             let imageData = NSData(contentsOfURL: NSURL(string: avatarUrlString)!) // NSData(contentsOfFile: avatarUrlString)
-                            let file: PFFile = PFFile.init(name: "avatar.png", data: imageData!)
-                            user.setObject(file, forKey: "avatar")
+                            let file = PFFile.init(name: "avatar.png", data: imageData!)
+                            user.setObject(file!, forKey: "avatar")
                             user.saveInBackgroundWithBlock({ (succeed: Bool, saveError: NSError?) -> Void in
                                 if let saveError = saveError {
                                     // Error saving the user.. 
                                     self.showAlertWithMessage(saveError.localizedDescription)
                                 } else {
                                     // Successfully signed in a new user
-                                    self.dismissViewControllerAnimated(true, completion: nil)
+                                    self.goToMainMenu()
                                 }
                             })
                         } else {
@@ -60,7 +61,7 @@ class LoginViewController: UIViewController {
                     })
                 } else {
                     // Successful login
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.goToMainMenu()
                 }
             } else {
                 if let error = error {
@@ -70,6 +71,12 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func goToMainMenu() {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let home = storyboard.instantiateInitialViewController() as! HomeViewController
+        UIApplication.sharedApplication().keyWindow?.rootViewController = home
     }
     
     private func showAlertWithMessage(message: String) {
