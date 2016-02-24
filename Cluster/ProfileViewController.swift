@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var ageLabel: UILabel!
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

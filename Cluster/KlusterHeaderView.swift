@@ -29,7 +29,7 @@ class KlusterHeaderView: UIView {
 
     
     private func updateUI() {
-        backgroundImageView?.image! = kluster.featuredImage
+        backgroundImageView?.image! = UIImage.init(named: "fashion")! // kluster.featuredImage
         klusterTitleLabel.text! = kluster.title
         numberOfMembers.text! = "\(kluster.numberOfMembers) members"
        

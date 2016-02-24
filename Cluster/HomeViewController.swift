@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var profileAvatar: PFImageView!
     
     //MARK: - UICollectionViewDataSource
-    private var klusters = Kluster.createKlusters()
+    private var klusters = [PFObject]()
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -48,6 +48,12 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        self.fetchKlusters()
+    }
+    
     private func showLogin() {
         let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
@@ -60,6 +66,17 @@ class HomeViewController: UIViewController {
         let navigationController = UINavigationController.init(rootViewController: searchController)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
+    
+    private func fetchKlusters() {
+        KlusterDataSource.fetchKlustersForUser { (object, error) -> Void in
+            if (error != nil) {
+                print("Error: %@", error?.localizedDescription)
+            } else {
+                self.klusters = object as! [PFObject]
+                self.collectionView.reloadData()
+            }
+        }
+    }
 }
 
 extension HomeViewController : UICollectionViewDataSource
@@ -69,7 +86,7 @@ extension HomeViewController : UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return klusters.count
+        return self.klusters.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -77,9 +94,24 @@ extension HomeViewController : UICollectionViewDataSource
         let cellIdentifier = "Kluster Cell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! KlusterCollectionViewCell
         
-        cell.kluster = self.klusters[indexPath.item]
+        let k = Kluster.init(object: self.klusters[indexPath.item])
+        cell.kluster = k
         cell.joinKlusterButton.tag = indexPath.row
         cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        // Moved the PFImageView loading out of the cell
+        cell.featuredImageView.image = nil
+        cell.featuredImageView.file = k.featuredImageFile
+        cell.featuredImageView.loadInBackground { (image, error) -> Void in
+            if (error != nil) {
+                print("Error loading image...")
+            } else {
+                print("Finished loading image...")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    cell.featuredImageView.image = image
+                });
+            }
+        }
         
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "featuredImageViewTapped:")
         cell.featuredImageView.addGestureRecognizer(tapRecognizer)
@@ -90,6 +122,8 @@ extension HomeViewController : UICollectionViewDataSource
     func featuredImageViewTapped(sender: UITapGestureRecognizer) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
+        let k = Kluster.init(object: self.klusters[(sender.view?.tag)!])
+        klusterVC.kluster = k
         
         // Show kluster
         let navigationController = UINavigationController.init(rootViewController: klusterVC)

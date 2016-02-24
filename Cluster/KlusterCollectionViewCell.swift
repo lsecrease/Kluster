@@ -18,17 +18,16 @@ class KlusterCollectionViewCell: UICollectionViewCell {
         
     }
     //MARK: - Private
-    @IBOutlet weak var featuredImageView: UIImageView!
+    
+    @IBOutlet weak var featuredImageView: PFImageView!
     @IBOutlet weak var klusterTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var joinKlusterButton: UIButton!
     
     
     private func updateUI() {
-        
-        klusterTitleLabel?.text! = kluster.title
-        featuredImageView?.image! = kluster.featuredImage
-        distanceLabel?.text! = kluster.distance
+        self.klusterTitleLabel?.text! = kluster.title
+        distanceLabel?.text! = kluster.distanceString // kluster.location
     }
     
     override func layoutSubviews() {
@@ -36,8 +35,6 @@ class KlusterCollectionViewCell: UICollectionViewCell {
         
         self.layer.cornerRadius = 10.0
         self.clipsToBounds = true
-        
-        
     }
 
     @IBAction func joinKlusterButtonTapped(sender: AnyObject) {

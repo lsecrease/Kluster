@@ -216,7 +216,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="gWe-vd-goW">
+                                                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="gWe-vd-goW" customClass="PFImageView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -349,7 +349,7 @@
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="distanceLabel" destination="WhN-uo-jiI" id="qtH-ek-9hu"/>
-                                                        <outlet property="featuredImageView" destination="gWe-vd-goW" id="yZr-nl-xD2"/>
+                                                        <outlet property="featuredImageView" destination="gWe-vd-goW" id="PlM-QW-6e2"/>
                                                         <outlet property="joinKlusterButton" destination="sde-nq-4c2" id="Tew-QZ-fAf"/>
                                                         <outlet property="klusterTitleLabel" destination="mcx-Oc-4nR" id="E5i-VM-C1A"/>
                                                     </connections>
@@ -1461,6 +1461,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
+                        <outlet property="ageLabel" destination="6G2-dD-aoK" id="bTw-Ie-PGg"/>
                         <outlet property="coverImage" destination="4th-al-Vy1" id="J3B-OA-Dwi"/>
                         <outlet property="editButton" destination="YPD-vd-zbQ" id="mLd-pS-D6B"/>
                         <outlet property="menuButton" destination="RxG-pW-nCC" id="RBu-x0-Iy0"/>
@@ -2048,7 +2049,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kMs-Ye-T58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1663" y="1149"/>
+            <point key="canvasLocation" x="1503" y="1159"/>
         </scene>
         <!--Members Table View Controller-->
         <scene sceneID="uSg-tu-NJ6">
@@ -2066,12 +2067,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="67.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="l5k-c1-Sqs">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="l5k-c1-Sqs" customClass="PFImageView">
                                             <rect key="frame" x="8" y="8" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="Akr-Ej-Ode"/>
                                                 <constraint firstAttribute="height" constant="50" id="XWa-vB-cZl"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="25"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Michael Fellows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY3-9w-MFL">
                                             <rect key="frame" x="66" y="13" width="526" height="23"/>
@@ -2100,6 +2106,11 @@
                                         <constraint firstItem="iY3-9w-MFL" firstAttribute="leading" secondItem="l5k-c1-Sqs" secondAttribute="trailing" constant="8" id="vpq-T0-tPy"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ageLabel" destination="eYn-6z-dRX" id="rTx-Lp-YMP"/>
+                                    <outlet property="avatarImageView" destination="l5k-c1-Sqs" id="C9T-xk-Bcs"/>
+                                    <outlet property="nameLabel" destination="iY3-9w-MFL" id="Ug4-kF-B8p"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

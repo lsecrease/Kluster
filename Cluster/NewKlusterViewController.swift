@@ -155,14 +155,14 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
             self.hideKeyboard()
             let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             
-            let name = newKlusterTitleTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let title = newKlusterTitleTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let summary = newKlusterDescriptionTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let plans = newKlusterPlansTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             
             let imageData = KlusterImageResizer.resizeImageToWidth(featuredImage, width: 320)
             let base64String = imageData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
             
-            let params = ["name": name!,
+            let params = ["title": title!,
                        "summary": summary!,
                          "plans": plans!,
                          "photo": base64String!] as Dictionary<String, String>

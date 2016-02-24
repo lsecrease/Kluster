@@ -11,7 +11,7 @@ import UIKit
 class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     
     @IBOutlet weak var headerView: KlusterHeaderView!
-    
+    var kluster: Kluster!
     var pageMenu: CAPSPageMenu?
     
     // MARK: -  View Controller Life Cycle
@@ -25,6 +25,7 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.headerView.kluster = self.kluster
         self.headerView.closeButton!.addTarget(self, action: "dismissViewController:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Initialize view controllers to display and place in array
@@ -32,6 +33,7 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         
         let controller1 = storyBoard.instantiateViewControllerWithIdentifier("MembersTableViewController") as! MembersTableViewController
+        controller1.kluster = kluster
         controller1.parentNavigationController = self.navigationController
         controller1.title = "MEMBERS"
         controllerArray.append(controller1)

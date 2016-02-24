@@ -23,4 +23,17 @@ class KlusterDataSource: NSObject {
             completion(object, error)
         }
     }
+    
+    class func fetchKlustersForUser(completion:PFIdResultBlock) -> Void {
+        PFCloud.callFunctionInBackground("fetchKlustersForUser", withParameters: nil) { (object, error) -> Void in
+            completion(object, error)
+        }
+    }
+    
+    class func fetchMembersForKluster(kluster: Kluster!, completion:PFArrayResultBlock) -> Void {
+        let query = kluster.memberRelation.query()
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            completion(objects, error)
+        }
+    }
 }

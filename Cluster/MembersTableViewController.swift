@@ -9,10 +9,11 @@
 import UIKit
 
 class MembersTableViewController: UITableViewController {
+    
+    var kluster: Kluster!
+    var users = [PFUser]()
 
     var parentNavigationController : UINavigationController?
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,14 @@ class MembersTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        KlusterDataSource.fetchMembersForKluster(kluster, completion: { (objects, error) -> Void in
+            if (error != nil) {
+                print("Error: %@", error)
+            } else {
+                self.users = objects as! [PFUser]
+                self.tableView.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,12 +49,15 @@ class MembersTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 10
+        return self.users.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MembersTableViewCell", forIndexPath: indexPath) as! MembersTableViewCell
-
+        let user = self.users[indexPath.row]
+        cell.user = user
+        cell.avatarImageView.file = user.objectForKey("avatarThumbnail") as? PFFile
+        cell.avatarImageView.loadInBackground()
         return cell
     }
 
