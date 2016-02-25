@@ -123,7 +123,7 @@ extension HomeViewController : UICollectionViewDataSource
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
         let k = Kluster.init(object: self.klusters[(sender.view?.tag)!])
-        klusterVC.kluster = k
+    klusterVC.kluster = k
         
         // Show kluster
         let navigationController = UINavigationController.init(rootViewController: klusterVC)

@@ -13,6 +13,7 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     @IBOutlet weak var headerView: KlusterHeaderView!
     var kluster: Kluster!
     var pageMenu: CAPSPageMenu?
+    var menuHeight: CGFloat = 150.0
     
     // MARK: -  View Controller Life Cycle
     //Hides the Navigation Bar
@@ -31,17 +32,18 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+
+        let messagesController = storyBoard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
+        messagesController.kluster = self.kluster
+        messagesController.title = "MESSAGES"
+        messagesController.parentNavigationController = self.navigationController
+        controllerArray.append(messagesController)
         
-        let controller1 = storyBoard.instantiateViewControllerWithIdentifier("MembersTableViewController") as! MembersTableViewController
-        controller1.kluster = kluster
-        controller1.parentNavigationController = self.navigationController
-        controller1.title = "MEMBERS"
-        controllerArray.append(controller1)
-        
-        let controller2 = storyBoard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
-        controller2.title = "MESSAGES"
-        controller2.parentNavigationController = self.navigationController
-        controllerArray.append(controller2)
+        let memberController = storyBoard.instantiateViewControllerWithIdentifier("MembersTableViewController") as! MembersTableViewController
+        memberController.kluster = self.kluster
+        memberController.parentNavigationController = self.navigationController
+        memberController.title = "MEMBERS"
+        controllerArray.append(memberController)
         
         // Customize menu (Optional)
         let parameters: [CAPSPageMenuOption] = [
@@ -62,7 +64,7 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         ]
         
         // Initialize scroll menu
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0, 150.0, self.view.frame.width, self.view.frame.height), pageMenuOptions: parameters)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0, self.menuHeight, self.view.frame.width, self.view.frame.height - self.menuHeight), pageMenuOptions: parameters)
         
         // Optional delegate
         pageMenu!.delegate = self

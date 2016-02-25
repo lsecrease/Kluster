@@ -41,46 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cluster/MembersTableViewController.swift"
-            timestampString = "478033678.455381"
+            filePath = "Cluster/MessagesTableViewController.swift"
+            timestampString = "478057278.376261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "fetchMessages()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Cluster.MembersTableViewController.viewDidLoad (Cluster.MembersTableViewController)() -&gt; ()"
-                  moduleName = "Cluster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mafellows/ios/Kluster/Cluster/MembersTableViewController.swift"
-                  timestampString = "478034489.458837"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Cluster.MembersTableViewController.(viewDidLoad (Cluster.MembersTableViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "Cluster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mafellows/ios/Kluster/Cluster/MembersTableViewController.swift"
-                  timestampString = "478034489.459052"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

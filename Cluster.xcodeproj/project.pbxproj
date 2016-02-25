@@ -56,6 +56,8 @@
 		9D2EFA3D1BF6257000D91812 /* KlusterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */; };
 		9D2EFA3F1BF6344E00D91812 /* KlusterImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */; };
 		9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */; };
+		9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */; };
+		9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */; };
 		9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */; };
 		9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */; };
 		9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */; };
@@ -154,6 +156,8 @@
 		9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterDataSource.swift; sourceTree = "<group>"; };
 		9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterImageResizer.swift; sourceTree = "<group>"; };
 		9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterSearchController.swift; sourceTree = "<group>"; };
+		9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
+		9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 		9DEFE5D71C73E5F5005B3B1A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 		9DEFE5D91C73E601005B3B1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFEBF4A1BDC9CB500E4070D /* NewKlusterViewController.swift in Sources */,
+				9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */,
 				28EE235C1BDF1F83009161AE /* SpringView.swift in Sources */,
 				CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */,
 				28EE235D1BDF1F83009161AE /* TransitionManager.swift in Sources */,
@@ -693,6 +700,7 @@
 				28EE236E1BDF1FF9009161AE /* ImageCollectionViewCell.swift in Sources */,
 				28EE235E1BDF1F83009161AE /* TransitionZoom.swift in Sources */,
 				28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */,
+				9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */,
 				CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */,
 				28EE23481BDF1F83009161AE /* DesignableImageView.swift in Sources */,
 				9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */,

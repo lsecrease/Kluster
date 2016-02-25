@@ -7,4 +7,5 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <ParseUI/PFImageView.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <SlackTextViewController/SLKTextViewController.h>
 #import "SWRevealViewController.h"

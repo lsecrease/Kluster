@@ -36,4 +36,19 @@ class KlusterDataSource: NSObject {
             completion(objects, error)
         }
     }
+    
+    // Mark: - Sending messages
+    class func createMessageInKluster(klusterId: String, text: String, completion: PFIdResultBlock) -> Void {
+        let params = ["klusterId" : klusterId, "text": text]
+        PFCloud.callFunctionInBackground("createMessage", withParameters: params) { (object, error) -> Void in
+            completion(object, error)
+        }
+    }
+    
+    class func fetchMessagesInKluster(klusterId: String, skip: Int, completion: PFIdResultBlock) -> Void {
+        let params = ["klusterId" : klusterId]
+        PFCloud.callFunctionInBackground("fetchMessagesForKluster", withParameters: params) { (objects, error) -> Void in
+            completion(objects, error)
+        }
+    }
 }
