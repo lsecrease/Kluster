@@ -58,12 +58,15 @@
 		9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */; };
 		9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */; };
 		9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */; };
+		9DB9900C1C8009B400837993 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */; };
+		9DB9900E1C800A4E00837993 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DB9900D1C800A4E00837993 /* Map.storyboard */; };
+		9DB990131C800B9000837993 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB990121C800B9000837993 /* LocationSelectViewController.swift */; };
+		9DB990151C800FA000837993 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB990141C800FA000837993 /* MapKit.framework */; };
 		9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */; };
 		9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */; };
 		9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */; };
 		9DBA24741BE2B2D2005D6AD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */; };
 		CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */; };
-		CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */; };
 		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
 		CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */; };
 		CE89911D1B8A614B00B2B6BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */; };
@@ -158,6 +161,10 @@
 		9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterSearchController.swift; sourceTree = "<group>"; };
 		9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
+		9DB9900D1C800A4E00837993 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		9DB990121C800B9000837993 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
+		9DB990141C800FA000837993 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +172,6 @@
 		B255B4D666AF91CF21B4DDEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30D58564BAC072F96024A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewController.swift; sourceTree = "<group>"; };
-		CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterHeaderView.swift; sourceTree = "<group>"; };
 		CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -207,6 +213,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DB990151C800FA000837993 /* MapKit.framework in Frameworks */,
+				CE8991231B8A616000B2B6BC /* CoreLocation.framework in Frameworks */,
 				CE8991311B8A61A200B2B6BC /* libsqlite3.dylib in Frameworks */,
 				CE89912F1B8A619900B2B6BC /* SystemConfiguration.framework in Frameworks */,
 				CE89912D1B8A618E00B2B6BC /* StoreKit.framework in Frameworks */,
@@ -214,7 +222,6 @@
 				CE8991291B8A618000B2B6BC /* QuartzCore.framework in Frameworks */,
 				CE8991271B8A617600B2B6BC /* MobileCoreServices.framework in Frameworks */,
 				CE8991251B8A616B00B2B6BC /* libz.dylib in Frameworks */,
-				CE8991231B8A616000B2B6BC /* CoreLocation.framework in Frameworks */,
 				CE8991211B8A615A00B2B6BC /* CoreGraphics.framework in Frameworks */,
 				CE89911F1B8A615300B2B6BC /* CFNetwork.framework in Frameworks */,
 				CE89911D1B8A614B00B2B6BC /* AudioToolbox.framework in Frameworks */,
@@ -346,6 +353,7 @@
 		B7F7862424CD11C144F1CC5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DB990141C800FA000837993 /* MapKit.framework */,
 				CE8991301B8A61A200B2B6BC /* libsqlite3.dylib */,
 				CE89912E1B8A619900B2B6BC /* SystemConfiguration.framework */,
 				CE89912C1B8A618E00B2B6BC /* StoreKit.framework */,
@@ -407,13 +415,13 @@
 		CEA8EA0E1B854B2100DC2AA5 /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */,
 				9DEFE5D91C73E601005B3B1A /* Models */,
 				9DEFE5D81C73E5FB005B3B1A /* Controllers */,
 				9DEFE5D71C73E5F5005B3B1A /* Views */,
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
 				CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */,
-				CE0413511BD88CEB00BED627 /* MessagesTableViewController.swift */,
 				9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */,
 				CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */,
 				9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */,
@@ -436,6 +444,8 @@
 				9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */,
 				9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */,
 				9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */,
+				9DB9900D1C800A4E00837993 /* Map.storyboard */,
+				9DB990121C800B9000837993 /* LocationSelectViewController.swift */,
 			);
 			path = Cluster;
 			sourceTree = "<group>";
@@ -585,6 +595,7 @@
 				CEA8EA171B854B2100DC2AA5 /* Main.storyboard in Resources */,
 				28EE23521BDF1F83009161AE /* LoadingView.xib in Resources */,
 				CEA8EA1C1B854B2100DC2AA5 /* LaunchScreen.xib in Resources */,
+				9DB9900E1C800A4E00837993 /* Map.storyboard in Resources */,
 				CEA8EA191B854B2100DC2AA5 /* Images.xcassets in Resources */,
 				9DBA24741BE2B2D2005D6AD6 /* Login.storyboard in Resources */,
 			);
@@ -693,6 +704,7 @@
 				CEC1E7441BD7515F00203E41 /* KlusterViewController.swift in Sources */,
 				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
 				CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */,
+				9DB990131C800B9000837993 /* LocationSelectViewController.swift in Sources */,
 				9D2EFA3D1BF6257000D91812 /* KlusterDataSource.swift in Sources */,
 				28EE23441BDF1F83009161AE /* AsyncImageView.swift in Sources */,
 				28EE23431BDF1F83009161AE /* AsyncButton.swift in Sources */,
@@ -701,7 +713,6 @@
 				28EE235E1BDF1F83009161AE /* TransitionZoom.swift in Sources */,
 				28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */,
 				9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */,
-				CE0413521BD88CEB00BED627 /* MessagesTableViewController.swift in Sources */,
 				28EE23481BDF1F83009161AE /* DesignableImageView.swift in Sources */,
 				9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */,
 				28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */,
@@ -711,6 +722,7 @@
 				28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */,
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
 				28EE23571BDF1F83009161AE /* SpringButton.swift in Sources */,
+				9DB9900C1C8009B400837993 /* MessagesTableViewController.swift in Sources */,
 				CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */,
 				287147851BFAEFB6007FDB36 /* NotificationsViewController.swift in Sources */,
 				28EE23491BDF1F83009161AE /* DesignableLabel.swift in Sources */,

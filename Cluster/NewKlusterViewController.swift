@@ -86,6 +86,9 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     @IBAction func chooseLocationButtonClicked(sender: DesignableButton) {
+        let storyboard = UIStoryboard.init(name: "Map", bundle: nil)
+        let mapController = storyboard.instantiateInitialViewController()
+        self.presentViewController(mapController!, animated: true, completion: nil)
     }
     @IBAction func selectFeaturedImageButtonClicked(sender: DesignableButton) {
         

@@ -14,9 +14,9 @@ class MessagesTableViewController: UITableViewController {
     
     var kluster: Kluster!
     var textView: MessageTextView!
-    var keyboardAppeared = false
     let textViewHeight = 60.0 as CGFloat
     var messages = [PFObject]()
+    let windowHeight: CGFloat? = UIApplication.sharedApplication().keyWindow?.frame.size.height
     
 //    init(style: UITableViewStyle) {
 //        super.init(tableViewStyle: .Plain)
@@ -32,7 +32,6 @@ class MessagesTableViewController: UITableViewController {
         self.fetchMessages()
 
         // Update the keyboard status
-        self.keyboardAppeared = false
         self.textView = MessageTextView.init(frame: self.originalFrame())
         self.textView.sendButton.addTarget(self, action: "sendPressed:", forControlEvents: .TouchUpInside)
         UIApplication.sharedApplication().keyWindow?.addSubview(self.textView)
@@ -143,17 +142,17 @@ class MessagesTableViewController: UITableViewController {
     // MARK: - Notifications
     
     func keyboardWillShowNotification(notification: NSNotification) {
-        updateBottomLayoutConstraintWithNotification(notification)
+        updateBottomLayoutConstraintWithNotification(notification, hide: false)
     }
     
     func keyboardWillHideNotification(notification: NSNotification) {
-        updateBottomLayoutConstraintWithNotification(notification)
+        updateBottomLayoutConstraintWithNotification(notification, hide: true)
     }
     
     
     // MARK: - Private
     
-    func updateBottomLayoutConstraintWithNotification(notification: NSNotification) {
+    func updateBottomLayoutConstraintWithNotification(notification: NSNotification, hide: Bool) {
         let userInfo = notification.userInfo!
         
         let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
@@ -162,18 +161,18 @@ class MessagesTableViewController: UITableViewController {
         let rawAnimationCurve = (notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).unsignedIntValue << 16
         let animationCurve = UIViewAnimationOptions(rawValue: UInt(rawAnimationCurve))
         
+        print("Converted keyboard end frame height: %f", convertedKeyboardEndFrame.size.height)
+        
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: animationCurve, animations: { () -> Void in
             var frame = self.textView.frame
-            if (self.keyboardAppeared) {
-                frame.origin.y += keyboardEndFrame.size.height
+            if (hide) {
+                // Bring the textView back to it's original frame
+                self.textView.frame = self.originalFrame()
             } else {
-                frame.origin.y -= keyboardEndFrame.size.height
+                frame.origin.y =  self.windowHeight! - convertedKeyboardEndFrame.size.height - self.textViewHeight
+                self.textView.frame = frame
             }
-            self.textView.frame = frame
-            self.keyboardAppeared = !self.keyboardAppeared
-            
             }) { (finished) -> Void in
-                
         }
     }
     
