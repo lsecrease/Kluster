@@ -23,6 +23,12 @@ class KlusterDataSource: NSObject {
         }
     }
     
+    class func fetchMainKlusters(params: [NSObject : AnyObject]?, completion: PFIdResultBlock) -> Void {
+        PFCloud.callFunctionInBackground("fetchMainKlusters", withParameters: params) { (object, error) -> Void in
+            completion(object, error)
+        }
+    }
+    
     class func fetchKlustersForUser(completion:PFIdResultBlock) -> Void {
         PFCloud.callFunctionInBackground("fetchKlustersForUser", withParameters: nil) { (object, error) -> Void in
             completion(object, error)

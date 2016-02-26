@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
     //MARK: - UICollectionViewDataSource
     private var klusters = [PFObject]()
     var locationManager = CLLocationManager()
+    var currentGeoPoint: PFGeoPoint?
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -50,6 +51,8 @@ class HomeViewController: UIViewController {
             menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        self.calculateCurrentLocation()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -74,6 +77,14 @@ class HomeViewController: UIViewController {
         self.presentViewController(loginVC, animated: true, completion: nil)
     }
     
+    private func calculateCurrentLocation() {
+        PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint, error) -> Void in
+            if (error == nil) {
+                self.currentGeoPoint = geoPoint
+            }
+        })
+    }
+    
     @IBAction func searchButtonPressed(sender: AnyObject) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let searchController = storyboard.instantiateViewControllerWithIdentifier("KlusterSearchController") as! KlusterSearchController
@@ -82,12 +93,28 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchKlusters() {
-        KlusterDataSource.fetchKlustersForUser { (object, error) -> Void in
-            if (error != nil) {
-                print("Error: %@", error?.localizedDescription)
-            } else {
-                self.klusters = object as! [PFObject]
-                self.collectionView.reloadData()
+        
+        // This is incredibly gross and should be refactored
+        if (self.currentGeoPoint != nil) {
+            let params = ["latitude" : self.currentGeoPoint!.latitude,
+                "longitude" : self.currentGeoPoint!.longitude]
+            
+            KlusterDataSource.fetchMainKlusters(params as [NSObject : AnyObject]) { (objects, error) -> Void in
+                if (error != nil) {
+                    print("Error: %@", error?.localizedDescription)
+                } else {
+                    self.klusters = objects as! [PFObject]
+                    self.collectionView.reloadData()
+                }
+            }
+        } else {
+            KlusterDataSource.fetchMainKlusters(nil) { (objects, error) -> Void in
+                if (error != nil) {
+                    print("Error: %@", error?.localizedDescription)
+                } else {
+                    self.klusters = objects as! [PFObject]
+                    self.collectionView.reloadData()
+                }
             }
         }
     }
@@ -108,10 +135,14 @@ extension HomeViewController : UICollectionViewDataSource
         let cellIdentifier = "Kluster Cell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! KlusterCollectionViewCell
         
+        let user = PFUser.currentUser()
         let k = Kluster.init(object: self.klusters[indexPath.item])
         cell.kluster = k
         cell.joinKlusterButton.tag = indexPath.row
         cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.joinKlusterButton.hidden = k.isCreator(user)
+        
+        cell.distanceLabel.text = k.distanceToKluster(self.currentGeoPoint)
         
         // Moved the PFImageView loading out of the cell
         cell.featuredImageView.tag = indexPath.row
@@ -161,8 +192,7 @@ extension HomeViewController : CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if (status == .AuthorizedWhenInUse) {
-            self.createKlusterButton.enabled = true
-            self.locationManager.startUpdatingLocation()
+            self.calculateCurrentLocation()
         }
     }
 }

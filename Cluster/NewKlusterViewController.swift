@@ -106,7 +106,6 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         actionSheet.addAction(currentLocationAction)
         
         let pickLocation = UIAlertAction.init(title: "Pick A Location", style: .Default) { (action) -> Void in
-            self.presentViewController(actionSheet, animated: true, completion: nil)
             let storyboard = UIStoryboard.init(name: "Map", bundle: nil)
             let mapController = storyboard.instantiateInitialViewController() as! UINavigationController
             // let locationController = mapController.childViewControllers.first as! LocationSelectViewController
