@@ -8,13 +8,13 @@
 
 import Foundation
 import MapKit
-
+import CoreLocation
 
 class LocationSelectViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView!
     
-    public var completion: (String? -> ())?
+    public var completion: (Int? -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()

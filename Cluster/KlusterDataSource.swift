@@ -9,10 +9,9 @@
 import Foundation
 
 class KlusterDataSource: NSObject {
-    class func createKlusterWithParams(params: Dictionary<String, String>, completion:PFIdResultBlock) -> Void
+    class func createKlusterWithParams(params: [NSObject : AnyObject]?, completion:PFIdResultBlock) -> Void
     {
-        PFCloud.callFunctionInBackground("createKluster", withParameters: params) {
-            (object, error) in
+        PFCloud.callFunctionInBackground("createKluster", withParameters: params) { (object, error) -> Void in
             completion(object, error)
         }
     }

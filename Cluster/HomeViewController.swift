@@ -18,9 +18,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentUserProfileImageButton:UIButton!
     @IBOutlet weak var currentUserFullNameButton:UIButton!
     @IBOutlet weak var profileAvatar: PFImageView!
+    @IBOutlet var createKlusterButton: UIButton!
     
     //MARK: - UICollectionViewDataSource
     private var klusters = [PFObject]()
+    var locationManager = CLLocationManager()
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -29,6 +31,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.locationManager.delegate = self
         
         // Update the user profile information
         let user = PFUser.currentUser()
@@ -52,6 +56,16 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(true)
         
         self.fetchKlusters()
+        
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        let locationAuthorized = authorizationStatus == .AuthorizedWhenInUse
+        self.createKlusterButton.enabled = locationAuthorized
+        if (locationAuthorized) {
+            self.locationManager.startUpdatingLocation()
+        } else {
+            // let's request location authorization
+            self.locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     private func showLogin() {
@@ -100,6 +114,7 @@ extension HomeViewController : UICollectionViewDataSource
         cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Moved the PFImageView loading out of the cell
+        cell.featuredImageView.tag = indexPath.row
         cell.featuredImageView.image = nil
         cell.featuredImageView.file = k.featuredImageFile
         cell.featuredImageView.loadInBackground { (image, error) -> Void in
@@ -139,6 +154,16 @@ extension HomeViewController : UICollectionViewDataSource
         // Show kluster
         let navigationController = UINavigationController.init(rootViewController: klusterVC)
         self.presentViewController(navigationController, animated: true, completion: nil);
+    }
+}
+
+extension HomeViewController : CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if (status == .AuthorizedWhenInUse) {
+            self.createKlusterButton.enabled = true
+            self.locationManager.startUpdatingLocation()
+        }
     }
 }
 

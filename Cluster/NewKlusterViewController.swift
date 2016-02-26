@@ -27,7 +27,8 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet var hideKeyboardInputAccessoryView: UIView!
     private var featuredImage: UIImage!
-
+    private var klusterLocation: PFGeoPoint!
+    
     @IBOutlet weak var chooseLocationPressed: DesignableButton!
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -86,10 +87,43 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     @IBAction func chooseLocationButtonClicked(sender: DesignableButton) {
-        let storyboard = UIStoryboard.init(name: "Map", bundle: nil)
-        let mapController = storyboard.instantiateInitialViewController()
-        self.presentViewController(mapController!, animated: true, completion: nil)
+        let actionSheet = UIAlertController.init(title: "Select Kluster Location", message: nil, preferredStyle: .ActionSheet)
+        
+        let currentLocationAction = UIAlertAction.init(title: "Current Location", style: .Default) { (action) -> Void in
+            PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint, error) -> Void in
+                if (error != nil) {
+                    print("Error grabbing current location")
+                    let alert = UIAlertController.init(title: "Error", message: "Unable to get your current location. Please try again.", preferredStyle: .Alert)
+                    let ok = UIAlertAction.init(title: "Okay", style: .Default, handler: nil)
+                    alert.addAction(ok)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    self.klusterLocation = geoPoint
+                }
+            })
+        }
+        
+        actionSheet.addAction(currentLocationAction)
+        
+        let pickLocation = UIAlertAction.init(title: "Pick A Location", style: .Default) { (action) -> Void in
+            self.presentViewController(actionSheet, animated: true, completion: nil)
+            let storyboard = UIStoryboard.init(name: "Map", bundle: nil)
+            let mapController = storyboard.instantiateInitialViewController() as! UINavigationController
+            // let locationController = mapController.childViewControllers.first as! LocationSelectViewController
+            self.presentViewController(mapController, animated: true, completion: nil)
+        }
+        
+        actionSheet.addAction(pickLocation)
+        
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .Cancel) { (action) -> Void in
+            actionSheet.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        actionSheet.addAction(cancelAction)
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
     }
+    
     @IBAction func selectFeaturedImageButtonClicked(sender: DesignableButton) {
         
         let authorization = PHPhotoLibrary.authorizationStatus()
@@ -168,9 +202,11 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
             let params = ["title": title!,
                        "summary": summary!,
                          "plans": plans!,
-                         "photo": base64String!] as Dictionary<String, String>
+                      "latitude": self.klusterLocation.latitude,
+                     "longitude": self.klusterLocation.longitude,
+                         "photo": base64String!]
             
-            KlusterDataSource.createKlusterWithParams(params, completion: { (object, error) -> Void in
+            KlusterDataSource.createKlusterWithParams(params as [NSObject : AnyObject], completion: { (object, error) -> Void in
                 if error != nil {
                     hud.removeFromSuperview()
                 } else {
