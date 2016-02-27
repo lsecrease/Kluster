@@ -14,6 +14,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var backgroundImageView:UIImageView!
     @IBOutlet weak var collectionView:UICollectionView!
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var klusterTitle: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var currentUserProfileImageButton:UIButton!
     @IBOutlet weak var currentUserFullNameButton:UIButton!
@@ -33,7 +37,20 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hide search bar and cancel button 
+        self.searchBar.hidden = true
+        self.cancelButton.hidden = true
+        
+        // Hack to set search bar text color to white..
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = .whiteColor()
+        
+        // Set delegates
         self.locationManager.delegate = self
+        self.searchBar.delegate = self;
+        
+        // Add a tap recognizer to dismiss the keyboard when the searchbar is active
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "viewTapped:")
+        self.view.addGestureRecognizer(tapRecognizer)
         
         // Update the user profile information
         let user = PFUser.currentUser()
@@ -85,11 +102,37 @@ class HomeViewController: UIViewController {
         })
     }
     
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        self.searchBar.resignFirstResponder()
+        
+        self.updateUIForSearch(false)
+    }
+    
     @IBAction func searchButtonPressed(sender: AnyObject) {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let searchController = storyboard.instantiateViewControllerWithIdentifier("KlusterSearchController") as! KlusterSearchController
-        let navigationController = UINavigationController.init(rootViewController: searchController)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        self.updateUIForSearch(true)
+        
+        // Make searchbar the first responder
+        self.searchBar.becomeFirstResponder()
+    }
+    
+    func viewTapped(sender: UITapGestureRecognizer) {
+        if (self.searchBar.isFirstResponder()) {
+            self.searchBar.resignFirstResponder()
+            self.updateUIForSearch(false)
+        }
+    }
+    
+    private func updateUIForSearch(searching: Bool) {
+        // Unhide search bar & cancel button
+        self.searchBar.hidden = !searching
+        self.cancelButton.hidden = !searching
+        
+        // Unhide cancel button
+        self.searchBar.hidden = !searching
+        
+        // Hide search button & label
+        self.searchButton.hidden = searching
+        self.klusterTitle.hidden = searching
     }
     
     private func fetchKlusters() {
@@ -212,6 +255,31 @@ extension HomeViewController : UIScrollViewDelegate
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         targetContentOffset.memory = offset
         
+    }
+}
+
+// MARK: - Search delegate
+extension HomeViewController : UISearchBarDelegate {
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchString = searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        if searchString.length > 0 {
+            KlusterDataSource.searchForKlusterWithString(searchString) { (objects, error) -> Void in
+                if (error != nil) {
+                    print("Error: %@", error?.localizedDescription)
+                } else {
+                    self.klusters = objects as! [PFObject]
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+        // Hide search bar...
+        
+        self.searchBar.resignFirstResponder()
+        return true
     }
 }
 

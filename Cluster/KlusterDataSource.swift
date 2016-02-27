@@ -18,7 +18,8 @@ class KlusterDataSource: NSObject {
     
     class func searchForKlusterWithString(searchString: String, completion:PFIdResultBlock) -> Void
     {
-        PFCloud.callFunctionInBackground("searchForKluster", withParameters: ["searchString": searchString]) { (object, error) -> Void in
+        let lowercaseString = searchString.lowercaseString
+        PFCloud.callFunctionInBackground("searchForKluster", withParameters: ["searchString": lowercaseString]) { (object, error) -> Void in
             completion(object, error)
         }
     }
@@ -54,6 +55,13 @@ class KlusterDataSource: NSObject {
         let params = ["klusterId" : klusterId]
         PFCloud.callFunctionInBackground("fetchMessagesForKluster", withParameters: params) { (objects, error) -> Void in
             completion(objects, error)
+        }
+    }
+    
+    // Delete user account
+    class func deleteUserAccount(completion: PFIdResultBlock) -> Void {
+        PFCloud.callFunctionInBackground("deleteUserAccount", withParameters: nil) { (object, error) -> Void in
+            completion(object, error)
         }
     }
 }
