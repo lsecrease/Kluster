@@ -18,11 +18,12 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var logOutButton: DesignableButton!
     
     private var profilePic: UIImage!
     private var coverPic: UIImage!
     
-    let numberOfRowsAtSection: [Int] = [4, 2]
+    let numberOfRowsAtSection: [Int] = [4, 3]
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -163,9 +164,48 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
 
+    @IBAction func logOutButtonTapped(sender: AnyObject) {
+        PFUser.logOut()
+        self.goToLoginController()
+    }
+    
     @IBAction func deleteAccountButtonTapped(sender: DesignableButton) {
         
         print("Delete Account Button Tapped")
+        let alert = UIAlertController.init(title: "Are You Sure?", message: "All of the Klusters you created will also be destoryed. This operation cannot be undone.", preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction.init(title: "Delete", style: .Destructive) { (action) -> Void in
+            let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            KlusterDataSource.deleteUserAccount({ (object, error) -> Void in
+                hud.removeFromSuperview()
+                if (error != nil) {
+                    self.showAccountDeleteError()
+                } else {
+                    self.goToLoginController()
+                }
+            })
+        }
+        
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .Default, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
    
+    private func showAccountDeleteError() {
+        let alert = UIAlertController.init(title: "Error", message: "Something went wrong when deleting your account.", preferredStyle: .Alert)
+        let okAction = UIAlertAction.init(title: "Okay", style: .Default) { (action) -> Void in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func goToLoginController() {
+        let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        UIApplication.sharedApplication().keyWindow?.rootViewController = loginVC
+    }
 }
