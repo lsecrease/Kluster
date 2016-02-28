@@ -69,6 +69,9 @@
 		CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */; };
 		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
 		CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */; };
+		CE4185AF1C829F810031A9A8 /* PopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4185AE1C829F810031A9A8 /* PopTransitionAnimator.swift */; };
+		CE4185B21C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4185B01C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift */; };
+		CE4185B31C829F910031A9A8 /* SlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4185B11C829F910031A9A8 /* SlideRightTransitionAnimator.swift */; };
 		CE89911D1B8A614B00B2B6BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */; };
 		CE89911F1B8A615300B2B6BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911E1B8A615300B2B6BC /* CFNetwork.framework */; };
 		CE8991211B8A615A00B2B6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */; };
@@ -174,6 +177,9 @@
 		CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewController.swift; sourceTree = "<group>"; };
 		CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterHeaderView.swift; sourceTree = "<group>"; };
 		CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
+		CE4185AE1C829F810031A9A8 /* PopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopTransitionAnimator.swift; sourceTree = "<group>"; };
+		CE4185B01C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightThenPopTransitionAnimator.swift; sourceTree = "<group>"; };
+		CE4185B11C829F910031A9A8 /* SlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
 		CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CE89911E1B8A615300B2B6BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -379,6 +385,16 @@
 			name = "Kluster Screens";
 			sourceTree = "<group>";
 		};
+		CE4185AD1C829F550031A9A8 /* Transition Animators */ = {
+			isa = PBXGroup;
+			children = (
+				CE4185B01C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift */,
+				CE4185B11C829F910031A9A8 /* SlideRightTransitionAnimator.swift */,
+				CE4185AE1C829F810031A9A8 /* PopTransitionAnimator.swift */,
+			);
+			name = "Transition Animators";
+			sourceTree = "<group>";
+		};
 		CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +446,7 @@
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
 				28ADC5C31BF93474001599D5 /* New Kluster Screens */,
+				CE4185AD1C829F550031A9A8 /* Transition Animators */,
 				CED4489F1BA5135E00F11808 /* Model */,
 				CEA8EA151B854B2100DC2AA5 /* Main.storyboard */,
 				9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */,
@@ -674,6 +691,8 @@
 				9D2EFA3F1BF6344E00D91812 /* KlusterImageResizer.swift in Sources */,
 				28EE234B1BDF1F83009161AE /* DesignableTextField.swift in Sources */,
 				28EE23711BDF1FF9009161AE /* ImagePreviewFlowLayout.swift in Sources */,
+				CE4185AF1C829F810031A9A8 /* PopTransitionAnimator.swift in Sources */,
+				CE4185B21C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift in Sources */,
 				28EE23511BDF1F83009161AE /* LoadingView.swift in Sources */,
 				287147871BFAF00E007FDB36 /* NotificationsTableViewCell.swift in Sources */,
 				CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */,
@@ -721,6 +740,7 @@
 				28EE23471BDF1F83009161AE /* DesignableButton.swift in Sources */,
 				28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */,
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
+				CE4185B31C829F910031A9A8 /* SlideRightTransitionAnimator.swift in Sources */,
 				28EE23571BDF1F83009161AE /* SpringButton.swift in Sources */,
 				9DB9900C1C8009B400837993 /* MessagesTableViewController.swift in Sources */,
 				CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */,
