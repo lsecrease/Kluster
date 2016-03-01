@@ -11,9 +11,8 @@ import UIKit
 class MyKlusterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var klusterRoleLabel: UILabel!
-    @IBOutlet weak var klusterImage: UIImageView!
    
     @IBOutlet weak var klusterNameLabel: UILabel!
-
     @IBOutlet weak var numberOfMembersLabel: UILabel!
+    @IBOutlet weak var klusterImageView: PFImageView!
 }

@@ -16,6 +16,13 @@ class KlusterDataSource: NSObject {
         }
     }
     
+    class func joinKluster(klusterId: NSString!, completion:PFIdResultBlock) -> Void {
+        let params = ["klusterId": klusterId]
+         PFCloud.callFunctionInBackground("joinKluster", withParameters: params) { (object, error) -> Void in
+            completion(object, error)
+        }
+    }
+    
     class func searchForKlusterWithString(searchString: String, completion:PFIdResultBlock) -> Void
     {
         let lowercaseString = searchString.lowercaseString
@@ -26,12 +33,14 @@ class KlusterDataSource: NSObject {
     
     class func fetchMainKlusters(params: [NSObject : AnyObject]?, completion: PFIdResultBlock) -> Void {
         PFCloud.callFunctionInBackground("fetchMainKlusters", withParameters: params) { (object, error) -> Void in
+            KlusterStore.sharedInstance.userKlusters = object as? [PFObject]
             completion(object, error)
         }
     }
     
     class func fetchKlustersForUser(completion:PFIdResultBlock) -> Void {
         PFCloud.callFunctionInBackground("fetchKlustersForUser", withParameters: nil) { (object, error) -> Void in
+            KlusterStore.sharedInstance.userKlusters = object as? [PFObject]
             completion(object, error)
         }
     }

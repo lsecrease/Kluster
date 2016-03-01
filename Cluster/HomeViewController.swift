@@ -177,13 +177,12 @@ extension HomeViewController : UICollectionViewDataSource
         
         let cellIdentifier = "Kluster Cell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! KlusterCollectionViewCell
-        
-        let user = PFUser.currentUser()
+
         let k = Kluster.init(object: self.klusters[indexPath.item])
         cell.kluster = k
         cell.joinKlusterButton.tag = indexPath.row
         cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
-        cell.joinKlusterButton.hidden = k.isCreator(user)
+        cell.joinKlusterButton.hidden = KlusterStore.sharedInstance.userIsMemberOfKluster(k.id)
         
         cell.distanceLabel.text = k.distanceToKluster(self.currentGeoPoint)
         
@@ -202,6 +201,45 @@ extension HomeViewController : UICollectionViewDataSource
             }
         }
         
+        // Load avatar images
+        let avatarImageViews = [cell.firstAvatarImageView, cell.secondAvatarImageView, cell.thirdAvatarImageView, cell.fourthAvatarImageView]
+        let membersQuery = k.memberRelation.query()
+        membersQuery.cachePolicy = .CacheElseNetwork
+        membersQuery.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            
+            var totalAvatars = 4
+            if (objects?.count < avatarImageViews.count) {
+                totalAvatars = objects!.count
+            }
+            
+            if (objects!.count > 4) {
+                let moreCount = objects!.count - 4
+                let buttonText = "\(moreCount) more..."
+                cell.moreLabel .setTitle(buttonText, forState: .Normal)
+                cell.moreLabel.hidden = false
+            } else {
+                cell.moreLabel.hidden = true
+            }
+            
+            // Clear the image views...
+            for imageView in avatarImageViews {
+                imageView.image = nil
+            }
+            
+            var i = 0
+            while i < totalAvatars {
+                let imageView = avatarImageViews[i]
+                let user = objects![i] as? PFUser
+                imageView?.file = user?.objectForKey("avatarThumbnail") as? PFFile
+                imageView?.loadInBackground()
+                i++
+                
+                imageView.layer.cornerRadius = 12.5
+            }
+        }
+        
+        
+        
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "featuredImageViewTapped:")
         cell.featuredImageView.addGestureRecognizer(tapRecognizer)
         
@@ -212,7 +250,7 @@ extension HomeViewController : UICollectionViewDataSource
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
         let k = Kluster.init(object: self.klusters[(sender.view?.tag)!])
-    klusterVC.kluster = k
+        klusterVC.kluster = k
         
         // Show kluster
         let navigationController = UINavigationController.init(rootViewController: klusterVC)
@@ -220,14 +258,21 @@ extension HomeViewController : UICollectionViewDataSource
     }
     
     func joinKluster(sender: UIButton) {
-        // let k = self.klusters[sender.tag] as? Kluster
-        
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
-
-        // Show kluster
-        let navigationController = UINavigationController.init(rootViewController: klusterVC)
-        self.presentViewController(navigationController, animated: true, completion: nil);
+        let k = Kluster.init(object: self.klusters[sender.tag])
+        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        KlusterDataSource.joinKluster(k.id) { (object, error) -> Void in
+            hud.removeFromSuperview()
+            if (error != nil) {
+                print("Error: %@", error)
+            } else {
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
+                klusterVC.kluster = k
+                // Show kluster
+                let navigationController = UINavigationController.init(rootViewController: klusterVC)
+                self.presentViewController(navigationController, animated: true, completion: nil);
+            }
+        }
     }
 }
 

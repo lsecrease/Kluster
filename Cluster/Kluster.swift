@@ -50,4 +50,20 @@ class Kluster
         
         return String(format: "%.0fmi", point!.distanceInMilesTo(self.location))
     }
+    
+    internal func memberString() -> String {
+        if (self.numberOfMembers == 1) {
+            return "1 member"
+        } else {
+            return "\(self.numberOfMembers) members"
+        }
+    }
+    
+    internal func creatorString(user: PFUser!) -> String {
+        if (user.objectId == self.creator?.objectId) {
+            return "Creator"
+        } else {
+            return "Member"
+        }
+    }
 }

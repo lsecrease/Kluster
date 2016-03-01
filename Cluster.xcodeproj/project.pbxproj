@@ -66,6 +66,7 @@
 		9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */; };
 		9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */; };
 		9DBA24741BE2B2D2005D6AD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */; };
+		9DFB7D621C86211C00EF3E62 /* KlusterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */; };
 		CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */; };
 		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
 		CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */; };
@@ -169,6 +170,7 @@
 		9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterStore.swift; sourceTree = "<group>"; };
 		B255B4D666AF91CF21B4DDEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30D58564BAC072F96024A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */,
+				9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				28EE23501BDF1F83009161AE /* KeyboardLayoutConstraint.swift in Sources */,
 				28EE23551BDF1F83009161AE /* Spring.swift in Sources */,
 				28EE23581BDF1F83009161AE /* SpringImageView.swift in Sources */,
+				9DFB7D621C86211C00EF3E62 /* KlusterStore.swift in Sources */,
 				28EE23451BDF1F83009161AE /* AutoTextView.swift in Sources */,
 				28EE23531BDF1F83009161AE /* Misc.swift in Sources */,
 				28EE235B1BDF1F83009161AE /* SpringTextView.swift in Sources */,

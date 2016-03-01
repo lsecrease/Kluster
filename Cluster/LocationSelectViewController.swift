@@ -14,7 +14,7 @@ class LocationSelectViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView!
     
-    public var completion: (PFGeoPoint? -> ())?
+    public var completion: (PFGeoPoint? -> ())? 
     private var geoPoint: PFGeoPoint?
     
     override func viewDidLoad() {
