@@ -58,6 +58,7 @@
 		9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */; };
 		9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */; };
 		9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */; };
+		9DAF9F871C87A3A2000B8586 /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */; };
 		9DB9900C1C8009B400837993 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */; };
 		9DB9900E1C800A4E00837993 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DB9900D1C800A4E00837993 /* Map.storyboard */; };
 		9DB990131C800B9000837993 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB990121C800B9000837993 /* LocationSelectViewController.swift */; };
@@ -162,6 +163,7 @@
 		9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterSearchController.swift; sourceTree = "<group>"; };
 		9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNameView.swift; sourceTree = "<group>"; };
 		9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		9DB9900D1C800A4E00837993 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		9DB990121C800B9000837993 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */,
+				9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				CEFEBF4A1BDC9CB500E4070D /* NewKlusterViewController.swift in Sources */,
 				9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */,
 				28EE235C1BDF1F83009161AE /* SpringView.swift in Sources */,
+				9DAF9F871C87A3A2000B8586 /* ProfileNameView.swift in Sources */,
 				CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */,
 				28EE235D1BDF1F83009161AE /* TransitionManager.swift in Sources */,
 				CED4489D1BA5111900F11808 /* Kluster.swift in Sources */,

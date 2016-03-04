@@ -11,6 +11,8 @@ import Photos
 
 class ProfileViewController: UIViewController {
 
+    var user = PFUser.currentUser()
+    
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var editButton: DesignableButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -29,8 +31,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         // Load profile info
-        let user = PFUser.currentUser()
-        self.profileImageView.file = user!.objectForKey("avatar") as? PFFile
+        self.profileImageView.file = self.user!.objectForKey("avatar") as? PFFile
         self.profileImageView.loadInBackground()
         
         let firstName = user?.objectForKey("firstName") as! String
@@ -92,7 +93,7 @@ class ProfileViewController: UIViewController {
                         let user = PFUser.currentUser()
                         user?.setObject(file!, forKey: "avatar")
                         user?.saveInBackgroundWithBlock({ (save: Bool, error: NSError?) -> Void in
-                            if ((error) != nil) {
+                            if (error != nil) {
                                 print("We have an error...")
                             }
                         })
@@ -109,6 +110,6 @@ class ProfileViewController: UIViewController {
     }
     
     func presentCamera() {
-        
+
     }
 }

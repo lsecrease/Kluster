@@ -38,6 +38,12 @@ class KlusterDataSource: NSObject {
         }
     }
     
+    class func deleteKluster(klusterId: String, completion: PFIdResultBlock) -> Void {
+        PFCloud.callFunctionInBackground("deleteKluster", withParameters: ["klusterId": klusterId]) { (object, error) -> Void in
+            completion(object, error)
+        }
+    }
+    
     class func fetchKlustersForUser(completion:PFIdResultBlock) -> Void {
         PFCloud.callFunctionInBackground("fetchKlustersForUser", withParameters: nil) { (object, error) -> Void in
             KlusterStore.sharedInstance.userKlusters = object as? [PFObject]

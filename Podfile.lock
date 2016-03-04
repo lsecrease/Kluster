@@ -22,6 +22,7 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SlackTextViewController (1.9.1)
+  - SWRevealTableViewCell (0.3.5)
 
 DEPENDENCIES:
   - MBProgressHUD
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - ParseFacebookUtilsV4
   - ParseUI
   - SlackTextViewController
+  - SWRevealTableViewCell
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
@@ -39,5 +41,6 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: 216e03bd560404eed09a4875c75f0c1cdf758070
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
+  SWRevealTableViewCell: c97ca17df7153f2f130f307ea90399d4b19e4e15
 
 COCOAPODS: 0.39.0

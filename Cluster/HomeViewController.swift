@@ -41,9 +41,6 @@ class HomeViewController: UIViewController {
         self.searchBar.hidden = true
         self.cancelButton.hidden = true
         
-        // Hack to set search bar text color to white..
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = .whiteColor()
-        
         // Set delegates
         self.locationManager.delegate = self
         self.searchBar.delegate = self;
@@ -74,6 +71,9 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
+        // Hack to set search bar text color to white..
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = .whiteColor()
         
         self.fetchKlusters()
         
@@ -242,7 +242,6 @@ extension HomeViewController : UICollectionViewDataSource
         
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "featuredImageViewTapped:")
         cell.featuredImageView.addGestureRecognizer(tapRecognizer)
-        
         return cell
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 
 class MyKlusterTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var klusterRoleLabel: UILabel!
    
     @IBOutlet weak var klusterNameLabel: UILabel!
