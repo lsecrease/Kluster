@@ -24,6 +24,10 @@ class MessageTextView: UIView {
         let buttonWidth = 60.0 as CGFloat
         let textFieldWidth = width - (3 * textFieldPadding) - buttonWidth
         
+        let spacingView = UIView.init(frame: CGRectMake(0, 0, width, 1.0))
+        spacingView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
+        self.addSubview(spacingView)
+        
         let textFieldFrame = CGRectMake(textFieldPadding, textFieldPadding, textFieldWidth, height - (2 * textFieldPadding))
         textField = UITextField.init(frame: textFieldFrame)
         textField.placeholder = "Enter a message..."
@@ -32,7 +36,7 @@ class MessageTextView: UIView {
         sendButton = UIButton.init(type: .Custom)
         sendButton.setTitle("Send", forState: .Normal)
         sendButton.frame = CGRectMake(textFieldWidth + (2 * textFieldPadding), textFieldPadding, buttonWidth, height - (2 * textFieldPadding))
-        sendButton.setTitleColor(.blueColor(), forState: .Normal)
+        sendButton.setTitleColor(.klusterPurpleColor(), forState: .Normal)
         self.addSubview(sendButton)
     }
 

@@ -8,4 +8,3 @@
 #import <ParseUI/PFImageView.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <SlackTextViewController/SLKTextViewController.h>
-#import "SWRevealViewController.h"

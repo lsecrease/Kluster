@@ -20,8 +20,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var currentUserProfileImageButton:UIButton!
-    @IBOutlet weak var currentUserFullNameButton:UIButton!
-    @IBOutlet weak var profileAvatar: PFImageView!
     @IBOutlet var createKlusterButton: UIButton!
     
     //MARK: - UICollectionViewDataSource
@@ -50,23 +48,19 @@ class HomeViewController: UIViewController {
         self.view.addGestureRecognizer(tapRecognizer)
         
         // Update the user profile information
-        let user = PFUser.currentUser()
-        self.profileAvatar.file = user?.objectForKey("avatarThumbnail") as? PFFile
-        self.profileAvatar.loadInBackground()
-        
-        let firstName = user?.objectForKey("firstName") as? String
-        self.currentUserFullNameButton.setTitle(firstName, forState: .Normal)
-        
-        profileAvatar.layer.cornerRadius = 10.0
-        profileAvatar.clipsToBounds = true
-        
-        //Side Menu
-        if self.revealViewController() != nil {
-            menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
+//        let user = PFUser.currentUser()
+//        self.profileAvatar.file = user?.objectForKey("avatarThumbnail") as? PFFile
+//        self.profileAvatar.loadInBackground()
+//        
+//        let firstName = user?.objectForKey("firstName") as? String
+//        self.currentUserFullNameButton.setTitle(firstName, forState: .Normal)
+//        
+//        profileAvatar.layer.cornerRadius = 10.0
+//        profileAvatar.clipsToBounds = true
         
         self.calculateCurrentLocation()
+        
+        self.addProfileView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -161,6 +155,45 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func addProfileView() {
+        let user = PFUser.currentUser()
+        let firstName = user?.objectForKey("firstName") as? String
+        let maxWidth = self.view.frame.size.width - 200.0
+        let font = UIFont.systemFontOfSize(17)
+        let labelWidth = self.widthForlabel(firstName, font: font, maxWidth: maxWidth)
+        let profileFrame = CGRectMake(0, 0, labelWidth, 40)
+        let userProfileView = ProfileNameView.init(frame: profileFrame)
+        userProfileView.layoutForUser(user)
+        self.view.addSubview(userProfileView)
+        
+        let profileRecognizer = UITapGestureRecognizer.init(target: self, action: "profileTapped:")
+        userProfileView.addGestureRecognizer(profileRecognizer)
+        
+        let metrics = ["spacing" : 6]
+        let views = ["userProfileView" : userProfileView]
+        let profileH = NSLayoutConstraint.constraintsWithVisualFormat("H:[userProfileView]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views)
+        let profileY = NSLayoutConstraint.constraintsWithVisualFormat("V:[userProfileView]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics  , views: views)
+        self.view.addConstraints(profileH)
+        self.view.addConstraints(profileY)
+    }
+    
+    private func widthForlabel(text: String?, font: UIFont, maxWidth: CGFloat) -> CGFloat {
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, maxWidth, CGFloat.max))
+        label.numberOfLines = 1
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.font = font
+        label.text = text
+        
+        label.sizeToFit()
+        return label.frame.height
+    }
+    
+    func profileTapped(sender: UITapGestureRecognizer) {
+        let	 storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let profileController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
+        self.presentViewController(profileController, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController : UICollectionViewDataSource
@@ -247,12 +280,13 @@ extension HomeViewController : UICollectionViewDataSource
     
     func featuredImageViewTapped(sender: UITapGestureRecognizer) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
+        let messagesController = storyboard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
         let k = Kluster.init(object: self.klusters[(sender.view?.tag)!])
-        klusterVC.kluster = k
+        messagesController.kluster = k
+        
         
         // Show kluster
-        let navigationController = UINavigationController.init(rootViewController: klusterVC)
+        let navigationController = UINavigationController.init(rootViewController: messagesController)
         self.presentViewController(navigationController, animated: true, completion: nil);
     }
     

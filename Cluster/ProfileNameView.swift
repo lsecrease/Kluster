@@ -16,11 +16,16 @@ class ProfileNameView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
         self.backgroundColor = .clearColor()
         
         self.avatarImageView.clipsToBounds = true
         self.avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.nameLabel.font = UIFont.systemFontOfSize(17) //UIFont(name: "BondoluoPeek", size: 18)
+        self.nameLabel.textColor = .whiteColor()
         
         self.addSubview(self.avatarImageView)
         self.addSubview(self.nameLabel)
@@ -28,21 +33,21 @@ class ProfileNameView : UIView {
         let views = ["avatarImageView" : self.avatarImageView,
                            "nameLabel" : self.nameLabel]
         
-        let spacing = 10.0
+        let spacing = 5.0
         let height = Double.init(self.frame.size.height)
-        let imageRadius =  height - (2 * spacing)
-        let metrics = ["imageViewWidth": imageRadius, "spacing": spacing] as [String : AnyObject]
+        let imageDiameter =  height - (2 * spacing)
+        let metrics = ["imageDiameter": imageDiameter, "spacing": spacing] as [String : AnyObject]
         
         // Set the corner radius of the avatar view
-        self.avatarImageView.layer.cornerRadius = CGFloat(imageRadius / 2.0)
+        self.avatarImageView.layer.cornerRadius = CGFloat(imageDiameter / 2.0)
         
-        let hConstraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[avatarImageView]-(spacing)-[nameLabel]-(spacing)-|",
+        let hConstraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[avatarImageView(==imageDiameter)]-(spacing)-[nameLabel]-(spacing)-|",
                                                                          options: NSLayoutFormatOptions(rawValue: 0),
                                                                          metrics:metrics, views: views)
         
-        let avatarY = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(spacing)-[avatarImageView]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let avatarY = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(spacing)-[avatarImageView(==imageDiameter)]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views)
         
-        let labelY = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(spacing)-[nameLabel]-(spacing)-|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let labelY = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(spacing)-[nameLabel]-(spacing)-|", options:NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views)
         
         self.addConstraints(hConstraint)
         self.addConstraints(avatarY)
@@ -51,5 +56,11 @@ class ProfileNameView : UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func layoutForUser(user: PFUser!) {
+        self.nameLabel.text = user.objectForKey("firstName") as? String
+        self.avatarImageView.file = user.objectForKey("avatarThumbnail") as? PFFile
+        self.avatarImageView.loadInBackground()
     }
 }

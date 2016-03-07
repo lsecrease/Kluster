@@ -38,12 +38,6 @@ class ProfileViewController: UIViewController {
         let lastName = user?.objectForKey("lastName") as! String
         self.nameLabel.text = firstName + " " + lastName
         
-        //Side Menu
-        if self.revealViewController() != nil {
-            menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        
         scroller.contentInset = UIEdgeInsetsMake(0, 0, 400, 0)
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.width / 2

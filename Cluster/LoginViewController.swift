@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
                     
                     // Make graph request for current user and get their information
                     // user_location, user_birthday, user_about_me
-                    let params = ["fields" : "first_name, last_name, email, name, id, picture, user_birthday"]
+                    let params = ["fields" : "first_name, last_name, email, name, id, picture"]
                     
                     let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "me", parameters: params, HTTPMethod: "GET")
                     request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject?, graphRequestError: NSError?) -> Void in

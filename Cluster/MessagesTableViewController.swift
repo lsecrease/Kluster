@@ -29,6 +29,19 @@ class MessagesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Format the navigation bar
+        self.navigationItem.title = self.kluster.title
+        // self.navigationController?.navigationBar.backgroundColor = .klusterPurpleColor()
+        
+        let dismissItem = UIBarButtonItem.init(image: UIImage(named: "CloseButton2"),
+            style: .Plain,
+            target: self,
+            action: "dismissPressed:")
+        self.navigationItem.leftBarButtonItem = dismissItem
+        
+        let menuItem = UIBarButtonItem.init(title: "Menu", style: .Plain, target: self, action: "menuPressed:")
+        self.navigationItem.rightBarButtonItem = menuItem
+        
         self.fetchMessages()
 
         // Update the keyboard status
@@ -48,6 +61,18 @@ class MessagesTableViewController: UITableViewController {
         UIApplication.sharedApplication().keyWindow?.addSubview(self.textView)
         
         self.fetchMessages()
+    }
+    
+    func dismissPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func menuPressed(sender: UIBarButtonItem) {
+        let popover = PopoverMenuController()
+        popover.kluster = self.kluster
+        let messageNavController = UINavigationController.init(rootViewController: popover)
+        messageNavController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        self.presentViewController(messageNavController, animated: false, completion: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -81,7 +106,12 @@ class MessagesTableViewController: UITableViewController {
                 print("Error fetching messages.")
             } else {
                 self.messages = objects as! [PFObject]
+                self.messages = self.messages.reverse()
+                
                 self.tableView.reloadData()
+                
+                // Scroll to the last index path...
+                self.scrollTableToBottom(false)
             }
         }
     }
@@ -141,6 +171,10 @@ class MessagesTableViewController: UITableViewController {
         return textViewHeight
     }
     
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.textView.textField.resignFirstResponder()
     }
@@ -188,7 +222,16 @@ class MessagesTableViewController: UITableViewController {
                 frame.origin.y =  self.windowHeight! - convertedKeyboardEndFrame.size.height - self.textViewHeight
                 self.textView.frame = frame
             }
-            }) { (finished) -> Void in
+        }) { (completed) -> Void in
+                self.scrollTableToBottom(true)
+        }
+    }
+    
+    private func scrollTableToBottom(animated: Bool) {
+        if (self.messages.count > 0) {
+            let indexToScrollTo = Int(self.messages.count - 1)
+            let lastIndexPath = NSIndexPath.init(forItem: indexToScrollTo, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: .Top, animated: animated)
         }
     }
 }
