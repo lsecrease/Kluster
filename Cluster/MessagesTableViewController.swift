@@ -12,6 +12,8 @@ class MessagesTableViewController: UITableViewController {
     
     var parentNavigationController : UINavigationController?
     
+    var shouldContinueFetchingMessages: Bool = true
+    var queryLimit = 20
     var kluster: Kluster!
     var textView: MessageTextView!
     let textViewHeight = 60.0 as CGFloat
@@ -108,7 +110,11 @@ class MessagesTableViewController: UITableViewController {
             if (error != nil) {
                 print("Error fetching messages.")
             } else {
+                self.shouldContinueFetchingMessages = objects?.count >= 20
                 self.messages = objects as! [PFObject]
+//                let newMessages = objects as! [PFObject]
+//                self.messages = newMessages.reverse() + self.messages
+                
                 self.messages = self.messages.reverse()
                 
                 self.tableView.reloadData()

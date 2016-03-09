@@ -11,7 +11,7 @@ import Photos
 
 class ProfileViewController: UIViewController {
 
-    var user = PFUser.currentUser()
+    var user: PFUser! = PFUser.currentUser()
     
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var editButton: DesignableButton!
@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var biographyLabel: UILabel!
-    
+    @IBOutlet weak var locationLabel: UILabel!
     @IBAction func menuButtonPressed(sender: AnyObject) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let editProfileController = storyboard.instantiateViewControllerWithIdentifier("EditProfileTableViewController")
@@ -113,26 +113,31 @@ class ProfileViewController: UIViewController {
         self.profileImageView.file = self.user!.objectForKey("avatar") as? PFFile
         self.profileImageView.loadInBackground()
         
-        let firstName = user?.objectForKey("firstName") as! String
-        let lastName = user?.objectForKey("lastName") as! String
+        let firstName = self.user.objectForKey("firstName") as! String
+        let lastName = self.user.objectForKey("lastName") as! String
         self.nameLabel.text = firstName + " " + lastName
         
-        if (self.user?.objectForKey("age") != nil) {
-            let age = self.user?.objectForKey("age") as? Int
+        if let location = self.user.objectForKey("location") as? String {
+            self.locationLabel.text = location
+        } else {
+            self.locationLabel.text = "🌎"
+        }
+        
+        if let age = self.user.objectForKey("age") as? Int {
             self.ageLabel.text = "\(age) yrs"
         } else {
             self.ageLabel.text = "🤔"
         }
-        
-        if (self.user?.objectForKey("biography") != nil) {
-            
+
+        if let bio = self.user.objectForKey("biography") as? String {
+            self.biographyLabel.text = bio
         } else {
             self.biographyLabel.text = self.randomBiographyString()
         }
     }
     
     private func randomBiographyString() -> String {
-        let firstName = self.user?.objectForKey("firstName") as? String
+        let firstName = self.user.objectForKey("firstName") as! String
         return "Surely \(firstName) is clever, but they haven't shared anything with us."
     }
 }

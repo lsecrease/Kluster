@@ -1325,6 +1325,7 @@
                         <outlet property="biographyLabel" destination="Zyu-Yz-Gte" id="QxE-We-OPB"/>
                         <outlet property="coverImage" destination="4th-al-Vy1" id="J3B-OA-Dwi"/>
                         <outlet property="editButton" destination="YPD-vd-zbQ" id="mLd-pS-D6B"/>
+                        <outlet property="locationLabel" destination="Cwa-67-syF" id="Co5-hH-L2V"/>
                         <outlet property="menuButton" destination="RxG-pW-nCC" id="RBu-x0-Iy0"/>
                         <outlet property="nameLabel" destination="vXs-zw-kMo" id="4kV-IU-uj9"/>
                         <outlet property="profileImageView" destination="oAd-jH-lfd" id="rnr-mN-J5N"/>

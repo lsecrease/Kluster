@@ -31,12 +31,14 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         if (self.validAttributes()) {
             let firstName = self.firstNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let lastName = self.lastNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            let age = self.ageTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let ageString = self.ageTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let location = self.locationTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let biography = self.aboutMeTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            
+            
             self.user.setObject(firstName!, forKey: "firstName")
             self.user.setObject(lastName!, forKey: "lastName")
-            self.user.setObject(age!, forKey: "age")
+            self.user.setObject(Int(ageString!)!, forKey: "age")
             self.user.setObject(location!, forKey: "location")
             self.user.setObject(biography!, forKey: "biography")
             self.user.saveEventually()

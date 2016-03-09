@@ -35,6 +35,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let latitude = LocationStore.sharedStore.currentLatitude()
+        let longitude = LocationStore.sharedStore.currentLongitude()
+        self.currentGeoPoint = PFGeoPoint.init(latitude: latitude, longitude: longitude)
+        
         // Hide search bar and cancel button 
         self.searchBar.hidden = true
         self.cancelButton.hidden = true
@@ -92,6 +96,9 @@ class HomeViewController: UIViewController {
         PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint, error) -> Void in
             if (error == nil) {
                 self.currentGeoPoint = geoPoint
+                if let geoPoint = geoPoint {
+                    LocationStore.sharedStore.updateLocation(geoPoint.latitude, longitude: geoPoint.longitude)
+                }
             }
         })
     }
