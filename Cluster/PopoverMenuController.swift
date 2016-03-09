@@ -9,7 +9,7 @@
 import UIKit
 
 enum PopoverTableSection: Int {
-    case Members = 0, Invite, Settings, Count
+    case Title = 0, Description, Members, Invite, Count
 }
 
 class PopoverMenuController : UIViewController {
@@ -20,7 +20,7 @@ class PopoverMenuController : UIViewController {
     let animationTimeInterval: NSTimeInterval = 0.3
     let backgroundViewAlpha: CGFloat = 0.4
     var kluster: Kluster!
-    let headerHeight: CGFloat = 300.0
+    let headerHeight: CGFloat = 250.0
     var headerView: PopoverHeaderView!
     var headerFrame: CGRect!
     var originalHeaderImageViewFrame: CGRect!
@@ -145,6 +145,20 @@ extension PopoverMenuController : UITableViewDataSource {
         }
         
         cell?.textLabel?.text = self.cellTitle(indexPath.row)
+        cell?.selectionStyle = .None
+        
+        if (indexPath.row == PopoverTableSection.Title.rawValue) {
+            cell?.textLabel?.font = UIFont.boldSystemFontOfSize(18.0)
+            cell?.accessoryType = .None
+        } else if (indexPath.row == PopoverTableSection.Description.rawValue) {
+            cell?.textLabel?.font = UIFont.systemFontOfSize(14.0)
+            cell?.textLabel?.textColor = UIColor.lightGrayColor()
+            cell?.accessoryType = .None
+        } else {
+            cell?.accessoryType = .DisclosureIndicator
+        }
+        
+        
         return cell!
     }
     
@@ -153,25 +167,26 @@ extension PopoverMenuController : UITableViewDataSource {
         
         switch(indexPath.row) {
         case PopoverTableSection.Members.rawValue:
-            print("Show members")
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            let memberController = storyBoard.instantiateViewControllerWithIdentifier("MembersTableViewController") as! MembersTableViewController
+            memberController.kluster = self.kluster
+            self.navigationController?.pushViewController(memberController, animated: true)
         case PopoverTableSection.Invite.rawValue:
-            print("Show Invite")
-        case PopoverTableSection.Settings.rawValue:
-            print("Show settings")
+            self.showComingSoonAlert()
         default:
             break
             
         }
-        
-        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        let memberController = storyBoard.instantiateViewControllerWithIdentifier("MembersTableViewController") as! MembersTableViewController
-        memberController.kluster = self.kluster
-        self.navigationController?.pushViewController(memberController, animated: true)
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        if (indexPath.row == PopoverTableSection.Title.rawValue) {
+            return self.heightForString(self.kluster.title, font: UIFont.systemFontOfSize(18))
+        } else if (indexPath.row == PopoverTableSection.Description.rawValue) {
+            return self.heightForString(self.kluster.summary, font: UIFont.systemFontOfSize(16))
+        }
+        
+        return 60.0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -188,10 +203,29 @@ extension PopoverMenuController : UITableViewDataSource {
             }
         case PopoverTableSection.Invite.rawValue:
             return "Invite Friends"
-        case PopoverTableSection.Settings.rawValue:
-            return "Settings"
+            
+        case PopoverTableSection.Title.rawValue:
+            return self.kluster.title
+            
+        case PopoverTableSection.Description.rawValue:
+            return self.kluster.summary!
+            
         default:
             return ""
         }
+    }
+    
+    private func heightForString(string: String?, font: UIFont?) -> CGFloat {
+        if (string == nil || font == nil) {
+            return 60.0
+        }
+        return 60.0
+    }
+    
+    private func showComingSoonAlert() {
+        let alertController = UIAlertController.init(title: "Coming Soon!", message: "Invitations are coming in the next update.", preferredStyle: .Alert)
+        let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

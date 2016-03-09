@@ -18,20 +18,16 @@ class MessagesTableViewController: UITableViewController {
     var messages = [PFObject]()
     let windowHeight: CGFloat? = UIApplication.sharedApplication().keyWindow?.frame.size.height
     
-//    init(style: UITableViewStyle) {
-//        super.init(tableViewStyle: .Plain)
-//    }
-//
-//    required init!(coder decoder: NSCoder!) {
-//        super.init(tableViewStyle: .Plain)
-//    }
-
+    //MARK: - Change Status Bar to White
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Format the navigation bar
         self.navigationItem.title = self.kluster.title
-        // self.navigationController?.navigationBar.backgroundColor = .klusterPurpleColor()
         
         let dismissItem = UIBarButtonItem.init(image: UIImage(named: "CloseButton2"),
             style: .Plain,
@@ -39,8 +35,15 @@ class MessagesTableViewController: UITableViewController {
             action: "dismissPressed:")
         self.navigationItem.leftBarButtonItem = dismissItem
         
-        let menuItem = UIBarButtonItem.init(title: "Menu", style: .Plain, target: self, action: "menuPressed:")
+//        var groupImageView = PFImageView()
+//        groupImageView.frame = CGRectMake(0, 0, 36.0, 36.0)
+//        groupImageView.file = self.kluster.featuredImageFile
+//        groupImageView.backgroundColor = .redColor()
+//        var menuItem = UIBarButtonItem(customView: groupImageView)
+        let menuItem = UIBarButtonItem.init(image: UIImage(named: "menu"), style: .Plain, target: self, action: "menuPressed:")
         self.navigationItem.rightBarButtonItem = menuItem
+//        
+//        groupImageView.loadInBackground()
         
         self.fetchMessages()
 
@@ -70,7 +73,7 @@ class MessagesTableViewController: UITableViewController {
     func menuPressed(sender: UIBarButtonItem) {
         let popover = PopoverMenuController()
         popover.kluster = self.kluster
-        let messageNavController = UINavigationController.init(rootViewController: popover)
+        let messageNavController = MessagesNavigationController.init(rootViewController: popover)
         messageNavController.modalPresentationStyle = UIModalPresentationStyle.Custom
         self.presentViewController(messageNavController, animated: false, completion: nil)
     }

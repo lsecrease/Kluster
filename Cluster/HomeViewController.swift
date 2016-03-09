@@ -286,7 +286,7 @@ extension HomeViewController : UICollectionViewDataSource
         
         
         // Show kluster
-        let navigationController = UINavigationController.init(rootViewController: messagesController)
+        let navigationController = MessagesNavigationController.init(rootViewController: messagesController)
         self.presentViewController(navigationController, animated: true, completion: nil);
     }
     
