@@ -79,6 +79,11 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
     private func loadImages() {
         self.profileImage.file = self.user.objectForKey("avatar") as? PFFile
         self.profileImage.loadInBackground()
+        
+        // Set a placeholder image
+        self.coverImage.image = UIImage(named: "fashion")
+        self.coverImage.file = self.user.objectForKey("coverImage") as? PFFile
+        self.coverImage.loadInBackground()
     }
     
     // Sets the initial tableview textfield values
@@ -86,8 +91,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         self.firstNameTextField.text = self.user.objectForKey("firstName") as? String
         self.lastNameTextField.text = self.user.objectForKey("lastName") as? String
         
-        if (self.user.objectForKey("age") != nil) {
-           let age  = self.user.objectForKey("age") as? Int
+        if let age = self.user.objectForKey("age") as? Int {
             self.ageTextField.text = "\(age)"
         }
         
@@ -203,6 +207,18 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
                     controller.getSelectedImagesWithCompletion({ (images) -> Void in
                         self.coverPic = images[0]
                         self.coverImage.image = self.coverPic
+                        
+                        let imageData = UIImagePNGRepresentation(self.coverPic)
+                        let file = PFFile.init(name: "cover.png", data: imageData!)
+                        self.user.setObject(file!, forKey: "coverImage")
+                        self.user.saveInBackgroundWithBlock({ (success, error) -> Void in
+                            if (error != nil) {
+                                let alert = UIAlertController.init(title: "Error", message: "Unable to update cover image.", preferredStyle: .Alert)
+                                let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+                                alert.addAction(okAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
+                            }
+                        })
                     })
             }))
             

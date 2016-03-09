@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
 
     var user: PFUser! = PFUser.currentUser()
     
-    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var coverImage: PFImageView!
     @IBOutlet weak var editButton: DesignableButton!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -37,8 +37,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadProfileInfo()
-        
         scroller.contentInset = UIEdgeInsetsMake(0, 0, 400, 0)
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.width / 2
@@ -46,6 +44,12 @@ class ProfileViewController: UIViewController {
         
         editButton.layer.cornerRadius = editButton.bounds.width / 2
         editButton.layer.masksToBounds = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadProfileInfo()
     }
     
     override func viewWillLayoutSubviews() {
@@ -110,8 +114,11 @@ class ProfileViewController: UIViewController {
     
     private func loadProfileInfo() {
         // Load profile info
-        self.profileImageView.file = self.user!.objectForKey("avatar") as? PFFile
+        self.profileImageView.file = self.user.objectForKey("avatar") as? PFFile
         self.profileImageView.loadInBackground()
+        
+        self.coverImage.file = self.user.objectForKey("coverImage") as? PFFile
+        self.coverImage.loadInBackground()
         
         let firstName = self.user.objectForKey("firstName") as! String
         let lastName = self.user.objectForKey("lastName") as! String

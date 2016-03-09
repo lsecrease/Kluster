@@ -58,9 +58,11 @@ class ProfileNameView : UIView {
         super.init(coder: aDecoder)
     }
     
-    func layoutForUser(user: PFUser!) {
-        self.nameLabel.text = user.objectForKey("firstName") as? String
-        self.avatarImageView.file = user.objectForKey("avatarThumbnail") as? PFFile
-        self.avatarImageView.loadInBackground()
+    func layoutForUser(user: PFUser?) {
+        if let user = user {
+            self.nameLabel.text = user.objectForKey("firstName") as? String
+            self.avatarImageView.file = user.objectForKey("avatarThumbnail") as? PFFile
+            self.avatarImageView.loadInBackground()
+        }
     }
 }

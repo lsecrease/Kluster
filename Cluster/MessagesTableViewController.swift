@@ -28,6 +28,10 @@ class MessagesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set dynamic row height
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 68.0
+        
         // Format the navigation bar
         self.navigationItem.title = self.kluster.title
         
@@ -170,10 +174,6 @@ class MessagesTableViewController: UITableViewController {
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "avatarTapped:")
         cell.avatarImageView.addGestureRecognizer(tapRecognizer)
         return cell
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 68
     }
 
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

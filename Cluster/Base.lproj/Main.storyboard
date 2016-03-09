@@ -1188,7 +1188,7 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fashion" translatesAutoresizingMaskIntoConstraints="NO" id="4th-al-Vy1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fashion" translatesAutoresizingMaskIntoConstraints="NO" id="4th-al-Vy1" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="BRc-Gv-hn4"/>
@@ -1323,7 +1323,7 @@
                     <connections>
                         <outlet property="ageLabel" destination="6G2-dD-aoK" id="bTw-Ie-PGg"/>
                         <outlet property="biographyLabel" destination="Zyu-Yz-Gte" id="QxE-We-OPB"/>
-                        <outlet property="coverImage" destination="4th-al-Vy1" id="J3B-OA-Dwi"/>
+                        <outlet property="coverImage" destination="4th-al-Vy1" id="ju4-Ap-UWO"/>
                         <outlet property="editButton" destination="YPD-vd-zbQ" id="mLd-pS-D6B"/>
                         <outlet property="locationLabel" destination="Cwa-67-syF" id="Co5-hH-L2V"/>
                         <outlet property="menuButton" destination="RxG-pW-nCC" id="RBu-x0-Iy0"/>
@@ -1942,21 +1942,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="67.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are we doing tonight?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGT-du-aC0">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="What are we doing tonight?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGT-du-aC0">
                                             <rect key="frame" x="66" y="33" width="514" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="GTa-6H-g1q"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Michael Fellows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olg-OI-0pz">
-                                            <rect key="frame" x="66" y="4" width="514" height="29"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="29" id="Icm-aX-xnJ"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1973,16 +1961,26 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Michael Fellows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olg-OI-0pz">
+                                            <rect key="frame" x="66" y="4" width="514" height="29"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="29" id="bTO-oE-B4W"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="olg-OI-0pz" firstAttribute="top" secondItem="Ueo-H1-dwC" secondAttribute="topMargin" constant="-4" id="2bb-Fd-tBp"/>
-                                        <constraint firstItem="olg-OI-0pz" firstAttribute="leading" secondItem="uIc-BZ-8gG" secondAttribute="trailing" constant="8" id="KWq-7A-fbx"/>
-                                        <constraint firstItem="lGT-du-aC0" firstAttribute="leading" secondItem="uIc-BZ-8gG" secondAttribute="trailing" constant="8" id="Ki2-Nc-pkj"/>
+                                        <constraint firstItem="lGT-du-aC0" firstAttribute="top" secondItem="olg-OI-0pz" secondAttribute="bottom" id="1dy-po-O9O"/>
+                                        <constraint firstAttribute="trailing" secondItem="olg-OI-0pz" secondAttribute="trailing" constant="20" id="2vy-ZZ-zCx"/>
+                                        <constraint firstItem="olg-OI-0pz" firstAttribute="leading" secondItem="uIc-BZ-8gG" secondAttribute="trailing" constant="8" id="9Rw-iI-M0Q"/>
+                                        <constraint firstItem="lGT-du-aC0" firstAttribute="leading" secondItem="uIc-BZ-8gG" secondAttribute="trailing" constant="8" id="AVa-1H-TfB"/>
+                                        <constraint firstAttribute="trailing" secondItem="lGT-du-aC0" secondAttribute="trailing" constant="20" id="RAd-YS-N9T"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="uIc-BZ-8gG" secondAttribute="leading" id="VUm-KX-RGz"/>
+                                        <constraint firstAttribute="bottom" secondItem="lGT-du-aC0" secondAttribute="bottom" constant="13.5" id="YkT-VH-VuT"/>
                                         <constraint firstItem="uIc-BZ-8gG" firstAttribute="top" secondItem="Ueo-H1-dwC" secondAttribute="topMargin" constant="-4" id="dLb-Ih-2Jy"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="lGT-du-aC0" secondAttribute="trailing" constant="12" id="l8v-EC-iQ0"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="olg-OI-0pz" secondAttribute="trailing" constant="12" id="oE1-a4-nik"/>
-                                        <constraint firstItem="lGT-du-aC0" firstAttribute="top" secondItem="olg-OI-0pz" secondAttribute="bottom" id="w8I-CY-I5J"/>
+                                        <constraint firstItem="olg-OI-0pz" firstAttribute="top" secondItem="Ueo-H1-dwC" secondAttribute="top" constant="4" id="nIc-P2-hgv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

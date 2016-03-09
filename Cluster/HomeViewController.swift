@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
     private var klusters = [PFObject]()
     var locationManager = CLLocationManager()
     var currentGeoPoint: PFGeoPoint?
+    var userProfileView: ProfileNameView?
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -51,17 +52,6 @@ class HomeViewController: UIViewController {
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "viewTapped:")
         self.view.addGestureRecognizer(tapRecognizer)
         
-        // Update the user profile information
-//        let user = PFUser.currentUser()
-//        self.profileAvatar.file = user?.objectForKey("avatarThumbnail") as? PFFile
-//        self.profileAvatar.loadInBackground()
-//        
-//        let firstName = user?.objectForKey("firstName") as? String
-//        self.currentUserFullNameButton.setTitle(firstName, forState: .Normal)
-//        
-//        profileAvatar.layer.cornerRadius = 10.0
-//        profileAvatar.clipsToBounds = true
-        
         self.calculateCurrentLocation()
         
         self.addProfileView()
@@ -84,6 +74,8 @@ class HomeViewController: UIViewController {
             // let's request location authorization
             self.locationManager.requestWhenInUseAuthorization()
         }
+        
+        self.updateUserInfo()
     }
     
     private func showLogin() {
@@ -163,6 +155,15 @@ class HomeViewController: UIViewController {
         }
     }
     
+    /** 
+     Updates the bottom-right view of the user
+     We call this when the view appears in case a user
+     changes their name or avatar.
+    **/
+    private func updateUserInfo() {
+        self.userProfileView?.layoutForUser(PFUser.currentUser())
+    }
+    
     private func addProfileView() {
         let user = PFUser.currentUser()
         let firstName = user?.objectForKey("firstName") as? String
@@ -170,19 +171,21 @@ class HomeViewController: UIViewController {
         let font = UIFont.systemFontOfSize(17)
         let labelWidth = self.widthForlabel(firstName, font: font, maxWidth: maxWidth)
         let profileFrame = CGRectMake(0, 0, labelWidth, 40)
-        let userProfileView = ProfileNameView.init(frame: profileFrame)
-        userProfileView.layoutForUser(user)
-        self.view.addSubview(userProfileView)
-        
-        let profileRecognizer = UITapGestureRecognizer.init(target: self, action: "profileTapped:")
-        userProfileView.addGestureRecognizer(profileRecognizer)
-        
-        let metrics = ["spacing" : 6]
-        let views = ["userProfileView" : userProfileView]
-        let profileH = NSLayoutConstraint.constraintsWithVisualFormat("H:[userProfileView]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views)
-        let profileY = NSLayoutConstraint.constraintsWithVisualFormat("V:[userProfileView]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics  , views: views)
-        self.view.addConstraints(profileH)
-        self.view.addConstraints(profileY)
+        self.userProfileView = ProfileNameView.init(frame: profileFrame)
+        if let userProfileView = self.userProfileView {
+            userProfileView.layoutForUser(user)
+            self.view.addSubview(userProfileView)
+            
+            let profileRecognizer = UITapGestureRecognizer.init(target: self, action: "profileTapped:")
+            userProfileView.addGestureRecognizer(profileRecognizer)
+            
+            let metrics = ["spacing" : 6]
+            let views = ["userProfileView" : userProfileView]
+            let profileH = NSLayoutConstraint.constraintsWithVisualFormat("H:[userProfileView]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views)
+            let profileY = NSLayoutConstraint.constraintsWithVisualFormat("V:[userProfileView]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics  , views: views)
+            self.view.addConstraints(profileH)
+            self.view.addConstraints(profileY)
+        }
     }
     
     private func widthForlabel(text: String?, font: UIFont, maxWidth: CGFloat) -> CGFloat {
@@ -290,7 +293,6 @@ extension HomeViewController : UICollectionViewDataSource
         let messagesController = storyboard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
         let k = Kluster.init(object: self.klusters[(sender.view?.tag)!])
         messagesController.kluster = k
-        
         
         // Show kluster
         let navigationController = MessagesNavigationController.init(rootViewController: messagesController)

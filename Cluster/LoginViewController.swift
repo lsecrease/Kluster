@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
                 
-                let shouldMakeFacebookRequest: Bool = true // (user.isNew || user.objectForKey("firstName") == nil)
+                let shouldMakeFacebookRequest: Bool = (user.isNew || user.objectForKey("firstName") == nil || user.objectForKey("lastName") == nil)
                 if  shouldMakeFacebookRequest {
                     print("User signed up and logged in through Facebook!")
                     

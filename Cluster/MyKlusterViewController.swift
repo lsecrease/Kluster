@@ -95,13 +95,13 @@ extension MyKlusterViewController : UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
         let k = Kluster.init(object: self.klusters[indexPath.row])
-        klusterVC.kluster = k
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let messagesController = storyboard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
+        messagesController.kluster = k
         
         // Show kluster
-        let navigationController = UINavigationController.init(rootViewController: klusterVC)
+        let navigationController = MessagesNavigationController.init(rootViewController: messagesController)
         self.presentViewController(navigationController, animated: true, completion: nil);
     }
 }
