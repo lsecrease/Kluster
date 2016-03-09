@@ -23,6 +23,7 @@ PODS:
     - Parse (~> 1.9)
   - SlackTextViewController (1.9.1)
   - SWRevealTableViewCell (0.3.5)
+  - UITextView+Placeholder (1.1.1)
 
 DEPENDENCIES:
   - MBProgressHUD
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - ParseUI
   - SlackTextViewController
   - SWRevealTableViewCell
+  - UITextView+Placeholder
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
@@ -42,5 +44,6 @@ SPEC CHECKSUMS:
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
   SWRevealTableViewCell: c97ca17df7153f2f130f307ea90399d4b19e4e15
+  UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
 
 COCOAPODS: 0.39.0

@@ -21,6 +21,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var biographyLabel: UILabel!
+    
+    @IBAction func menuButtonPressed(sender: AnyObject) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let editProfileController = storyboard.instantiateViewControllerWithIdentifier("EditProfileTableViewController")
+        self.presentViewController(editProfileController, animated: true, completion: nil)
+    }
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -30,13 +37,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load profile info
-        self.profileImageView.file = self.user!.objectForKey("avatar") as? PFFile
-        self.profileImageView.loadInBackground()
-        
-        let firstName = user?.objectForKey("firstName") as! String
-        let lastName = user?.objectForKey("lastName") as! String
-        self.nameLabel.text = firstName + " " + lastName
+        self.loadProfileInfo()
         
         scroller.contentInset = UIEdgeInsetsMake(0, 0, 400, 0)
         
@@ -105,5 +106,33 @@ class ProfileViewController: UIViewController {
     
     func presentCamera() {
 
+    }
+    
+    private func loadProfileInfo() {
+        // Load profile info
+        self.profileImageView.file = self.user!.objectForKey("avatar") as? PFFile
+        self.profileImageView.loadInBackground()
+        
+        let firstName = user?.objectForKey("firstName") as! String
+        let lastName = user?.objectForKey("lastName") as! String
+        self.nameLabel.text = firstName + " " + lastName
+        
+        if (self.user?.objectForKey("age") != nil) {
+            let age = self.user?.objectForKey("age") as? Int
+            self.ageLabel.text = "\(age) yrs"
+        } else {
+            self.ageLabel.text = "🤔"
+        }
+        
+        if (self.user?.objectForKey("biography") != nil) {
+            
+        } else {
+            self.biographyLabel.text = self.randomBiographyString()
+        }
+    }
+    
+    private func randomBiographyString() -> String {
+        let firstName = self.user?.objectForKey("firstName") as? String
+        return "Surely \(firstName) is clever, but they haven't shared anything with us."
     }
 }

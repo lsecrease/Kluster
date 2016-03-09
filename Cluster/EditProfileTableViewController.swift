@@ -11,20 +11,43 @@ import Photos
 
 class EditProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var coverImage: UIImageView!
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var coverImage: PFImageView!
+    @IBOutlet weak var profileImage: PFImageView!
     @IBOutlet weak var profileImageOverlay: UIVisualEffectView!
     @IBOutlet weak var aboutMeTextView: UITextView!
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var logOutButton: DesignableButton!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
-    @IBOutlet weak var logOutButton: DesignableButton!
     
+    var user: PFUser! = PFUser.currentUser()
     private var profilePic: UIImage!
     private var coverPic: UIImage!
     
-    let numberOfRowsAtSection: [Int] = [4, 3]
+    let numberOfRowsAtSection: [Int] = [5, 3]
     
+    @IBAction func saveProfileInformationPressed(sender: AnyObject) {
+        if (self.validAttributes()) {
+            let firstName = self.firstNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let lastName = self.lastNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let age = self.ageTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let location = self.locationTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let biography = self.aboutMeTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            self.user.setObject(firstName!, forKey: "firstName")
+            self.user.setObject(lastName!, forKey: "lastName")
+            self.user.setObject(age!, forKey: "age")
+            self.user.setObject(location!, forKey: "location")
+            self.user.setObject(biography!, forKey: "biography")
+            self.user.saveEventually()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            let alert = UIAlertController.init(title: "Save Error", message: "Please enter all your information before we can save your profile.", preferredStyle: .Alert)
+            let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -43,14 +66,47 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         
+        // Change the keyboard type for the age text field
+        self.ageTextField.keyboardType = .DecimalPad
+
+        // Update the profile with user information
+        self.loadImages()
+        self.updateTextFields()
+    }
+    
+    private func loadImages() {
+        self.profileImage.file = self.user.objectForKey("avatar") as? PFFile
+        self.profileImage.loadInBackground()
+    }
+    
+    // Sets the initial tableview textfield values
+    private func updateTextFields() {
+        self.firstNameTextField.text = self.user.objectForKey("firstName") as? String
+        self.lastNameTextField.text = self.user.objectForKey("lastName") as? String
         
+        if (self.user.objectForKey("age") != nil) {
+           let age  = self.user.objectForKey("age") as? Int
+            self.ageTextField.text = "\(age)"
+        }
+        
+        self.locationTextField.text = self.user.objectForKey("location") as? String
+        
+        // Update the about me placeholder
+        self.aboutMeTextView.placeholder = "Tell us about yourself..."
+        self.aboutMeTextView.text = self.user.objectForKey("biography") as? String
+    }
+    
+    private func validAttributes() -> Bool {
+        let firstName = self.firstNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let lastName = self.lastNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let age = self.ageTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let location = self.locationTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let biography = self.aboutMeTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        return firstName?.length > 0 && lastName?.length > 0 && age?.length > 0 && location?.length > 0 && biography?.length > 0
     }
     
     //MARK: Text View Handler
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
     
     func keyboardWillHide(notification: NSNotification) {
         self.aboutMeTextView.contentInset = UIEdgeInsetsZero
