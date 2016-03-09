@@ -22,9 +22,15 @@ class MembersTableViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let hud = BLMultiColorLoader.init(frame: CGRectMake(0, 0, 40.0, 40.0))
+        hud.center = self.view.center
+        hud.lineWidth = 2.0
+        hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGrayColor()]
+        self.view.addSubview(hud)
+        hud.startAnimation()
+        
         KlusterDataSource.fetchMembersForKluster(kluster, completion: { (objects, error) -> Void in
+            hud.stopAnimation()
             if (error != nil) {
                 print("Error: %@", error)
             } else {

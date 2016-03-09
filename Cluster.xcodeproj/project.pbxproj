@@ -60,6 +60,7 @@
 		9D63BB561C8DD0570094F5A2 /* PopoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */; };
 		9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */; };
 		9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */; };
+		9D807F7F1C90834600FA5768 /* BLMultiColorLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */; };
 		9DAF9F871C87A3A2000B8586 /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */; };
 		9DAF9F8C1C89E022000B8586 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */; };
 		9DAF9F8E1C89E7A4000B8586 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DAF9F8D1C89E7A4000B8586 /* Profile.storyboard */; };
@@ -169,6 +170,8 @@
 		9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverHeaderView.swift; sourceTree = "<group>"; };
 		9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9D807F7D1C90834600FA5768 /* BLMultiColorLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMultiColorLoader.h; sourceTree = "<group>"; };
+		9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMultiColorLoader.m; sourceTree = "<group>"; };
 		9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNameView.swift; sourceTree = "<group>"; };
 		9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		9DAF9F8D1C89E7A4000B8586 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -338,6 +341,15 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		9D807F7C1C9082CD00FA5768 /* BLMultiColorLoader */ = {
+			isa = PBXGroup;
+			children = (
+				9D807F7D1C90834600FA5768 /* BLMultiColorLoader.h */,
+				9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */,
+			);
+			path = BLMultiColorLoader;
+			sourceTree = "<group>";
+		};
 		9DAF9F8F1C89FB79000B8586 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +449,7 @@
 		CEA8EA0E1B854B2100DC2AA5 /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				9D807F7C1C9082CD00FA5768 /* BLMultiColorLoader */,
 				9DAF9F8F1C89FB79000B8586 /* Extensions */,
 				9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */,
 				9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */,
@@ -710,6 +723,7 @@
 				28EE234C1BDF1F83009161AE /* DesignableTextView.swift in Sources */,
 				CE8BE8FE1BB23FFE00BBEC24 /* ProfileViewController.swift in Sources */,
 				28EE236C1BDF1FF9009161AE /* AnimationController.swift in Sources */,
+				9D807F7F1C90834600FA5768 /* BLMultiColorLoader.m in Sources */,
 				9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */,
 				28EE234E1BDF1F83009161AE /* ImageLoader.swift in Sources */,
 				CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */,
