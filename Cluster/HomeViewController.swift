@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     //MARK: - IBOutlets
-    @IBOutlet weak var backgroundImageView:UIImageView!
+    @IBOutlet weak var backgroundImageView:PFImageView!
     @IBOutlet weak var collectionView:UICollectionView!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -129,29 +129,28 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchKlusters() {
+        var params = [:]
+        if let geoPoint = self.currentGeoPoint {
+            params = ["latitude" : geoPoint.latitude,
+                     "longitude" : geoPoint.longitude]
+        }
         
-        // This is incredibly gross and should be refactored
-        if (self.currentGeoPoint != nil) {
-            let params = ["latitude" : self.currentGeoPoint!.latitude,
-                "longitude" : self.currentGeoPoint!.longitude]
-            
-            KlusterDataSource.fetchMainKlusters(params as [NSObject : AnyObject]) { (objects, error) -> Void in
-                if (error != nil) {
-                    print("Error: %@", error?.localizedDescription)
-                } else {
-                    self.klusters = objects as! [PFObject]
-                    self.collectionView.reloadData()
-                }
+        KlusterDataSource.fetchMainKlusters(params as [NSObject : AnyObject]) { (objects, error) -> Void in
+            if let error = error {
+                print("Error: %@", error.localizedDescription)
+            } else {
+                self.klusters = objects as! [PFObject]
+                self.collectionView.reloadData()
+                self.updateBackground(self.klusters.first)
             }
-        } else {
-            KlusterDataSource.fetchMainKlusters(nil) { (objects, error) -> Void in
-                if (error != nil) {
-                    print("Error: %@", error?.localizedDescription)
-                } else {
-                    self.klusters = objects as! [PFObject]
-                    self.collectionView.reloadData()
-                }
-            }
+        }
+    }
+    
+    private func updateBackground(object: PFObject?) {
+        if let object = object {
+            let k = Kluster.init(object: object)
+            self.backgroundImageView.file = k.featuredImageFile
+            self.backgroundImageView.   ()
         }
     }
     

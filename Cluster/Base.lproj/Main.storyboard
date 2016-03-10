@@ -184,7 +184,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gj7-j4-4EP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gj7-j4-4EP" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVA-Pr-XMM">
@@ -446,7 +446,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundImageView" destination="Gj7-j4-4EP" id="zlh-7t-HDI"/>
+                        <outlet property="backgroundImageView" destination="Gj7-j4-4EP" id="Ous-An-5r5"/>
                         <outlet property="cancelButton" destination="y7B-kn-ILi" id="1Xl-WD-bAI"/>
                         <outlet property="collectionView" destination="1j1-AO-gLe" id="JAQ-JG-Pcw"/>
                         <outlet property="createKlusterButton" destination="YCb-a6-ltN" id="NRH-bd-wmc"/>
