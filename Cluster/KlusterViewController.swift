@@ -68,7 +68,6 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         
         // Optional delegate
         pageMenu!.delegate = self
-        
         self.view.addSubview(pageMenu!.view)
     }
     

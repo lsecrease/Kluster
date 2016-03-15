@@ -44,7 +44,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SWRevealTableViewCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SlackTextViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>UITextView+Placeholder.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,17 +62,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>273FF634E3636FBF7965751CCABA122C</key>
+		<key>240A9380FA9DA4BD9264CE88C3F09FA4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F7D912C7EA4E4FF0B1209720A9E92F6</key>
+		<key>2FFB54E5983F8EA9D309BA8892A8B0BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>4E286D373D75563CE26E479A68203892</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7AFFD0F1CC6EC2D0A8D41F379424CA01</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>A8526AA34ABFB99A5D4677997F6CC1B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC67EEEC39E3AB975FEA65252C2AD967</key>
 		<dict>
 			<key>primary</key>
 			<true/>

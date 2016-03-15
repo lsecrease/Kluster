@@ -12,22 +12,44 @@ class MessagesTableViewController: UITableViewController {
     
     var parentNavigationController : UINavigationController?
     
+    var shouldContinueFetchingMessages: Bool = true
+    var queryLimit = 20
     var kluster: Kluster!
     var textView: MessageTextView!
     let textViewHeight = 60.0 as CGFloat
     var messages = [PFObject]()
     let windowHeight: CGFloat? = UIApplication.sharedApplication().keyWindow?.frame.size.height
     
-//    init(style: UITableViewStyle) {
-//        super.init(tableViewStyle: .Plain)
-//    }
-//
-//    required init!(coder decoder: NSCoder!) {
-//        super.init(tableViewStyle: .Plain)
-//    }
-
+    //MARK: - Change Status Bar to White
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set dynamic row height
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 68.0
+        
+        // Format the navigation bar
+        self.navigationItem.title = self.kluster.title
+        
+        let dismissItem = UIBarButtonItem.init(image: UIImage(named: "CloseButton2"),
+            style: .Plain,
+            target: self,
+            action: "dismissPressed:")
+        self.navigationItem.leftBarButtonItem = dismissItem
+        
+//        var groupImageView = PFImageView()
+//        groupImageView.frame = CGRectMake(0, 0, 36.0, 36.0)
+//        groupImageView.file = self.kluster.featuredImageFile
+//        groupImageView.backgroundColor = .redColor()
+//        var menuItem = UIBarButtonItem(customView: groupImageView)
+        let menuItem = UIBarButtonItem.init(image: UIImage(named: "menu"), style: .Plain, target: self, action: "menuPressed:")
+        self.navigationItem.rightBarButtonItem = menuItem
+//        
+//        groupImageView.loadInBackground()
         
         self.fetchMessages()
 
@@ -48,6 +70,18 @@ class MessagesTableViewController: UITableViewController {
         UIApplication.sharedApplication().keyWindow?.addSubview(self.textView)
         
         self.fetchMessages()
+    }
+    
+    func dismissPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func menuPressed(sender: UIBarButtonItem) {
+        let popover = PopoverMenuController()
+        popover.kluster = self.kluster
+        let messageNavController = MessagesNavigationController.init(rootViewController: popover)
+        messageNavController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        self.presentViewController(messageNavController, animated: false, completion: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -80,8 +114,17 @@ class MessagesTableViewController: UITableViewController {
             if (error != nil) {
                 print("Error fetching messages.")
             } else {
+                self.shouldContinueFetchingMessages = objects?.count >= 20
                 self.messages = objects as! [PFObject]
+//                let newMessages = objects as! [PFObject]
+//                self.messages = newMessages.reverse() + self.messages
+                
+                self.messages = self.messages.reverse()
+                
                 self.tableView.reloadData()
+                
+                // Scroll to the last index path...
+                self.scrollTableToBottom(false)
             }
         }
     }
@@ -121,18 +164,24 @@ class MessagesTableViewController: UITableViewController {
         cell.nameLabel.text = firstName + " " + lastName
         
         cell.avatarImageView.image = nil
+        cell.avatarImageView.tag = indexPath.row
+        cell.avatarImageView.userInteractionEnabled = true
         cell.avatarImageView.file = user?.objectForKey("avatarThumbnail") as? PFFile
         cell.avatarImageView.loadInBackground()
         cell.selectionStyle = .None
+        
+        // Add a tap recognizer to the cell
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "avatarTapped:")
+        cell.avatarImageView.addGestureRecognizer(tapRecognizer)
         return cell
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 68
     }
 
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return textViewHeight
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -147,6 +196,16 @@ class MessagesTableViewController: UITableViewController {
     
     func keyboardWillHideNotification(notification: NSNotification) {
         updateBottomLayoutConstraintWithNotification(notification, hide: true)
+    }
+    
+    // MARK: - Selector
+    
+    func avatarTapped(sender: UITapGestureRecognizer) {
+        let message = Message.init(object: self.messages[sender.view!.tag])
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        profileViewController.user = message.user
+        self.presentViewController(profileViewController, animated: true, completion: nil)
     }
     
     
@@ -172,53 +231,16 @@ class MessagesTableViewController: UITableViewController {
                 frame.origin.y =  self.windowHeight! - convertedKeyboardEndFrame.size.height - self.textViewHeight
                 self.textView.frame = frame
             }
-            }) { (finished) -> Void in
+        }) { (completed) -> Void in
+                self.scrollTableToBottom(true)
         }
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    private func scrollTableToBottom(animated: Bool) {
+        if (self.messages.count > 0) {
+            let indexToScrollTo = Int(self.messages.count - 1)
+            let lastIndexPath = NSIndexPath.init(forItem: indexToScrollTo, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: .Top, animated: animated)
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

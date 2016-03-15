@@ -56,8 +56,17 @@
 		9D2EFA3D1BF6257000D91812 /* KlusterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */; };
 		9D2EFA3F1BF6344E00D91812 /* KlusterImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */; };
 		9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */; };
+		9D63BB541C8DBD220094F5A2 /* MessagesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63BB531C8DBD220094F5A2 /* MessagesNavigationController.swift */; };
+		9D63BB561C8DD0570094F5A2 /* PopoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */; };
 		9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */; };
 		9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */; };
+		9D807F7F1C90834600FA5768 /* BLMultiColorLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */; };
+		9D807F811C90B08D00FA5768 /* LocationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D807F801C90B08D00FA5768 /* LocationStore.swift */; };
+		9DAF9F871C87A3A2000B8586 /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */; };
+		9DAF9F8C1C89E022000B8586 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */; };
+		9DAF9F8E1C89E7A4000B8586 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DAF9F8D1C89E7A4000B8586 /* Profile.storyboard */; };
+		9DAF9F911C89FC2B000B8586 /* UIColor+KlusterColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F901C89FC2B000B8586 /* UIColor+KlusterColors.swift */; };
+		9DAF9F971C8B51BF000B8586 /* PopoverMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF9F961C8B51BF000B8586 /* PopoverMenuController.swift */; };
 		9DB9900C1C8009B400837993 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */; };
 		9DB9900E1C800A4E00837993 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DB9900D1C800A4E00837993 /* Map.storyboard */; };
 		9DB990131C800B9000837993 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB990121C800B9000837993 /* LocationSelectViewController.swift */; };
@@ -66,12 +75,9 @@
 		9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */; };
 		9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */; };
 		9DBA24741BE2B2D2005D6AD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */; };
+		9DFB7D621C86211C00EF3E62 /* KlusterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */; };
 		CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */; };
 		CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */; };
-		CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */; };
-		CE4185AF1C829F810031A9A8 /* PopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4185AE1C829F810031A9A8 /* PopTransitionAnimator.swift */; };
-		CE4185B21C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4185B01C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift */; };
-		CE4185B31C829F910031A9A8 /* SlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4185B11C829F910031A9A8 /* SlideRightTransitionAnimator.swift */; };
 		CE89911D1B8A614B00B2B6BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */; };
 		CE89911F1B8A615300B2B6BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE89911E1B8A615300B2B6BC /* CFNetwork.framework */; };
 		CE8991211B8A615A00B2B6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */; };
@@ -93,7 +99,6 @@
 		CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */; };
 		CEAA8FAA1BCEFD9700004349 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */; };
 		CEC1E7441BD7515F00203E41 /* KlusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1E7431BD7515F00203E41 /* KlusterViewController.swift */; };
-		CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F131BB45772009BE41C /* SWRevealViewController.m */; };
 		CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC88F161BB45C10009BE41C /* MenuController.swift */; };
 		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
 		CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */; };
@@ -162,8 +167,18 @@
 		9D2EFA3C1BF6257000D91812 /* KlusterDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterDataSource.swift; sourceTree = "<group>"; };
 		9D2EFA3E1BF6344E00D91812 /* KlusterImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterImageResizer.swift; sourceTree = "<group>"; };
 		9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterSearchController.swift; sourceTree = "<group>"; };
+		9D63BB531C8DBD220094F5A2 /* MessagesNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesNavigationController.swift; sourceTree = "<group>"; };
+		9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverHeaderView.swift; sourceTree = "<group>"; };
 		9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9D807F7D1C90834600FA5768 /* BLMultiColorLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMultiColorLoader.h; sourceTree = "<group>"; };
+		9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMultiColorLoader.m; sourceTree = "<group>"; };
+		9D807F801C90B08D00FA5768 /* LocationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStore.swift; sourceTree = "<group>"; };
+		9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNameView.swift; sourceTree = "<group>"; };
+		9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
+		9DAF9F8D1C89E7A4000B8586 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		9DAF9F901C89FC2B000B8586 /* UIColor+KlusterColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+KlusterColors.swift"; sourceTree = "<group>"; };
+		9DAF9F961C8B51BF000B8586 /* PopoverMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMenuController.swift; sourceTree = "<group>"; };
 		9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		9DB9900D1C800A4E00837993 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		9DB990121C800B9000837993 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
@@ -172,14 +187,11 @@
 		9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewCell.swift; sourceTree = "<group>"; };
 		9DBA24711BE2B26D005D6AD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterStore.swift; sourceTree = "<group>"; };
 		B255B4D666AF91CF21B4DDEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30D58564BAC072F96024A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersTableViewController.swift; sourceTree = "<group>"; };
 		CE0F3C531BD729D20012B7D7 /* KlusterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterHeaderView.swift; sourceTree = "<group>"; };
-		CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
-		CE4185AE1C829F810031A9A8 /* PopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopTransitionAnimator.swift; sourceTree = "<group>"; };
-		CE4185B01C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightThenPopTransitionAnimator.swift; sourceTree = "<group>"; };
-		CE4185B11C829F910031A9A8 /* SlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
 		CE89911C1B8A614B00B2B6BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CE89911E1B8A615300B2B6BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CE8991201B8A615A00B2B6BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -206,8 +218,6 @@
 		CEA8EA311B854B7F00DC2AA5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEAA8FA91BCEFD9700004349 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		CEC1E7431BD7515F00203E41 /* KlusterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterViewController.swift; sourceTree = "<group>"; };
-		CEC88F121BB45772009BE41C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		CEC88F131BB45772009BE41C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		CEC88F161BB45C10009BE41C /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		CED4489C1BA5111900F11808 /* Kluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kluster.swift; sourceTree = "<group>"; };
 		CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -333,10 +343,29 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		9D807F7C1C9082CD00FA5768 /* BLMultiColorLoader */ = {
+			isa = PBXGroup;
+			children = (
+				9D807F7D1C90834600FA5768 /* BLMultiColorLoader.h */,
+				9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */,
+			);
+			path = BLMultiColorLoader;
+			sourceTree = "<group>";
+		};
+		9DAF9F8F1C89FB79000B8586 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9DAF9F901C89FC2B000B8586 /* UIColor+KlusterColors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		9DEFE5D71C73E5F5005B3B1A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */,
+				9DAF9F861C87A3A2000B8586 /* ProfileNameView.swift */,
+				9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -352,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */,
+				9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */,
+				9D807F801C90B08D00FA5768 /* LocationStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -383,16 +414,6 @@
 				CEC1E7431BD7515F00203E41 /* KlusterViewController.swift */,
 			);
 			name = "Kluster Screens";
-			sourceTree = "<group>";
-		};
-		CE4185AD1C829F550031A9A8 /* Transition Animators */ = {
-			isa = PBXGroup;
-			children = (
-				CE4185B01C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift */,
-				CE4185B11C829F910031A9A8 /* SlideRightTransitionAnimator.swift */,
-				CE4185AE1C829F810031A9A8 /* PopTransitionAnimator.swift */,
-			);
-			name = "Transition Animators";
 			sourceTree = "<group>";
 		};
 		CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */ = {
@@ -431,13 +452,15 @@
 		CEA8EA0E1B854B2100DC2AA5 /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				9D807F7C1C9082CD00FA5768 /* BLMultiColorLoader */,
+				9DAF9F8F1C89FB79000B8586 /* Extensions */,
+				9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */,
 				9DB9900B1C8009B400837993 /* MessagesTableViewController.swift */,
 				9DEFE5D91C73E601005B3B1A /* Models */,
 				9DEFE5D81C73E5FB005B3B1A /* Controllers */,
 				9DEFE5D71C73E5F5005B3B1A /* Views */,
 				CEA8EA111B854B2100DC2AA5 /* AppDelegate.swift */,
 				CEC88F161BB45C10009BE41C /* MenuController.swift */,
-				CE14D6541BD809A100FC06F4 /* CAPSPageMenu.swift */,
 				9DBA246D1BE14A14005D6AD6 /* MessageTableViewCell.swift */,
 				CE04134F1BD88B8300BED627 /* MembersTableViewController.swift */,
 				9DBA246F1BE152F3005D6AD6 /* MembersTableViewCell.swift */,
@@ -446,15 +469,14 @@
 				CE8BE8FF1BB2411A00BBEC24 /* Profile Screen */,
 				CED448A01BA5136500F11808 /* Home Screen */,
 				28ADC5C31BF93474001599D5 /* New Kluster Screens */,
-				CE4185AD1C829F550031A9A8 /* Transition Animators */,
 				CED4489F1BA5135E00F11808 /* Model */,
 				CEA8EA151B854B2100DC2AA5 /* Main.storyboard */,
 				9DBA24731BE2B2D2005D6AD6 /* Login.storyboard */,
+				9DAF9F8D1C89E7A4000B8586 /* Profile.storyboard */,
 				CEA8EA181B854B2100DC2AA5 /* Images.xcassets */,
 				CEA8EA1A1B854B2100DC2AA5 /* LaunchScreen.xib */,
 				28EE23241BDF1F83009161AE /* Spring */,
 				28EE23601BDF1FF9009161AE /* ImagePickerSheet */,
-				CEC88F151BB4578D009BE41C /* SWRevealViewController */,
 				CE9A30BF1BAE073C00BC79FE /* BondoluoPeek.ttf */,
 				CEA8EA0F1B854B2100DC2AA5 /* Supporting Files */,
 				CE8991321B8A61DF00B2B6BC /* Cluster-Bridging-Header.h */,
@@ -463,6 +485,8 @@
 				9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */,
 				9DB9900D1C800A4E00837993 /* Map.storyboard */,
 				9DB990121C800B9000837993 /* LocationSelectViewController.swift */,
+				9DAF9F961C8B51BF000B8586 /* PopoverMenuController.swift */,
+				9D63BB531C8DBD220094F5A2 /* MessagesNavigationController.swift */,
 			);
 			path = Cluster;
 			sourceTree = "<group>";
@@ -492,15 +516,6 @@
 				CEA8EA261B854B2100DC2AA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CEC88F151BB4578D009BE41C /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				CEC88F121BB45772009BE41C /* SWRevealViewController.h */,
-				CEC88F131BB45772009BE41C /* SWRevealViewController.m */,
-			);
-			name = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		CED4489F1BA5135E00F11808 /* Model */ = {
@@ -606,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EE23741BDF1FF9009161AE /* Info.plist in Resources */,
+				9DAF9F8E1C89E7A4000B8586 /* Profile.storyboard in Resources */,
 				CE9A30C01BAE074300BC79FE /* BondoluoPeek.ttf in Resources */,
 				28EE234F1BDF1F83009161AE /* Info.plist in Resources */,
 				28EE23731BDF1FF9009161AE /* Images.xcassets in Resources */,
@@ -683,7 +699,9 @@
 				CEFEBF4A1BDC9CB500E4070D /* NewKlusterViewController.swift in Sources */,
 				9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */,
 				28EE235C1BDF1F83009161AE /* SpringView.swift in Sources */,
+				9DAF9F871C87A3A2000B8586 /* ProfileNameView.swift in Sources */,
 				CEA8EA121B854B2100DC2AA5 /* AppDelegate.swift in Sources */,
+				9DAF9F971C8B51BF000B8586 /* PopoverMenuController.swift in Sources */,
 				28EE235D1BDF1F83009161AE /* TransitionManager.swift in Sources */,
 				CED4489D1BA5111900F11808 /* Kluster.swift in Sources */,
 				28EE23561BDF1F83009161AE /* SpringAnimation.swift in Sources */,
@@ -691,8 +709,6 @@
 				9D2EFA3F1BF6344E00D91812 /* KlusterImageResizer.swift in Sources */,
 				28EE234B1BDF1F83009161AE /* DesignableTextField.swift in Sources */,
 				28EE23711BDF1FF9009161AE /* ImagePreviewFlowLayout.swift in Sources */,
-				CE4185AF1C829F810031A9A8 /* PopTransitionAnimator.swift in Sources */,
-				CE4185B21C829F910031A9A8 /* SlideRightThenPopTransitionAnimator.swift in Sources */,
 				28EE23511BDF1F83009161AE /* LoadingView.swift in Sources */,
 				287147871BFAF00E007FDB36 /* NotificationsTableViewCell.swift in Sources */,
 				CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */,
@@ -700,7 +716,7 @@
 				28EE236F1BDF1FF9009161AE /* ImagePickerCollectionView.swift in Sources */,
 				286563F21C0E8B6E00C21668 /* MyKlusterTableViewCell.swift in Sources */,
 				28EE236D1BDF1FF9009161AE /* ImageAction.swift in Sources */,
-				CEC88F141BB45772009BE41C /* SWRevealViewController.m in Sources */,
+				9D807F811C90B08D00FA5768 /* LocationStore.swift in Sources */,
 				28EE23461BDF1F83009161AE /* BlurView.swift in Sources */,
 				28EE23541BDF1F83009161AE /* SoundPlayer.swift in Sources */,
 				9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */,
@@ -711,16 +727,19 @@
 				28EE234C1BDF1F83009161AE /* DesignableTextView.swift in Sources */,
 				CE8BE8FE1BB23FFE00BBEC24 /* ProfileViewController.swift in Sources */,
 				28EE236C1BDF1FF9009161AE /* AnimationController.swift in Sources */,
+				9D807F7F1C90834600FA5768 /* BLMultiColorLoader.m in Sources */,
 				9DBA24721BE2B26D005D6AD6 /* LoginViewController.swift in Sources */,
 				28EE234E1BDF1F83009161AE /* ImageLoader.swift in Sources */,
 				CEA8EA321B854B7F00DC2AA5 /* HomeViewController.swift in Sources */,
 				28EE23501BDF1F83009161AE /* KeyboardLayoutConstraint.swift in Sources */,
 				28EE23551BDF1F83009161AE /* Spring.swift in Sources */,
 				28EE23581BDF1F83009161AE /* SpringImageView.swift in Sources */,
+				9DFB7D621C86211C00EF3E62 /* KlusterStore.swift in Sources */,
 				28EE23451BDF1F83009161AE /* AutoTextView.swift in Sources */,
 				28EE23531BDF1F83009161AE /* Misc.swift in Sources */,
 				28EE235B1BDF1F83009161AE /* SpringTextView.swift in Sources */,
 				CEC1E7441BD7515F00203E41 /* KlusterViewController.swift in Sources */,
+				9DAF9F911C89FC2B000B8586 /* UIColor+KlusterColors.swift in Sources */,
 				CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */,
 				CEC88F171BB45C10009BE41C /* MenuController.swift in Sources */,
 				9DB990131C800B9000837993 /* LocationSelectViewController.swift in Sources */,
@@ -730,23 +749,24 @@
 				28EE235F1BDF1F83009161AE /* UnwindSegue.swift in Sources */,
 				28EE236E1BDF1FF9009161AE /* ImageCollectionViewCell.swift in Sources */,
 				28EE235E1BDF1F83009161AE /* TransitionZoom.swift in Sources */,
+				9DAF9F8C1C89E022000B8586 /* CAPSPageMenu.swift in Sources */,
 				28ADC5C61BF9350F001599D5 /* KlusterInviteViewController.swift in Sources */,
 				9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */,
 				28EE23481BDF1F83009161AE /* DesignableImageView.swift in Sources */,
 				9DBA24701BE152F3005D6AD6 /* MembersTableViewCell.swift in Sources */,
 				28EE23751BDF1FF9009161AE /* PreviewSupplementaryView.swift in Sources */,
+				9D63BB561C8DD0570094F5A2 /* PopoverHeaderView.swift in Sources */,
+				9D63BB541C8DBD220094F5A2 /* MessagesNavigationController.swift in Sources */,
 				9DBA246E1BE14A14005D6AD6 /* MessageTableViewCell.swift in Sources */,
 				283E05691C0E1302001220D3 /* MyKlusterViewController.swift in Sources */,
 				28EE23471BDF1F83009161AE /* DesignableButton.swift in Sources */,
 				28ADC5C81BF9385B001599D5 /* KlusterInviteTableViewCell.swift in Sources */,
 				28EE23591BDF1F83009161AE /* SpringLabel.swift in Sources */,
-				CE4185B31C829F910031A9A8 /* SlideRightTransitionAnimator.swift in Sources */,
 				28EE23571BDF1F83009161AE /* SpringButton.swift in Sources */,
 				9DB9900C1C8009B400837993 /* MessagesTableViewController.swift in Sources */,
 				CE0F3C541BD729D20012B7D7 /* KlusterHeaderView.swift in Sources */,
 				287147851BFAEFB6007FDB36 /* NotificationsViewController.swift in Sources */,
 				28EE23491BDF1F83009161AE /* DesignableLabel.swift in Sources */,
-				CE14D6551BD809A100FC06F4 /* CAPSPageMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,13 +17,20 @@ class MembersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Members"
+        
+        self.tableView.tableFooterView = UIView()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let hud = BLMultiColorLoader.init(frame: CGRectMake(0, 0, 40.0, 40.0))
+        hud.center = self.view.center
+        hud.lineWidth = 2.0
+        hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGrayColor()]
+        self.view.addSubview(hud)
+        hud.startAnimation()
+        
         KlusterDataSource.fetchMembersForKluster(kluster, completion: { (objects, error) -> Void in
+            hud.stopAnimation()
             if (error != nil) {
                 print("Error: %@", error)
             } else {
@@ -56,54 +63,28 @@ class MembersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MembersTableViewCell", forIndexPath: indexPath) as! MembersTableViewCell
         let user = self.users[indexPath.row]
         cell.user = user
+        
+        cell.avatarImageView.image = nil
+        cell.avatarImageView.tag = indexPath.row
+        cell.avatarImageView.userInteractionEnabled = true
         cell.avatarImageView.file = user.objectForKey("avatarThumbnail") as? PFFile
         cell.avatarImageView.loadInBackground()
+        
+        // Add a tap recognizer to the cell
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "avatarTapped:")
+        cell.avatarImageView.addGestureRecognizer(tapRecognizer)
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: - Selector
+    
+    func avatarTapped(sender: UITapGestureRecognizer) {
+        let user = self.users[sender.view!.tag]
+        // message.user
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        profileViewController.user = user
+        self.presentViewController(profileViewController, animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

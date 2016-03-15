@@ -23,7 +23,11 @@ class KlusterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var klusterTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var joinKlusterButton: UIButton!
-    
+    @IBOutlet weak var firstAvatarImageView: PFImageView!
+    @IBOutlet weak var secondAvatarImageView: PFImageView!
+    @IBOutlet weak var thirdAvatarImageView: PFImageView!
+    @IBOutlet weak var fourthAvatarImageView: PFImageView!
+    @IBOutlet weak var moreLabel: UIButton!
     
     private func updateUI() {
         self.klusterTitleLabel?.text! = kluster.title

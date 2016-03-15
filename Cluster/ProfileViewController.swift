@@ -11,7 +11,9 @@ import Photos
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var coverImage: UIImageView!
+    var user: PFUser! = PFUser.currentUser()
+    
+    @IBOutlet weak var coverImage: PFImageView!
     @IBOutlet weak var editButton: DesignableButton!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -19,6 +21,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var biographyLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBAction func menuButtonPressed(sender: AnyObject) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let editProfileController = storyboard.instantiateViewControllerWithIdentifier("EditProfileTableViewController")
+        self.presentViewController(editProfileController, animated: true, completion: nil)
+    }
     
     //MARK: - Change Status Bar to White
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -28,21 +37,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load profile info
-        let user = PFUser.currentUser()
-        self.profileImageView.file = user!.objectForKey("avatar") as? PFFile
-        self.profileImageView.loadInBackground()
-        
-        let firstName = user?.objectForKey("firstName") as! String
-        let lastName = user?.objectForKey("lastName") as! String
-        self.nameLabel.text = firstName + " " + lastName
-        
-        //Side Menu
-        if self.revealViewController() != nil {
-            menuButton.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        
         scroller.contentInset = UIEdgeInsetsMake(0, 0, 400, 0)
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.width / 2
@@ -50,6 +44,12 @@ class ProfileViewController: UIViewController {
         
         editButton.layer.cornerRadius = editButton.bounds.width / 2
         editButton.layer.masksToBounds = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadProfileInfo()
     }
     
     override func viewWillLayoutSubviews() {
@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController {
                         let user = PFUser.currentUser()
                         user?.setObject(file!, forKey: "avatar")
                         user?.saveInBackgroundWithBlock({ (save: Bool, error: NSError?) -> Void in
-                            if ((error) != nil) {
+                            if (error != nil) {
                                 print("We have an error...")
                             }
                         })
@@ -109,6 +109,42 @@ class ProfileViewController: UIViewController {
     }
     
     func presentCamera() {
+
+    }
+    
+    private func loadProfileInfo() {
+        // Load profile info
+        self.profileImageView.file = self.user.objectForKey("avatar") as? PFFile
+        self.profileImageView.loadInBackground()
         
+        self.coverImage.file = self.user.objectForKey("coverImage") as? PFFile
+        self.coverImage.loadInBackground()
+        
+        let firstName = self.user.objectForKey("firstName") as! String
+        let lastName = self.user.objectForKey("lastName") as! String
+        self.nameLabel.text = firstName + " " + lastName
+        
+        if let location = self.user.objectForKey("location") as? String {
+            self.locationLabel.text = location
+        } else {
+            self.locationLabel.text = "🌎"
+        }
+        
+        if let age = self.user.objectForKey("age") as? Int {
+            self.ageLabel.text = "\(age) yrs"
+        } else {
+            self.ageLabel.text = "🤔"
+        }
+
+        if let bio = self.user.objectForKey("biography") as? String {
+            self.biographyLabel.text = bio
+        } else {
+            self.biographyLabel.text = self.randomBiographyString()
+        }
+    }
+    
+    private func randomBiographyString() -> String {
+        let firstName = self.user.objectForKey("firstName") as! String
+        return "Surely \(firstName) is clever, but they haven't shared anything with us."
     }
 }
