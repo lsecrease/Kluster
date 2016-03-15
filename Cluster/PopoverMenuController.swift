@@ -172,7 +172,7 @@ extension PopoverMenuController : UITableViewDataSource {
             memberController.kluster = self.kluster
             self.navigationController?.pushViewController(memberController, animated: true)
         case PopoverTableSection.Invite.rawValue:
-            self.showComingSoonAlert()
+            self.showInvitationController()
         default:
             break
             
@@ -222,10 +222,11 @@ extension PopoverMenuController : UITableViewDataSource {
         return 60.0
     }
     
-    private func showComingSoonAlert() {
-        let alertController = UIAlertController.init(title: "Coming Soon!", message: "Invitations are coming in the next update.", preferredStyle: .Alert)
-        let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+    private func showInvitationController() {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let inviteController = storyboard.instantiateViewControllerWithIdentifier("KlusterInviteViewController") as? KlusterInviteViewController {
+            inviteController.kluster = self.kluster
+            self.navigationController?.pushViewController(inviteController, animated: true)
+        }
     }
 }

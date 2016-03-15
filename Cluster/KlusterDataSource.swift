@@ -79,4 +79,17 @@ class KlusterDataSource: NSObject {
             completion(object, error)
         }
     }
+    
+    class func fetchUsersWithFacebookIds(facebookIDs: [String], kluster: Kluster,completion: PFIdResultBlock) -> Void {
+        if let query = PFUser.query() {
+            query.whereKey("facebookId", containedIn: facebookIDs)
+            
+            // Important to not show Kluster members in the Facebook query. They're already members 😉
+//            let memberRelation = kluster.memberRelation.query()
+//            query.whereKey("objectId", doesNotMatchQuery: memberRelation)
+            query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                completion(objects, error)
+            })
+        }
+    }
 }
