@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
+  - DZNEmptyDataSet (1.7.3)
   - FBSDKCoreKit (4.9.1):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.9.1):
@@ -26,6 +27,7 @@ PODS:
   - UITextView+Placeholder (1.1.1)
 
 DEPENDENCIES:
+  - DZNEmptyDataSet
   - MBProgressHUD
   - Parse
   - ParseFacebookUtilsV4
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
   FBSDKLoginKit: ec22dc49bd372b064e93d6773df4ffefb3a552a2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1

@@ -9,6 +9,7 @@
 import Foundation
 
 class KlusterDataSource: NSObject {
+    
     class func createKlusterWithParams(params: [NSObject : AnyObject]?, completion:PFIdResultBlock) -> Void
     {
         PFCloud.callFunctionInBackground("createKluster", withParameters: params) { (object, error) -> Void in
@@ -89,6 +90,42 @@ class KlusterDataSource: NSObject {
 //            query.whereKey("objectId", doesNotMatchQuery: memberRelation)
             query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
                 completion(objects, error)
+            })
+        }
+    }
+    
+    // Takes an array of user ids and invites user to the specified kluster
+    class func inviteUsersToKluster(userIds: [String]?, klusterId: String?,completion: PFIdResultBlock) -> Void {
+        if let userIds = userIds, let klusterId = klusterId where userIds.count > 0 && klusterId.length > 0 {
+            let params = ["klusterId": klusterId, "userIds": userIds]
+            PFCloud.callFunctionInBackground("inviteUsersToKluster", withParameters: params as [NSObject : AnyObject]) { (object, error) -> Void in
+                completion(object, error)
+            }
+        }
+    }
+    
+    class func fetchInvites(completion: PFIdResultBlock) -> Void {
+        PFCloud.callFunctionInBackground("fetchInvitationsForUser", withParameters: nil) { (object, error) -> Void in
+            completion(object, error)
+        }
+    }
+    
+    // Accepts an invitation to a Kluster
+    class func acceptInvitation(klusterId: String?, invitationId: String?, completion: PFIdResultBlock) -> Void {
+        if let klusterId = klusterId, let invitationId = invitationId {
+            let params = ["klusterId": klusterId, "invitationId": invitationId]
+            PFCloud.callFunctionInBackground("acceptInvitationToKluster", withParameters: params, block: { (object, error) -> Void in
+                completion(object, error)
+            })
+        }
+    }
+    
+    // Declines an invitation to a Kluster
+    class func declineKlusterInvitation(invitationId: String?, completion: PFIdResultBlock) -> Void {
+        if let invitationId = invitationId {
+            let params = ["invitationId": invitationId]
+            PFCloud.callFunctionInBackground("declineKlusterInvitationToKluster", withParameters: params, block: { (object, error) -> Void in
+                completion(object, error)
             })
         }
     }

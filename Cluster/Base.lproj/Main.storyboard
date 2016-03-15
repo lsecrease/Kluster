@@ -50,7 +50,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VUe-8O-jNl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VUe-8O-jNl" customClass="PFImageView">
                                                     <rect key="frame" x="16" y="16" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="gbE-1b-hDE"/>
@@ -141,7 +141,7 @@
                                             <outlet property="dateLabel" destination="zpR-vl-WTd" id="LlC-vu-4hp"/>
                                             <outlet property="declineButton" destination="8m8-xQ-0kn" id="yn3-vG-44h"/>
                                             <outlet property="invitationTypeLabel" destination="vRd-6C-yJj" id="jeU-0Y-Cfp"/>
-                                            <outlet property="profileImage" destination="VUe-8O-jNl" id="2Fs-Nz-lpB"/>
+                                            <outlet property="profileImageView" destination="VUe-8O-jNl" id="jLB-aM-oVS"/>
                                             <outlet property="userNameLabel" destination="30r-br-N8n" id="5HY-DI-g8Q"/>
                                         </connections>
                                     </tableViewCell>

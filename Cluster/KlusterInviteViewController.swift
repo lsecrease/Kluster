@@ -13,6 +13,7 @@ class KlusterInviteViewController : UITableViewController {
     var users = [PFUser]()
     var usersToInvite = [PFUser]()
     var kluster: Kluster!
+    let hud = BLMultiColorLoader.init(frame: CGRectMake(0, 0, 40.0, 40.0))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,15 @@ class KlusterInviteViewController : UITableViewController {
         self.navigationItem.title = "Invite Friends"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Done", style: .Plain, target: self, action: "inviteDonePressed:")
         self.navigationItem.rightBarButtonItem?.enabled = false
+        
+        // Add the hud before fetching friends..
+        // Add progress HUD
+        self.hud.center = self.view.center
+        self.hud.lineWidth = 2.0
+        self.hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGrayColor()]
+        self.view.addSubview(hud)
+        
+        self.hud.startAnimation()
         
         self.fetchFacebookFriends()
     }
@@ -93,6 +103,42 @@ class KlusterInviteViewController : UITableViewController {
     func inviteDonePressed(sender: UIBarButtonItem) {
         // TODO: Send invites...
         
+        var userIds = [String]()
+        for user in self.usersToInvite {
+            if let userId = user.objectId {
+                userIds.append(userId)
+            }
+        }
+        
+        // Disable the bar button item... 
+        if let barButtonItem = self.navigationItem.rightBarButtonItem {
+            barButtonItem.enabled = false
+        }
+        
+        // Add hud - Already added to the view hierarchy
+        self.hud.startAnimation()
+        
+        KlusterDataSource.inviteUsersToKluster(userIds, klusterId: self.kluster.id) { (object, error) -> Void in
+            
+            // Enable the bar button item...
+            if let barButtonItem = self.navigationItem.rightBarButtonItem {
+                barButtonItem.enabled = true
+            }
+            
+            // Stop animating the hud..
+            self.hud.stopAnimation()
+            
+            if error != nil {
+                let alertController = UIAlertController.init(title: "Invite Error", message: "Something went wrong when inviting users to this Kluster. Please try again.", preferredStyle: .Alert)
+                let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                if let navController = self.navigationController {
+                    navController.popViewControllerAnimated(true)
+                }
+            }
+        }
     }
         
     
@@ -110,14 +156,6 @@ class KlusterInviteViewController : UITableViewController {
     }
     
     private func fetchFacebookFriends() {
-        // Add progress HUD
-        let hud = BLMultiColorLoader.init(frame: CGRectMake(0, 0, 40.0, 40.0))
-        hud.center = self.view.center
-        hud.lineWidth = 2.0
-        hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGrayColor()] 
-        self.view.addSubview(hud)
-        hud.startAnimation()
-        
         // Fetch Facebook Friends
         let request = FBSDKGraphRequest.init(graphPath: "me/friends", parameters: nil, HTTPMethod: "GET")
         request.startWithCompletionHandler { (connection, result, error) -> Void in
@@ -142,7 +180,7 @@ class KlusterInviteViewController : UITableViewController {
                 KlusterDataSource.fetchUsersWithFacebookIds(facebookUserIDs, kluster: self.kluster, completion: { (objects, error) -> Void in
                     
                     // Remove the hud
-                    hud.stopAnimation()
+                    self.hud.stopAnimation()
                     
                     if let objects = objects as? [PFUser] {
                         self.users = objects
@@ -151,12 +189,12 @@ class KlusterInviteViewController : UITableViewController {
                 })
             } else {
                 // Remove the hud
-                hud.stopAnimation()
+                self.hud.stopAnimation()
             }
             
             if let error = error {
                 // Remove the hud
-                hud.stopAnimation()
+                self.hud.stopAnimation()
                 
                 //  Error fetching friends...
                 self.showRequestError(error)

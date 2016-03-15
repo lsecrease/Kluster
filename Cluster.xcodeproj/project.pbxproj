@@ -57,6 +57,7 @@
 		9D2EFA411BF6534400D91812 /* KlusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */; };
 		9D63BB541C8DBD220094F5A2 /* MessagesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63BB531C8DBD220094F5A2 /* MessagesNavigationController.swift */; };
 		9D63BB561C8DD0570094F5A2 /* PopoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */; };
+		9D7097251C987AB600DF5C8E /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7097241C987AB600DF5C8E /* Invite.swift */; };
 		9D7CC5AB1C7E7958002D21D0 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */; };
 		9D7CC5AD1C7E8EFB002D21D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */; };
 		9D807F7F1C90834600FA5768 /* BLMultiColorLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D807F7E1C90834600FA5768 /* BLMultiColorLoader.m */; };
@@ -168,6 +169,7 @@
 		9D2EFA401BF6534400D91812 /* KlusterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterSearchController.swift; sourceTree = "<group>"; };
 		9D63BB531C8DBD220094F5A2 /* MessagesNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesNavigationController.swift; sourceTree = "<group>"; };
 		9D63BB551C8DD0570094F5A2 /* PopoverHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverHeaderView.swift; sourceTree = "<group>"; };
+		9D7097241C987AB600DF5C8E /* Invite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
 		9D7CC5AA1C7E7958002D21D0 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9D807F7D1C90834600FA5768 /* BLMultiColorLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMultiColorLoader.h; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				9D7CC5AC1C7E8EFB002D21D0 /* Message.swift */,
 				9DFB7D611C86211C00EF3E62 /* KlusterStore.swift */,
 				9D807F801C90B08D00FA5768 /* LocationStore.swift */,
+				9D7097241C987AB600DF5C8E /* Invite.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				28EE234B1BDF1F83009161AE /* DesignableTextField.swift in Sources */,
 				28EE23711BDF1FF9009161AE /* ImagePreviewFlowLayout.swift in Sources */,
 				28EE23511BDF1F83009161AE /* LoadingView.swift in Sources */,
+				9D7097251C987AB600DF5C8E /* Invite.swift in Sources */,
 				287147871BFAF00E007FDB36 /* NotificationsTableViewCell.swift in Sources */,
 				CE0413501BD88B8300BED627 /* MembersTableViewController.swift in Sources */,
 				28EE234A1BDF1F83009161AE /* DesignableTabBarController.swift in Sources */,
