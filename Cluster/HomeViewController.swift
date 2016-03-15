@@ -150,7 +150,7 @@ class HomeViewController: UIViewController {
         if let object = object {
             let k = Kluster.init(object: object)
             self.backgroundImageView.file = k.featuredImageFile
-            self.backgroundImageView.   ()
+            self.backgroundImageView.loadInBackground()
         }
     }
     
