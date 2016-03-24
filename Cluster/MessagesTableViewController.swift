@@ -28,6 +28,9 @@ class MessagesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
+        
         // Set dynamic row height
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 68.0
@@ -244,3 +247,45 @@ class MessagesTableViewController: UITableViewController {
         }
     }
 }
+
+extension MessagesTableViewController : DZNEmptyDataSetDelegate {
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        self.textView.textField.becomeFirstResponder()
+    }
+}
+
+extension MessagesTableViewController : DZNEmptyDataSetSource {
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "It's a little too quiet in here."
+        
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .ByWordWrapping
+        paragraph.alignment = .Center
+        
+        let attributes = [NSFontAttributeName : UIFont.systemFontOfSize(17.0),
+            NSParagraphStyleAttributeName : paragraph]
+        let attributedString = NSAttributedString.init(string: text, attributes: attributes)
+        return attributedString
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Crickets..."
+        let attributes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(19.0),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        let attributedString = NSAttributedString.init(string: text, attributes: attributes)
+        return attributedString
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let text = "Say something"
+        let attributes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(19.0),
+            NSForegroundColorAttributeName: UIColor.klusterPurpleColor()]
+        let attributedString = NSAttributedString.init(string: text, attributes: attributes)
+        return attributedString
+    }
+    
+    func spaceHeightForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return 20.0
+    }
+}
+

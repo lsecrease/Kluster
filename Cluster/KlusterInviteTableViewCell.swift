@@ -10,7 +10,7 @@ import UIKit
 
 class KlusterInviteTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var inviteButton: DesignableButton!
     
