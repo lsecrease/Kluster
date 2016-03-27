@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,19 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="59u-wa-A5m">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7T-xu-GBs">
-                                <rect key="frame" x="20" y="550" width="560" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7T-xu-GBs">
+                                <rect key="frame" x="156" y="526" width="289" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="XRh-VQ-7Nd"/>
                                 </constraints>
-                                <state key="normal" title="Login With Facebook"/>
+                                <state key="normal" image="facebook"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XRh-VQ-7Nd"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="loginWithFacebookPressed:" destination="DoV-9U-lLc" eventType="touchUpInside" id="wPH-gF-MWh"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch1" translatesAutoresizingMaskIntoConstraints="NO" id="59u-wa-A5m">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -38,10 +42,19 @@
                             <constraint firstAttribute="leadingMargin" secondItem="T7T-xu-GBs" secondAttribute="leading" id="9VA-Wo-MCt"/>
                             <constraint firstItem="i2x-R9-0vp" firstAttribute="top" secondItem="59u-wa-A5m" secondAttribute="bottom" id="BTr-cg-vnm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="T7T-xu-GBs" secondAttribute="trailing" id="EhT-X4-6Uj"/>
+                            <constraint firstItem="T7T-xu-GBs" firstAttribute="centerX" secondItem="59u-wa-A5m" secondAttribute="centerX" id="SwA-lR-1Lg"/>
                             <constraint firstItem="59u-wa-A5m" firstAttribute="top" secondItem="w4B-pY-5Jh" secondAttribute="top" id="UWz-UW-rIt"/>
                             <constraint firstAttribute="trailing" secondItem="59u-wa-A5m" secondAttribute="trailing" id="a6m-OR-ePP"/>
                             <constraint firstItem="i2x-R9-0vp" firstAttribute="top" secondItem="T7T-xu-GBs" secondAttribute="bottom" constant="20" id="hVv-Gw-ioy"/>
+                            <constraint firstItem="T7T-xu-GBs" firstAttribute="top" secondItem="59u-wa-A5m" secondAttribute="bottom" constant="-74" id="yJw-0b-58i"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9VA-Wo-MCt"/>
+                                <exclude reference="EhT-X4-6Uj"/>
+                                <exclude reference="hVv-Gw-ioy"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bw-qJ-nb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -50,6 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="375" height="667"/>
+        <image name="Launch1" width="375" height="667"/>
+        <image name="facebook" width="289" height="54"/>
     </resources>
 </document>
