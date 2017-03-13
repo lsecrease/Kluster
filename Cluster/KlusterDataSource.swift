@@ -10,121 +10,121 @@ import Foundation
 
 class KlusterDataSource: NSObject {
     
-    class func createKlusterWithParams(params: [NSObject : AnyObject]?, completion:PFIdResultBlock) -> Void
+    class func createKlusterWithParams(_ params: [AnyHashable: Any]?, completion:@escaping PFIdResultBlock) -> Void
     {
-        PFCloud.callFunctionInBackground("createKluster", withParameters: params) { (object, error) -> Void in
+        PFCloud.callFunction(inBackground: "createKluster", withParameters: params) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
-    class func joinKluster(klusterId: NSString!, completion:PFIdResultBlock) -> Void {
+    class func joinKluster(_ klusterId: NSString!, completion:@escaping PFIdResultBlock) -> Void {
         let params = ["klusterId": klusterId]
-         PFCloud.callFunctionInBackground("joinKluster", withParameters: params) { (object, error) -> Void in
+         PFCloud.callFunction(inBackground: "joinKluster", withParameters: params) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
-    class func searchForKlusterWithString(searchString: String, completion:PFIdResultBlock) -> Void
+    class func searchForKlusterWithString(_ searchString: String, completion:@escaping PFIdResultBlock) -> Void
     {
-        let lowercaseString = searchString.lowercaseString
-        PFCloud.callFunctionInBackground("searchForKluster", withParameters: ["searchString": lowercaseString]) { (object, error) -> Void in
+        let lowercaseString = searchString.lowercased()
+        PFCloud.callFunction(inBackground: "searchForKluster", withParameters: ["searchString": lowercaseString]) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
-    class func fetchMainKlusters(params: [NSObject : AnyObject]?, completion: PFIdResultBlock) -> Void {
-        PFCloud.callFunctionInBackground("fetchMainKlusters", withParameters: params) { (object, error) -> Void in
+    class func fetchMainKlusters(_ params: [AnyHashable: Any]?, completion: @escaping PFIdResultBlock) -> Void {
+        PFCloud.callFunction(inBackground: "fetchMainKlusters", withParameters: params) { (object, error) -> Void in
             KlusterStore.sharedInstance.userKlusters = object as? [PFObject]
             completion(object, error)
         }
     }
     
-    class func deleteKluster(klusterId: String, completion: PFIdResultBlock) -> Void {
-        PFCloud.callFunctionInBackground("deleteKluster", withParameters: ["klusterId": klusterId]) { (object, error) -> Void in
+    class func deleteKluster(_ klusterId: String, completion: @escaping PFIdResultBlock) -> Void {
+        PFCloud.callFunction(inBackground: "deleteKluster", withParameters: ["klusterId": klusterId]) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
-    class func fetchKlustersForUser(completion:PFIdResultBlock) -> Void {
-        PFCloud.callFunctionInBackground("fetchKlustersForUser", withParameters: nil) { (object, error) -> Void in
+    class func fetchKlustersForUser(_ completion:@escaping PFIdResultBlock) -> Void {
+        PFCloud.callFunction(inBackground: "fetchKlustersForUser", withParameters: nil) { (object, error) -> Void in
             KlusterStore.sharedInstance.userKlusters = object as? [PFObject]
             completion(object, error)
         }
     }
     
-    class func fetchMembersForKluster(kluster: Kluster!, completion:PFArrayResultBlock) -> Void {
+    class func fetchMembersForKluster(_ kluster: Kluster!, completion:@escaping PFArrayResultBlock) -> Void {
         let query = kluster.memberRelation.query()
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+        query.findObjectsInBackground { (objects, error) -> Void in
             completion(objects, error)
         }
     }
     
     // Mark: - Sending messages
-    class func createMessageInKluster(klusterId: String, text: String, completion: PFIdResultBlock) -> Void {
+    class func createMessageInKluster(_ klusterId: String, text: String, completion: @escaping PFIdResultBlock) -> Void {
         let params = ["klusterId" : klusterId, "text": text]
-        PFCloud.callFunctionInBackground("createMessage", withParameters: params) { (object, error) -> Void in
+        PFCloud.callFunction(inBackground: "createMessage", withParameters: params) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
-    class func fetchMessagesInKluster(klusterId: String, skip: Int, completion: PFIdResultBlock) -> Void {
+    class func fetchMessagesInKluster(_ klusterId: String, skip: Int, completion: @escaping PFIdResultBlock) -> Void {
         let params = ["klusterId" : klusterId]
-        PFCloud.callFunctionInBackground("fetchMessagesForKluster", withParameters: params) { (objects, error) -> Void in
+        PFCloud.callFunction(inBackground: "fetchMessagesForKluster", withParameters: params) { (objects, error) -> Void in
             completion(objects, error)
         }
     }
     
     // Delete user account
-    class func deleteUserAccount(completion: PFIdResultBlock) -> Void {
-        PFCloud.callFunctionInBackground("deleteUserAccount", withParameters: nil) { (object, error) -> Void in
+    class func deleteUserAccount(_ completion: @escaping PFIdResultBlock) -> Void {
+        PFCloud.callFunction(inBackground: "deleteUserAccount", withParameters: nil) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
-    class func fetchUsersWithFacebookIds(facebookIDs: [String], kluster: Kluster,completion: PFIdResultBlock) -> Void {
+    class func fetchUsersWithFacebookIds(_ facebookIDs: [String], kluster: Kluster,completion: @escaping PFIdResultBlock) -> Void {
         if let query = PFUser.query() {
             query.whereKey("facebookId", containedIn: facebookIDs)
             
             // Important to not show Kluster members in the Facebook query. They're already members 😉
 //            let memberRelation = kluster.memberRelation.query()
 //            query.whereKey("objectId", doesNotMatchQuery: memberRelation)
-            query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+            query.findObjectsInBackground(block: { (objects, error) -> Void in
                 completion(objects, error)
             })
         }
     }
     
     // Takes an array of user ids and invites user to the specified kluster
-    class func inviteUsersToKluster(userIds: [String]?, klusterId: String?,completion: PFIdResultBlock) -> Void {
-        if let userIds = userIds, let klusterId = klusterId where userIds.count > 0 && klusterId.length > 0 {
-            let params = ["klusterId": klusterId, "userIds": userIds]
-            PFCloud.callFunctionInBackground("inviteUsersToKluster", withParameters: params as [NSObject : AnyObject]) { (object, error) -> Void in
+    class func inviteUsersToKluster(_ userIds: [String]?, klusterId: String?,completion: @escaping PFIdResultBlock) -> Void {
+        if let userIds = userIds, let klusterId = klusterId, userIds.count > 0 && klusterId.length > 0 {
+            let params = ["klusterId": klusterId, "userIds": userIds] as [String : Any]
+            PFCloud.callFunction(inBackground: "inviteUsersToKluster", withParameters: params as [AnyHashable: Any]) { (object, error) -> Void in
                 completion(object, error)
             }
         }
     }
     
-    class func fetchInvites(completion: PFIdResultBlock) -> Void {
-        PFCloud.callFunctionInBackground("fetchInvitationsForUser", withParameters: nil) { (object, error) -> Void in
+    class func fetchInvites(_ completion: @escaping PFIdResultBlock) -> Void {
+        PFCloud.callFunction(inBackground: "fetchInvitationsForUser", withParameters: nil) { (object, error) -> Void in
             completion(object, error)
         }
     }
     
     // Accepts an invitation to a Kluster
-    class func acceptInvitation(klusterId: String?, invitationId: String?, completion: PFIdResultBlock) -> Void {
+    class func acceptInvitation(_ klusterId: String?, invitationId: String?, completion: @escaping PFIdResultBlock) -> Void {
         if let klusterId = klusterId, let invitationId = invitationId {
             let params = ["klusterId": klusterId, "invitationId": invitationId]
-            PFCloud.callFunctionInBackground("acceptInvitationToKluster", withParameters: params, block: { (object, error) -> Void in
+            PFCloud.callFunction(inBackground: "acceptInvitationToKluster", withParameters: params, block: { (object, error) -> Void in
                 completion(object, error)
             })
         }
     }
     
     // Declines an invitation to a Kluster
-    class func declineKlusterInvitation(invitationId: String?, completion: PFIdResultBlock) -> Void {
+    class func declineKlusterInvitation(_ invitationId: String?, completion: @escaping PFIdResultBlock) -> Void {
         if let invitationId = invitationId {
             let params = ["invitationId": invitationId]
-            PFCloud.callFunctionInBackground("declineKlusterInvitationToKluster", withParameters: params, block: { (object, error) -> Void in
+            PFCloud.callFunction(inBackground: "declineKlusterInvitationToKluster", withParameters: params, block: { (object, error) -> Void in
                 completion(object, error)
             })
         }

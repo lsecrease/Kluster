@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import ParseFacebookUtilsV4
+import Parse
+import ParseUI
 
 class LoginViewController: UIViewController {
     
-    @IBAction func loginWithFacebookPressed(sender: AnyObject) {
+    @IBAction func loginWithFacebookPressed(_ sender: AnyObject) {
         
         let permissions = ["email", "public_profile", "user_friends"]
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
+        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
                 
-                let shouldMakeFacebookRequest: Bool = (user.isNew || user.objectForKey("firstName") == nil || user.objectForKey("lastName") == nil)
+                let shouldMakeFacebookRequest: Bool = (user.isNew || user.object(forKey: "firstName") == nil || user.object(forKey: "lastName") == nil)
                 if  shouldMakeFacebookRequest {
                     print("User signed up and logged in through Facebook!")
                     
@@ -25,8 +28,8 @@ class LoginViewController: UIViewController {
                     // user_location, user_birthday, user_about_me
                     let params = ["fields" : "first_name, last_name, email, name, id, picture"]
                     
-                    let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "me", parameters: params, HTTPMethod: "GET")
-                    request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject?, graphRequestError: NSError?) -> Void in
+                    let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "me", parameters: params, httpMethod: "GET")
+                    request.start(completionHandler: { (connection: FBSDKGraphRequestConnection!, result: AnyObject?, graphRequestError: NSError?) -> Void in
                         if let result = result {
                             print(result)
                             
@@ -37,11 +40,11 @@ class LoginViewController: UIViewController {
                             user.setObject(dict["id"]!, forKey: "facebookId")
                             
                             // Get the data for the user's facebook photo
-                            let avatarUrlString: String = dict.valueForKeyPath("picture.data.url") as! String
-                            let imageData = NSData(contentsOfURL: NSURL(string: avatarUrlString)!) // NSData(contentsOfFile: avatarUrlString)
+                            let avatarUrlString: String = dict.value(forKeyPath: "picture.data.url") as! String
+                            let imageData = try? Data(contentsOf: URL(string: avatarUrlString)!) // NSData(contentsOfFile: avatarUrlString)
                             let file = PFFile.init(name: "avatar.png", data: imageData!)
                             user.setObject(file!, forKey: "avatar")
-                            user.saveInBackgroundWithBlock({ (succeed: Bool, saveError: NSError?) -> Void in
+                            user.saveInBackground(block: { (succeed: Bool, saveError: NSError?) -> Void in
                                 if let saveError = saveError {
                                     // Error saving the user.. 
                                     self.showAlertWithMessage(saveError.localizedDescription)
@@ -73,16 +76,16 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func goToMainMenu() {
+    fileprivate func goToMainMenu() {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let home = storyboard.instantiateInitialViewController() as! HomeViewController
-        UIApplication.sharedApplication().keyWindow?.rootViewController = home
+        UIApplication.shared.keyWindow?.rootViewController = home
     }
     
-    private func showAlertWithMessage(message: String) {
-        let controller: UIAlertController = UIAlertController.init(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let dismiss: UIAlertAction = UIAlertAction.init(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
+    fileprivate func showAlertWithMessage(_ message: String) {
+        let controller: UIAlertController = UIAlertController.init(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let dismiss: UIAlertAction = UIAlertAction.init(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil)
         controller.addAction(dismiss)
-        self.presentViewController(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
 }

@@ -21,34 +21,34 @@ class Kluster
     // var numberOfPosts = 0
     var featuredImageFile: PFFile!
     var distanceString = ""
-    var memberRelation: PFRelation!
+    var memberRelation: PFRelation<PFObject>!
     var creator: PFUser?
 
 //    init(id: String, title: String, description: String, distance: String, featuredImage: UIImage!)
     init(object: PFObject!) {
         self.id = object.objectId!
-        self.title = object.objectForKey("title") as! String
-        self.summary = object.objectForKey("summary") as? String
-        self.plans = object.objectForKey("plans") as? String
-        self.location = object.objectForKey("location") as? PFGeoPoint
-        self.featuredImageFile = object.objectForKey("photo") as! PFFile
-        self.numberOfMembers = object.objectForKey("memberCount") as! Int
-        self.memberRelation = object.relationForKey("members")
-        self.creator = object.objectForKey("creatorId") as? PFUser
+        self.title = object.object(forKey: "title") as! String
+        self.summary = object.object(forKey: "summary") as? String
+        self.plans = object.object(forKey: "plans") as? String
+        self.location = object.object(forKey: "location") as? PFGeoPoint
+        self.featuredImageFile = object.object(forKey: "photo") as! PFFile
+        self.numberOfMembers = object.object(forKey: "memberCount") as! Int
+        self.memberRelation = object.relation(forKey: "members")
+        self.creator = object.object(forKey: "creatorId") as? PFUser
         
         // TODO: Calculate distance string
     }
     
-    internal func isCreator(user: PFUser!) -> Bool {
+    internal func isCreator(_ user: PFUser!) -> Bool {
         return user.objectId == self.creator?.objectId
     }
     
-    internal func distanceToKluster(point: PFGeoPoint?) -> String {
+    internal func distanceToKluster(_ point: PFGeoPoint?) -> String {
         if (point == nil) {
             return ""
         }
         
-        return String(format: "%.0fmi", point!.distanceInMilesTo(self.location))
+        return String(format: "%.0fmi", point!.distanceInMiles(to: self.location))
     }
     
     internal func memberString() -> String {
@@ -59,7 +59,7 @@ class Kluster
         }
     }
     
-    internal func creatorString(user: PFUser!) -> String {
+    internal func creatorString(_ user: PFUser!) -> String {
         if (user.objectId == self.creator?.objectId) {
             return "Creator"
         } else {

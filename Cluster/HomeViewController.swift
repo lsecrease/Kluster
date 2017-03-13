@@ -5,8 +5,21 @@
 //  Created by lsecrease on 8/19/15.
 //  Copyright (c) 2015 ImagineME. All rights reserved.
 //
-
+import ParseUI
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class HomeViewController: UIViewController {
     
@@ -23,14 +36,14 @@ class HomeViewController: UIViewController {
     @IBOutlet var createKlusterButton: UIButton!
     
     //MARK: - UICollectionViewDataSource
-    private var klusters = [PFObject]()
+    fileprivate var klusters = [PFObject]()
     var locationManager = CLLocationManager()
     var currentGeoPoint: PFGeoPoint?
     var userProfileView: ProfileNameView?
     
     //MARK: - Change Status Bar to White
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     override func viewDidLoad() {
@@ -41,15 +54,15 @@ class HomeViewController: UIViewController {
         self.currentGeoPoint = PFGeoPoint.init(latitude: latitude, longitude: longitude)
         
         // Hide search bar and cancel button 
-        self.searchBar.hidden = true
-        self.cancelButton.hidden = true
+        self.searchBar.isHidden = true
+        self.cancelButton.isHidden = true
         
         // Set delegates
         self.locationManager.delegate = self
         self.searchBar.delegate = self;
         
         // Add a tap recognizer to dismiss the keyboard when the searchbar is active
-        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "viewTapped:")
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(HomeViewController.viewTapped(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         
         self.calculateCurrentLocation()
@@ -57,17 +70,17 @@ class HomeViewController: UIViewController {
         self.addProfileView()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         // Hack to set search bar text color to white..
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = .whiteColor()
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = .white
         
         self.fetchKlusters()
         
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        let locationAuthorized = authorizationStatus == .AuthorizedWhenInUse
-        self.createKlusterButton.enabled = locationAuthorized
+        let locationAuthorized = authorizationStatus == .authorizedWhenInUse
+        self.createKlusterButton.isEnabled = locationAuthorized
         if (locationAuthorized) {
             self.locationManager.startUpdatingLocation()
         } else {
@@ -78,14 +91,14 @@ class HomeViewController: UIViewController {
         self.updateUserInfo()
     }
     
-    private func showLogin() {
+    fileprivate func showLogin() {
         let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        self.presentViewController(loginVC, animated: true, completion: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.present(loginVC, animated: true, completion: nil)
     }
     
-    private func calculateCurrentLocation() {
-        PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint, error) -> Void in
+    fileprivate func calculateCurrentLocation() {
+        PFGeoPoint.geoPointForCurrentLocation(inBackground: { (geoPoint, error) -> Void in
             if (error == nil) {
                 self.currentGeoPoint = geoPoint
                 if let geoPoint = geoPoint {
@@ -95,47 +108,47 @@ class HomeViewController: UIViewController {
         })
     }
     
-    @IBAction func cancelButtonPressed(sender: AnyObject) {
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         self.searchBar.resignFirstResponder()
         
         self.updateUIForSearch(false)
     }
     
-    @IBAction func searchButtonPressed(sender: AnyObject) {
+    @IBAction func searchButtonPressed(_ sender: AnyObject) {
         self.updateUIForSearch(true)
         
         // Make searchbar the first responder
         self.searchBar.becomeFirstResponder()
     }
     
-    func viewTapped(sender: UITapGestureRecognizer) {
-        if (self.searchBar.isFirstResponder()) {
+    func viewTapped(_ sender: UITapGestureRecognizer) {
+        if (self.searchBar.isFirstResponder) {
             self.searchBar.resignFirstResponder()
             self.updateUIForSearch(false)
         }
     }
     
-    private func updateUIForSearch(searching: Bool) {
+    fileprivate func updateUIForSearch(_ searching: Bool) {
         // Unhide search bar & cancel button
-        self.searchBar.hidden = !searching
-        self.cancelButton.hidden = !searching
+        self.searchBar.isHidden = !searching
+        self.cancelButton.isHidden = !searching
         
         // Unhide cancel button
-        self.searchBar.hidden = !searching
+        self.searchBar.isHidden = !searching
         
         // Hide search button & label
-        self.searchButton.hidden = searching
-        self.klusterTitle.hidden = searching
+        self.searchButton.isHidden = searching
+        self.klusterTitle.isHidden = searching
     }
     
-    private func fetchKlusters() {
+    fileprivate func fetchKlusters() {
         var params = [:]
         if let geoPoint = self.currentGeoPoint {
             params = ["latitude" : geoPoint.latitude,
                      "longitude" : geoPoint.longitude]
         }
         
-        KlusterDataSource.fetchMainKlusters(params as [NSObject : AnyObject]) { (objects, error) -> Void in
+        KlusterDataSource.fetchMainKlusters(params as [AnyHashable: Any]) { (objects, error) -> Void in
             if let error = error {
                 print("Error: %@", error.localizedDescription)
             } else {
@@ -146,7 +159,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func updateBackground(object: PFObject?) {
+    fileprivate func updateBackground(_ object: PFObject?) {
         if let object = object {
             let k = Kluster.init(object: object)
             self.backgroundImageView.file = k.featuredImageFile
@@ -159,38 +172,38 @@ class HomeViewController: UIViewController {
      We call this when the view appears in case a user
      changes their name or avatar.
     **/
-    private func updateUserInfo() {
-        self.userProfileView?.layoutForUser(PFUser.currentUser())
+    fileprivate func updateUserInfo() {
+        self.userProfileView?.layoutForUser(PFUser.current())
     }
     
-    private func addProfileView() {
-        let user = PFUser.currentUser()
-        let firstName = user?.objectForKey("firstName") as? String
+    fileprivate func addProfileView() {
+        let user = PFUser.current()
+        let firstName = user?.object(forKey: "firstName") as? String
         let maxWidth = self.view.frame.size.width - 200.0
-        let font = UIFont.systemFontOfSize(17)
+        let font = UIFont.systemFont(ofSize: 17)
         let labelWidth = self.widthForlabel(firstName, font: font, maxWidth: maxWidth)
-        let profileFrame = CGRectMake(0, 0, labelWidth, 40)
+        let profileFrame = CGRect(x: 0, y: 0, width: labelWidth, height: 40)
         self.userProfileView = ProfileNameView.init(frame: profileFrame)
         if let userProfileView = self.userProfileView {
             userProfileView.layoutForUser(user)
             self.view.addSubview(userProfileView)
             
-            let profileRecognizer = UITapGestureRecognizer.init(target: self, action: "profileTapped:")
+            let profileRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(HomeViewController.profileTapped(_:)))
             userProfileView.addGestureRecognizer(profileRecognizer)
             
             let metrics = ["spacing" : 6]
             let views = ["userProfileView" : userProfileView]
-            let profileH = NSLayoutConstraint.constraintsWithVisualFormat("H:[userProfileView]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views)
-            let profileY = NSLayoutConstraint.constraintsWithVisualFormat("V:[userProfileView]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics  , views: views)
+            let profileH = NSLayoutConstraint.constraints(withVisualFormat: "H:[userProfileView]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views)
+            let profileY = NSLayoutConstraint.constraints(withVisualFormat: "V:[userProfileView]-(spacing)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics  , views: views)
             self.view.addConstraints(profileH)
             self.view.addConstraints(profileY)
         }
     }
     
-    private func widthForlabel(text: String?, font: UIFont, maxWidth: CGFloat) -> CGFloat {
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, maxWidth, CGFloat.max))
+    fileprivate func widthForlabel(_ text: String?, font: UIFont, maxWidth: CGFloat) -> CGFloat {
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: maxWidth, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 1
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = font
         label.text = text
         
@@ -198,33 +211,33 @@ class HomeViewController: UIViewController {
         return label.frame.height
     }
     
-    func profileTapped(sender: UITapGestureRecognizer) {
+    func profileTapped(_ sender: UITapGestureRecognizer) {
         let	 storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let profileController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
-        self.presentViewController(profileController, animated: true, completion: nil)
+        let profileController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        self.present(profileController, animated: true, completion: nil)
     }
 }
 
 extension HomeViewController : UICollectionViewDataSource
 {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.klusters.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cellIdentifier = "Kluster Cell"
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! KlusterCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! KlusterCollectionViewCell
 
         let k = Kluster.init(object: self.klusters[indexPath.item])
         cell.kluster = k
         cell.joinKlusterButton.tag = indexPath.row
-        cell.joinKlusterButton.addTarget(self, action: "joinKluster:", forControlEvents: UIControlEvents.TouchUpInside)
-        cell.joinKlusterButton.hidden = KlusterStore.sharedInstance.userIsMemberOfKluster(k.id)
+        cell.joinKlusterButton.addTarget(self, action: #selector(HomeViewController.joinKluster(_:)), for: UIControlEvents.touchUpInside)
+        cell.joinKlusterButton.isHidden = KlusterStore.sharedInstance.userIsMemberOfKluster(k.id)
         
         cell.distanceLabel.text = k.distanceToKluster(self.currentGeoPoint)
         
@@ -232,12 +245,12 @@ extension HomeViewController : UICollectionViewDataSource
         cell.featuredImageView.tag = indexPath.row
         cell.featuredImageView.image = nil
         cell.featuredImageView.file = k.featuredImageFile
-        cell.featuredImageView.loadInBackground { (image, error) -> Void in
+        cell.featuredImageView.load { (image, error) -> Void in
             if (error != nil) {
                 print("Error loading image...")
             } else {
                 print("Finished loading image...")
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     cell.featuredImageView.image = image
                 });
             }
@@ -246,8 +259,8 @@ extension HomeViewController : UICollectionViewDataSource
         // Load avatar images
         let avatarImageViews = [cell.firstAvatarImageView, cell.secondAvatarImageView, cell.thirdAvatarImageView, cell.fourthAvatarImageView]
         let membersQuery = k.memberRelation.query()
-        membersQuery.cachePolicy = .CacheElseNetwork
-        membersQuery.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+        membersQuery.cachePolicy = .cacheElseNetwork
+        membersQuery.findObjectsInBackground { (objects, error) -> Void in
             
             var totalAvatars = 4
             if (objects?.count < avatarImageViews.count) {
@@ -257,61 +270,61 @@ extension HomeViewController : UICollectionViewDataSource
             if (objects!.count > 4) {
                 let moreCount = objects!.count - 4
                 let buttonText = "\(moreCount) more..."
-                cell.moreLabel .setTitle(buttonText, forState: .Normal)
-                cell.moreLabel.hidden = false
+                cell.moreLabel .setTitle(buttonText, for: UIControlState())
+                cell.moreLabel.isHidden = false
             } else {
-                cell.moreLabel.hidden = true
+                cell.moreLabel.isHidden = true
             }
             
             // Clear the image views...
             for imageView in avatarImageViews {
-                imageView.image = nil
+                imageView?.image = nil
             }
             
             var i = 0
             while i < totalAvatars {
                 let imageView = avatarImageViews[i]
                 let user = objects![i] as? PFUser
-                imageView?.file = user?.objectForKey("avatarThumbnail") as? PFFile
+                imageView?.file = user?.object(forKey: "avatarThumbnail") as? PFFile
                 imageView?.loadInBackground()
                 i++
                 
-                imageView.layer.cornerRadius = 12.5
+                imageView?.layer.cornerRadius = 12.5
             }
         }
         
         
         
-        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: "featuredImageViewTapped:")
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(HomeViewController.featuredImageViewTapped(_:)))
         cell.featuredImageView.addGestureRecognizer(tapRecognizer)
         return cell
     }
     
-    func featuredImageViewTapped(sender: UITapGestureRecognizer) {
+    func featuredImageViewTapped(_ sender: UITapGestureRecognizer) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let messagesController = storyboard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
+        let messagesController = storyboard.instantiateViewController(withIdentifier: "MessagesTableViewController") as! MessagesTableViewController
         let k = Kluster.init(object: self.klusters[(sender.view?.tag)!])
         messagesController.kluster = k
         
         // Show kluster
         let navigationController = MessagesNavigationController.init(rootViewController: messagesController)
-        self.presentViewController(navigationController, animated: true, completion: nil);
+        self.present(navigationController, animated: true, completion: nil);
     }
     
-    func joinKluster(sender: UIButton) {
+    func joinKluster(_ sender: UIButton) {
         let k = Kluster.init(object: self.klusters[sender.tag])
-        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        KlusterDataSource.joinKluster(k.id) { (object, error) -> Void in
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        KlusterDataSource.joinKluster(k.id as NSString!) { (object, error) -> Void in
             hud.removeFromSuperview()
             if (error != nil) {
                 print("Error: %@", error)
             } else {
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let klusterVC = storyboard.instantiateViewControllerWithIdentifier("KlusterViewController") as! KlusterViewController;
+                let klusterVC = storyboard.instantiateViewController(withIdentifier: "KlusterViewController") as! KlusterViewController;
                 klusterVC.kluster = k
                 // Show kluster
                 let navigationController = UINavigationController.init(rootViewController: klusterVC)
-                self.presentViewController(navigationController, animated: true, completion: nil);
+                self.present(navigationController, animated: true, completion: nil);
             }
         }
     }
@@ -319,8 +332,8 @@ extension HomeViewController : UICollectionViewDataSource
 
 extension HomeViewController : CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if (status == .AuthorizedWhenInUse) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedWhenInUse) {
             self.calculateCurrentLocation()
         }
     }
@@ -329,17 +342,17 @@ extension HomeViewController : CLLocationManagerDelegate {
 //MARK: - Scrolling Experience
 extension HomeViewController : UIScrollViewDelegate
 {
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
         let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
         
-        var offset = targetContentOffset.memory
+        var offset = targetContentOffset.pointee
         let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
         let roundedIndex = round(index)
         
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-        targetContentOffset.memory = offset
+        targetContentOffset.pointee = offset
         
     }
 }
@@ -347,8 +360,8 @@ extension HomeViewController : UIScrollViewDelegate
 // MARK: - Search delegate
 extension HomeViewController : UISearchBarDelegate {
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        let searchString = searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchString = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if searchString.length > 0 {
             KlusterDataSource.searchForKlusterWithString(searchString) { (objects, error) -> Void in
                 if (error != nil) {
@@ -361,7 +374,7 @@ extension HomeViewController : UISearchBarDelegate {
         }
     }
     
-    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         // Hide search bar...
         
         self.searchBar.resignFirstResponder()

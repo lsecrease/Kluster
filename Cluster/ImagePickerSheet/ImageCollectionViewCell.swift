@@ -12,7 +12,7 @@ class ImageCollectionViewCell : UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()
@@ -31,7 +31,7 @@ class ImageCollectionViewCell : UICollectionViewCell {
         initialize()
     }
     
-    private func initialize() {
+    fileprivate func initialize() {
         addSubview(imageView)
     }
     

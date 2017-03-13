@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseUI
 
 class KlusterCollectionViewCell: UICollectionViewCell {
     
@@ -29,7 +30,7 @@ class KlusterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var fourthAvatarImageView: PFImageView!
     @IBOutlet weak var moreLabel: UIButton!
     
-    private func updateUI() {
+    fileprivate func updateUI() {
         self.klusterTitleLabel?.text! = kluster.title
         distanceLabel?.text! = kluster.distanceString // kluster.location
     }
@@ -41,7 +42,7 @@ class KlusterCollectionViewCell: UICollectionViewCell {
         self.clipsToBounds = true
     }
 
-    @IBAction func joinKlusterButtonTapped(sender: AnyObject) {
+    @IBAction func joinKlusterButtonTapped(_ sender: AnyObject) {
     }
 
 }

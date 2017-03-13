@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseUI
 
 class MembersTableViewCell: UITableViewCell {
     
@@ -23,12 +24,12 @@ class MembersTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.avatarImageView.contentMode = .ScaleAspectFill
+        self.avatarImageView.contentMode = .scaleAspectFill
     }
     
-    private func updateUI() {
-        let firstName = self.user.objectForKey("firstName") as! String
-        let lastName = self.user.objectForKey("lastName") as! String
+    fileprivate func updateUI() {
+        let firstName = self.user.object(forKey: "firstName") as! String
+        let lastName = self.user.object(forKey: "lastName") as! String
         self.nameLabel.text = firstName + " " + lastName
         self.ageLabel.text = "Age coming soon"
     }

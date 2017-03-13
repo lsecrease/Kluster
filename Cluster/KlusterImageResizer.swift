@@ -13,12 +13,12 @@ import Foundation
 class KlusterImageResizer: NSObject {
     let UploadWidth = 640
     
-    class func resizeImageToWidth(image: UIImage, width: CGFloat) -> NSData? {
+    class func resizeImageToWidth(_ image: UIImage, width: CGFloat) -> Data? {
         let height = (width * image.size.height) / image.size.width
-        UIGraphicsBeginImageContext(CGSizeMake(width, height))
-        image.drawInRect(CGRectMake(0, 0, width, height))
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return UIImagePNGRepresentation(resizedImage)
+        return UIImagePNGRepresentation(resizedImage!)
     }
 }

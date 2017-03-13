@@ -18,20 +18,20 @@ class MessagesNavigationController : UINavigationController {
         super.init(coder: aDecoder)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationBar.translucent = false
+        self.navigationBar.isTranslucent = false
         self.navigationBar.barTintColor = .klusterPurpleColor()
-        self.navigationBar.tintColor = .whiteColor()
-        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationBar.tintColor = .white
+        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
     }
 }

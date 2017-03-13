@@ -14,23 +14,23 @@ class LocationSelectViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView!
     
-    public var completion: (PFGeoPoint? -> ())? 
-    private var geoPoint: PFGeoPoint?
+    open var completion: ((PFGeoPoint?) -> ())? 
+    fileprivate var geoPoint: PFGeoPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
-        let gestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: "mapPressed:")
+        let gestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(LocationSelectViewController.mapPressed(_:)))
         gestureRecognizer.minimumPressDuration = 0.5
         self.mapView.addGestureRecognizer(gestureRecognizer)
     }
     
-    func mapPressed(sender: UILongPressGestureRecognizer) {
-        if (sender.state == .Began) {
-            let touchPoint = sender.locationInView(self.mapView)
-            let touchCoordinate = self.mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
+    func mapPressed(_ sender: UILongPressGestureRecognizer) {
+        if (sender.state == .began) {
+            let touchPoint = sender.location(in: self.mapView)
+            let touchCoordinate = self.mapView.convert(touchPoint, toCoordinateFrom: self.mapView)
             let point = MKPointAnnotation()
             point.coordinate = touchCoordinate
             point.title = "Kluster Location"
@@ -39,16 +39,16 @@ class LocationSelectViewController: UIViewController {
             }
             
             self.mapView.addAnnotation(point)
-            self.navigationItem.rightBarButtonItem?.enabled = true
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
             self.geoPoint = PFGeoPoint.init(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
         }
     }
     
-    @IBAction func cancelButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonPressed(sender: AnyObject) {
+    @IBAction func doneButtonPressed(_ sender: AnyObject) {
         completion!(self.geoPoint)
     }
 }

@@ -13,16 +13,16 @@ class LocationStore : NSObject {
     let longitudeKey = "keyCurrentLongitude"
     static let sharedStore = LocationStore()
     
-    func updateLocation(latitude: Double!, longitude: Double!) {
-        NSUserDefaults.standardUserDefaults().setDouble(latitude, forKey: self.latitudeKey)
-        NSUserDefaults.standardUserDefaults().setDouble(longitude, forKey: self.longitudeKey)
+    func updateLocation(_ latitude: Double!, longitude: Double!) {
+        UserDefaults.standard.set(latitude, forKey: self.latitudeKey)
+        UserDefaults.standard.set(longitude, forKey: self.longitudeKey)
     }
     
     func currentLatitude() -> Double {
-        return NSUserDefaults.standardUserDefaults().doubleForKey(self.latitudeKey)
+        return UserDefaults.standard.double(forKey: self.latitudeKey)
     }
     
     func currentLongitude() -> Double {
-        return NSUserDefaults.standardUserDefaults().doubleForKey(self.longitudeKey)
+        return UserDefaults.standard.double(forKey: self.longitudeKey)
     }
 }

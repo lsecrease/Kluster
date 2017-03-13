@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseUI
 
 class PopoverHeaderView: UIView {
     
@@ -21,7 +22,7 @@ class PopoverHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.headerImageView.frame = self.bounds // CGRectMake(0, 0, self.frame.size.width, imageHeight)
-        self.headerImageView.contentMode = .ScaleAspectFill
+        self.headerImageView.contentMode = .scaleAspectFill
         self.headerImageView.clipsToBounds = true
         self.addSubview(self.headerImageView)
     }
@@ -30,7 +31,7 @@ class PopoverHeaderView: UIView {
         super.init(coder: aDecoder)
     }
     
-    private func updateUI() {
+    fileprivate func updateUI() {
         self.headerImageView.file = self.kluster?.featuredImageFile
         self.headerImageView.loadInBackground()
     }

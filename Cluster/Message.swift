@@ -13,7 +13,7 @@ class Message: NSObject {
     var text: String?
     
     init(object: PFObject) {
-        self.text = object.objectForKey("text") as? String
-        self.user = object.objectForKey("sender") as! PFUser
+        self.text = object.object(forKey: "text") as? String
+        self.user = object.object(forKey: "sender") as! PFUser
     }
 }

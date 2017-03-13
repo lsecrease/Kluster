@@ -16,7 +16,7 @@ class MessageTextView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .whiteColor()
+        self.backgroundColor = .white
         
         let width = self.frame.size.width
         let height = self.frame.size.height
@@ -24,24 +24,24 @@ class MessageTextView: UIView {
         let buttonWidth = 60.0 as CGFloat
         let textFieldWidth = width - (3 * textFieldPadding) - buttonWidth
         
-        let spacingView = UIView.init(frame: CGRectMake(0, 0, width, 1.0))
+        let spacingView = UIView.init(frame: CGRect(x: 0, y: 0, width: width, height: 1.0))
         spacingView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
         self.addSubview(spacingView)
         
-        let textFieldFrame = CGRectMake(textFieldPadding, textFieldPadding, textFieldWidth, height - (2 * textFieldPadding))
+        let textFieldFrame = CGRect(x: textFieldPadding, y: textFieldPadding, width: textFieldWidth, height: height - (2 * textFieldPadding))
         textField = UITextField.init(frame: textFieldFrame)
         textField.placeholder = "Enter a message..."
         self.addSubview(textField)
         
-        sendButton = UIButton.init(type: .Custom)
-        sendButton.setTitle("Send", forState: .Normal)
-        sendButton.frame = CGRectMake(textFieldWidth + (2 * textFieldPadding), textFieldPadding, buttonWidth, height - (2 * textFieldPadding))
-        sendButton.setTitleColor(.klusterPurpleColor(), forState: .Normal)
+        sendButton = UIButton.init(type: .custom)
+        sendButton.setTitle("Send", for: UIControlState())
+        sendButton.frame = CGRect(x: textFieldWidth + (2 * textFieldPadding), y: textFieldPadding, width: buttonWidth, height: height - (2 * textFieldPadding))
+        sendButton.setTitleColor(.klusterPurpleColor(), for: UIControlState())
         self.addSubview(sendButton)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
     }
 }
 

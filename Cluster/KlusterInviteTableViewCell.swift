@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ParseUI
+import Spring
 
 class KlusterInviteTableViewCell: UITableViewCell {
 

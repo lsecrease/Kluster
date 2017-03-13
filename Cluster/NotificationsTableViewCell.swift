@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Spring
+import ParseUI
 
 protocol NotificationsTableViewCellDelgate {
-    func didPressAcceptButton(cell: NotificationsTableViewCell)
-    func didPressDeclineButton(cell: NotificationsTableViewCell)
+    func didPressAcceptButton(_ cell: NotificationsTableViewCell)
+    func didPressDeclineButton(_ cell: NotificationsTableViewCell)
 }
 
 class NotificationsTableViewCell: UITableViewCell {
@@ -24,7 +26,7 @@ class NotificationsTableViewCell: UITableViewCell {
    
     var delegate: NotificationsTableViewCellDelgate?
     
-    @IBAction func acceptButtonClicked(sender: DesignableButton) {
+    @IBAction func acceptButtonClicked(_ sender: DesignableButton) {
         
         print("Accept Button Clicked")
         self.delegate?.didPressAcceptButton(self)
@@ -34,7 +36,7 @@ class NotificationsTableViewCell: UITableViewCell {
         self.animate(sender)
     }
     
-    @IBAction func declineButtonClicked(sender: DesignableButton) {
+    @IBAction func declineButtonClicked(_ sender: DesignableButton) {
         
          print("Decline Button Clicked")
         self.delegate?.didPressDeclineButton(self)
@@ -43,7 +45,7 @@ class NotificationsTableViewCell: UITableViewCell {
         self.animate(sender)
     }
     
-    private func animate(sender: DesignableButton?) {
+    fileprivate func animate(_ sender: DesignableButton?) {
         if let sender = sender {
             sender.animation = "pop"
             sender.curve = "spring"

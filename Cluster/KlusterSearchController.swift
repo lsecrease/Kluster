@@ -7,6 +7,30 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class KlusterSearchController: UITableViewController, UISearchResultsUpdating {
     let searchController = UISearchController(searchResultsController: nil)
@@ -22,26 +46,26 @@ class KlusterSearchController: UITableViewController, UISearchResultsUpdating {
         self.tableView.tableHeaderView = searchController.searchBar
         
         self.navigationItem.title = "Search For Klusters"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Dismiss", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissPressed:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Dismiss", style: UIBarButtonItemStyle.plain, target: self, action: #selector(KlusterSearchController.dismissPressed(_:)))
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SearchCell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell")
         let k = self.searchResults[indexPath.row] as PFObject!
-        cell?.textLabel?.text = k.objectForKey("name") as? String
-        cell?.detailTextLabel?.text = k.objectForKey("plans")as? String
+        cell?.textLabel?.text = k?.object(forKey: "name") as? String
+        cell?.detailTextLabel?.text = k?.object(forKey: "plans")as? String
         return cell!
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.searchResults.count
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         if searchString?.length > 0 {
             KlusterDataSource.searchForKlusterWithString(searchString!) { (results, error) -> Void in
@@ -52,7 +76,7 @@ class KlusterSearchController: UITableViewController, UISearchResultsUpdating {
 
     }
     
-    func dismissPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func dismissPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

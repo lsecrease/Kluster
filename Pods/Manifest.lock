@@ -23,6 +23,7 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SlackTextViewController (1.9.1)
+  - Spring (1.0.3)
   - SWRevealTableViewCell (0.3.5)
   - UITextView+Placeholder (1.1.1)
 
@@ -33,8 +34,19 @@ DEPENDENCIES:
   - ParseFacebookUtilsV4
   - ParseUI
   - SlackTextViewController
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SWRevealTableViewCell
   - UITextView+Placeholder
+
+EXTERNAL SOURCES:
+  Spring:
+    :branch: swift3
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  Spring:
+    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
@@ -46,7 +58,10 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: 216e03bd560404eed09a4875c75f0c1cdf758070
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SWRevealTableViewCell: c97ca17df7153f2f130f307ea90399d4b19e4e15
   UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 2b03efadc04a1b1f83f148eb9778c2a6d91c020f
+
+COCOAPODS: 1.2.0

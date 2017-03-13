@@ -8,6 +8,9 @@
 
 import UIKit
 import Photos
+import Spring
+import MBProgressHUD
+
 
 
 class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -17,7 +20,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var closeButton: UIButton!
     
-    @IBOutlet weak var newKlusterTitleTextField: DesignableTextField!
+    @IBOutlet var newKlusterTitleTextField: DesignableTextField!
     
     @IBOutlet weak var newKlusterDescriptionTextView: UITextView!
     @IBOutlet weak var newKlusterPlansTextView: UITextView!
@@ -26,13 +29,13 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var chooseLocationButton: DesignableButton!
     
     @IBOutlet var hideKeyboardInputAccessoryView: UIView!
-    private var featuredImage: UIImage!
-    private var klusterLocation: PFGeoPoint!
+    fileprivate var featuredImage: UIImage!
+    fileprivate var klusterLocation: PFGeoPoint!
     
     @IBOutlet weak var chooseLocationPressed: DesignableButton!
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,20 +50,20 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         newKlusterPlansTextView.delegate = self
         
         // handle text view
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NewKlusterViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NewKlusterViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
     // MARK: - Text View Handler
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillShow(notification: NSNotification)
+    func keyboardWillShow(_ notification: Notification)
     {
         let userInfo = notification.userInfo ?? [:]
-        let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
+        let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         
         self.newKlusterDescriptionTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         self.newKlusterDescriptionTextView.scrollIndicatorInsets = self.newKlusterDescriptionTextView.contentInset
@@ -70,33 +73,33 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
 
     }
     
-    func keyboardWillHide(notification: NSNotification)
+    func keyboardWillHide(_ notification: Notification)
     {
-        self.newKlusterDescriptionTextView.contentInset = UIEdgeInsetsZero
-        self.newKlusterDescriptionTextView.scrollIndicatorInsets = UIEdgeInsetsZero
+        self.newKlusterDescriptionTextView.contentInset = UIEdgeInsets.zero
+        self.newKlusterDescriptionTextView.scrollIndicatorInsets = UIEdgeInsets.zero
         
-        self.newKlusterPlansTextView.contentInset = UIEdgeInsetsZero
-        self.newKlusterPlansTextView.scrollIndicatorInsets = UIEdgeInsetsZero
+        self.newKlusterPlansTextView.contentInset = UIEdgeInsets.zero
+        self.newKlusterPlansTextView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
     
     
-    @IBAction func dismiss(sender: UIButton) {
+    @IBAction func dismiss(_ sender: UIButton) {
         hideKeyboard()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func chooseLocationButtonClicked(sender: DesignableButton) {
-        let actionSheet = UIAlertController.init(title: "Select Kluster Location", message: nil, preferredStyle: .ActionSheet)
+    @IBAction func chooseLocationButtonClicked(_ sender: DesignableButton) {
+        let actionSheet = UIAlertController.init(title: "Select Kluster Location", message: nil, preferredStyle: .actionSheet)
         
-        let currentLocationAction = UIAlertAction.init(title: "Current Location", style: .Default) { (action) -> Void in
-            PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint, error) -> Void in
+        let currentLocationAction = UIAlertAction.init(title: "Current Location", style: .default) { (action) -> Void in
+            PFGeoPoint.geoPointForCurrentLocation(inBackground: { (geoPoint, error) -> Void in
                 if (error != nil) {
                     print("Error grabbing current location")
-                    let alert = UIAlertController.init(title: "Error", message: "Unable to get your current location. Please try again.", preferredStyle: .Alert)
-                    let ok = UIAlertAction.init(title: "Okay", style: .Default, handler: nil)
+                    let alert = UIAlertController.init(title: "Error", message: "Unable to get your current location. Please try again.", preferredStyle: .alert)
+                    let ok = UIAlertAction.init(title: "Okay", style: .default, handler: nil)
                     alert.addAction(ok)
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 } else {
                     self.klusterLocation = geoPoint
                 }
@@ -105,7 +108,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         
         actionSheet.addAction(currentLocationAction)
         
-        let pickLocation = UIAlertAction.init(title: "Pick A Location", style: .Default) { (action) -> Void in
+        let pickLocation = UIAlertAction.init(title: "Pick A Location", style: .default) { (action) -> Void in
             let storyboard = UIStoryboard.init(name: "Map", bundle: nil)
             let mapController = storyboard.instantiateInitialViewController() as! UINavigationController
             let locationController = mapController.childViewControllers.first as! LocationSelectViewController
@@ -113,35 +116,35 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
                 self.klusterLocation = geoPoint
             }
             
-            self.presentViewController(mapController, animated: true, completion: nil)
+            self.present(mapController, animated: true, completion: nil)
         }
         
         actionSheet.addAction(pickLocation)
         
-        let cancelAction = UIAlertAction.init(title: "Cancel", style: .Cancel) { (action) -> Void in
-            actionSheet.dismissViewControllerAnimated(true, completion: nil)
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) -> Void in
+            actionSheet.dismiss(animated: true, completion: nil)
         }
         
         actionSheet.addAction(cancelAction)
         
-        self.presentViewController(actionSheet, animated: true, completion: nil)
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @IBAction func selectFeaturedImageButtonClicked(sender: DesignableButton) {
+    @IBAction func selectFeaturedImageButtonClicked(_ sender: DesignableButton) {
         
         let authorization = PHPhotoLibrary.authorizationStatus()
         
-        if authorization == .NotDetermined {
+        if authorization == .notDetermined {
             PHPhotoLibrary.requestAuthorization({ (status) -> Void in
                 //self.pickFeaturedImageClicked(sender)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.selectFeaturedImageButtonClicked(sender)
                 })
             })
             return
         }
         //Do you want to Take a Photo or Video with the Camera
-        if authorization == .Authorized {
+        if authorization == .authorized {
             let controller = ImagePickerSheetController()
             controller.addAction(ImageAction(title: NSLocalizedString("Take Photo or Video", comment: "ActionTitle"), secondaryTitle: NSLocalizedString("Use This One", comment: "ActionTitle"), handler: { (_) -> () in
                 
@@ -155,9 +158,9 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
                     })
             }))
             
-            controller.addAction(ImageAction(title: NSLocalizedString("Cancel", comment: "Action Title"),  style: .Cancel))
+            controller.addAction(ImageAction(title: NSLocalizedString("Cancel", comment: "Action Title"),  style: .cancel))
             
-            presentViewController(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
             
         } else {
             // User has not authorized the camera
@@ -170,20 +173,20 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     func promptForCameraAuthorization() {
-        let alertController = UIAlertController.init(title: "Camera Access Denied", message: "Please allow Kluster to access your camera in the iOS Settings.", preferredStyle: UIAlertControllerStyle.Alert)
-        let dismissAction = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        let alertController = UIAlertController.init(title: "Camera Access Denied", message: "Please allow Kluster to access your camera in the iOS Settings.", preferredStyle: UIAlertControllerStyle.alert)
+        let dismissAction = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
         alertController.addAction(dismissAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     
     
-    @IBAction func createNewKlusterButtonClicked(sender: DesignableButton) {
+    @IBAction func createNewKlusterButtonClicked(_ sender: DesignableButton) {
         
         
         if self.invalidTextData() {
@@ -193,14 +196,14 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         } else {
             //Create New Interest
             self.hideKeyboard()
-            let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            let title = newKlusterTitleTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            let summary = newKlusterDescriptionTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            let plans = newKlusterPlansTextView.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let title = newKlusterTitleTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let summary = newKlusterDescriptionTextView.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let plans = newKlusterPlansTextView.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
             let imageData = KlusterImageResizer.resizeImageToWidth(featuredImage, width: 320)
-            let base64String = imageData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+            let base64String = imageData?.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
             
             let params = ["title": title!,
                        "summary": summary!,
@@ -209,12 +212,12 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
                      "longitude": self.klusterLocation.longitude,
                          "photo": base64String!]
             
-            KlusterDataSource.createKlusterWithParams(params as [NSObject : AnyObject], completion: { (object, error) -> Void in
+            KlusterDataSource.createKlusterWithParams(params as [AnyHashable: Any], completion: { (object, error) -> Void in
                 if error != nil {
                     hud.removeFromSuperview()
                 } else {
                     hud.removeFromSuperview()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
             })
         }
@@ -242,11 +245,11 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func hideKeyboard() {
-        if newKlusterDescriptionTextView.isFirstResponder() {
+        if newKlusterDescriptionTextView.isFirstResponder {
             newKlusterDescriptionTextView.resignFirstResponder()
-        } else if newKlusterTitleTextField.isFirstResponder() {
+        } else if newKlusterTitleTextField.isFirstResponder {
             newKlusterTitleTextField.resignFirstResponder()
-        } else if newKlusterPlansTextView.isFirstResponder() {
+        } else if newKlusterPlansTextView.isFirstResponder {
             newKlusterPlansTextView.resignFirstResponder()
         }
 
@@ -258,7 +261,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
 // MARK: - UITextFieldDelegate
 extension NewKlusterViewController : UITextFieldDelegate {
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if newKlusterDescriptionTextView.text == "Describe Your New Kluster..." && !textField.text!.isEmpty {
             newKlusterDescriptionTextView.becomeFirstResponder()
         } else if newKlusterTitleTextField.text!.isEmpty {
@@ -272,11 +275,11 @@ extension NewKlusterViewController : UITextFieldDelegate {
 }
 
 extension NewKlusterViewController : UITextViewDelegate {
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         textView.text = ""
         return true
     }
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if textView.text.isEmpty  {
             textView.text = "Describe Your Kluster..."
         }

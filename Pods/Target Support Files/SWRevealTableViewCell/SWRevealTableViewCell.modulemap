@@ -1,0 +1,6 @@
+framework module SWRevealTableViewCell {
+  umbrella header "SWRevealTableViewCell-umbrella.h"
+
+  export *
+  module * { export * }
+}

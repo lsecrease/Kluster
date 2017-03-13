@@ -12,7 +12,7 @@ class KlusterStore: NSObject {
     var userKlusters: [PFObject]? = [PFObject]()
     static let sharedInstance = KlusterStore()
     
-    internal func userIsMemberOfKluster(klusterId: String!) -> Bool {
+    internal func userIsMemberOfKluster(_ klusterId: String!) -> Bool {
         for kluster in self.userKlusters! {
             if (kluster.objectId == klusterId) {
                 return true

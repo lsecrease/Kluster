@@ -12,11 +12,11 @@ class MyKlusterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private var klusters = [PFObject]()
+    fileprivate var klusters = [PFObject]()
     
     //MARK: - Change Status Bar to White
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     
@@ -24,15 +24,15 @@ class MyKlusterViewController: UIViewController {
         super.viewDidLoad()
         
         
-        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         // Do any additional setup after loading the view.
         KlusterDataSource.fetchKlustersForUser { (objects, error) -> Void in
-            hud.removeFromSuperview()
+            hud?.removeFromSuperview()
             if (error != nil) {
-                let alertController = UIAlertController.init(title: "Error", message: "Something went wrong when fetching your Klusters", preferredStyle: .Alert)
-                let action = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+                let alertController = UIAlertController.init(title: "Error", message: "Something went wrong when fetching your Klusters", preferredStyle: .alert)
+                let action = UIAlertAction.init(title: "OK", style: .default, handler: nil)
                 alertController.addAction(action)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             } else {
                 self.klusters = objects as! [PFObject]
                 self.tableView.reloadData()
@@ -43,38 +43,38 @@ class MyKlusterViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         // Hack to set search bar text color to white..
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = .darkTextColor()
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = .darkText
     }
     
-    @IBAction func dismiss(sender: UIButton) {
+    @IBAction func dismiss(_ sender: UIButton) {
       
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension MyKlusterViewController : UITableViewDataSource
 {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.klusters.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "My Kluster Cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MyKlusterTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyKlusterTableViewCell
         
 
         let k = Kluster.init(object: self.klusters[indexPath.item])
         
         //Cell Elements
-        cell.klusterRoleLabel.text = k.creatorString(PFUser.currentUser())
+        cell.klusterRoleLabel.text = k.creatorString(PFUser.current())
         cell.klusterNameLabel.text = k.title
         cell.numberOfMembersLabel.text = k.memberString()
         
@@ -83,62 +83,62 @@ extension MyKlusterViewController : UITableViewDataSource
         cell.klusterImageView.file = k.featuredImageFile
         cell.klusterImageView.loadInBackground()
         
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         return cell
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // If user is the creator.. return yes.
         let k = Kluster.init(object: self.klusters[indexPath.item])
-        let user = PFUser.currentUser()
+        let user = PFUser.current()
         return k.creator?.objectId == user?.objectId
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let k = Kluster.init(object: self.klusters[indexPath.row])
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let messagesController = storyboard.instantiateViewControllerWithIdentifier("MessagesTableViewController") as! MessagesTableViewController
+        let messagesController = storyboard.instantiateViewController(withIdentifier: "MessagesTableViewController") as! MessagesTableViewController
         messagesController.kluster = k
         
         // Show kluster
         let navigationController = MessagesNavigationController.init(rootViewController: messagesController)
-        self.presentViewController(navigationController, animated: true, completion: nil);
+        self.present(navigationController, animated: true, completion: nil);
     }
 }
 
 extension MyKlusterViewController : UITableViewDelegate {
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             print("more button tapped")
-            let alertController = UIAlertController.init(title: "Are you sure you want to delete this Kluster?", message: "This operation cannot be undone.", preferredStyle: .Alert)
+            let alertController = UIAlertController.init(title: "Are you sure you want to delete this Kluster?", message: "This operation cannot be undone.", preferredStyle: .alert)
             
-            let cancel = UIAlertAction.init(title: "Cancel", style: .Cancel, handler: nil)
+            let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(cancel)
             
-            let delete = UIAlertAction.init(title: "Delete", style: .Destructive, handler: { (action) -> Void in
+            let delete = UIAlertAction.init(title: "Delete", style: .destructive, handler: { (action) -> Void in
                 print("Deleting Kluster...")
                 let k = Kluster.init(object: self.klusters[indexPath.item])
                 
-                let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 KlusterDataSource.deleteKluster(k.id, completion: { (object, error) -> Void in
                     hud.removeFromSuperview()
                     if (error != nil) {
-                        let errorController = UIAlertController.init(title: "Error", message: "Something went wrong when deleting your Kluster.", preferredStyle: .Alert)
+                        let errorController = UIAlertController.init(title: "Error", message: "Something went wrong when deleting your Kluster.", preferredStyle: .alert)
                         
-                        let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+                        let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
                         errorController.addAction(okAction)
                     } else {
-                        self.klusters.removeAtIndex(indexPath.row)
+                        self.klusters.remove(at: indexPath.row)
                         self.tableView.reloadData()
                     }
                 })
             })
             alertController.addAction(delete)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
         
-        delete.backgroundColor = .redColor()
+        delete.backgroundColor = .red
         
         return [delete]
     }

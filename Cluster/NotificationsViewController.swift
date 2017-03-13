@@ -12,12 +12,12 @@ class NotificationsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let hud = BLMultiColorLoader.init(frame: CGRectMake(0, 0, 40.0, 40.0))
+    let hud = BLMultiColorLoader.init(frame: CGRect(x: 0, y: 0, width: 40.0, height: 40.0))
     var invites = [Invite]()
     
     //MARK: - Change Status Bar to White
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidLoad() {
@@ -32,13 +32,13 @@ class NotificationsViewController: UIViewController {
         // Add the progress hud before fetching invites
         self.hud.center = self.view.center
         self.hud.lineWidth = 2.0
-        self.hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGrayColor()]
+        self.hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGray]
         self.view.addSubview(self.hud)
         
         self.fetchInvites()
     }
     
-    private func fetchInvites() {
+    fileprivate func fetchInvites() {
         
         // Add hud
         self.hud.startAnimation()
@@ -68,32 +68,32 @@ class NotificationsViewController: UIViewController {
         }
     }
     
-    private func showNetworkError() {
-        let alertController = UIAlertController.init(title: "Error", message: "Unable to fetch invites.", preferredStyle: .Alert)
-        let alertAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+    fileprivate func showNetworkError() {
+        let alertController = UIAlertController.init(title: "Error", message: "Unable to fetch invites.", preferredStyle: .alert)
+        let alertAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
 extension NotificationsViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.invites.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Notification"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NotificationsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NotificationsTableViewCell
         
         let invite = self.invites[indexPath.row]
         cell.delegate = self
         
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         
         cell.dateLabel.text = invite.dateString
         cell.userNameLabel.text = invite.userName
@@ -112,8 +112,8 @@ extension NotificationsViewController: UITableViewDataSource {
 }
 
 extension NotificationsViewController: NotificationsTableViewCellDelgate {
-    func didPressAcceptButton(cell: NotificationsTableViewCell) {
-        if let indexPath = self.tableView.indexPathForCell(cell) {
+    func didPressAcceptButton(_ cell: NotificationsTableViewCell) {
+        if let indexPath = self.tableView.indexPath(for: cell) {
             let invite = self.invites[indexPath.row]
             
             // Accept the invite...
@@ -128,15 +128,15 @@ extension NotificationsViewController: NotificationsTableViewCellDelgate {
             })
             
             // Remove from the table
-            self.invites.removeAtIndex(indexPath.row)
+            self.invites.remove(at: indexPath.row)
             
             // Reload data
             self.tableView.reloadData()
         }
     }
     
-    func didPressDeclineButton(cell: NotificationsTableViewCell) {
-        if let indexPath = self.tableView.indexPathForCell(cell) {
+    func didPressDeclineButton(_ cell: NotificationsTableViewCell) {
+        if let indexPath = self.tableView.indexPath(for: cell) {
             let invite = self.invites[indexPath.row]
             
             // Accept the invite...
@@ -149,7 +149,7 @@ extension NotificationsViewController: NotificationsTableViewCellDelgate {
             })
             
             // Remove from the table
-            self.invites.removeAtIndex(indexPath.row)
+            self.invites.remove(at: indexPath.row)
             
             // Reload data
             self.tableView.reloadData()
@@ -158,47 +158,47 @@ extension NotificationsViewController: NotificationsTableViewCellDelgate {
 }
 
 extension NotificationsViewController : DZNEmptyDataSetDelegate {
-    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
         let text = "Join me on Kluster!"
-        if let url = NSURL.init(string: "http://kluster.com") {
+        if let url = URL.init(string: "http://kluster.com") {
             let shareActivity = UIActivityViewController.init(activityItems: [text, url], applicationActivities: nil)
-            self.presentViewController(shareActivity, animated: true, completion: nil)
+            self.present(shareActivity, animated: true, completion: nil)
         }
 
     }
 }
 
 extension NotificationsViewController : DZNEmptyDataSetSource {
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "You don't have any notifications."
         
         let paragraph = NSMutableParagraphStyle()
-        paragraph.lineBreakMode = .ByWordWrapping
-        paragraph.alignment = .Center
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.alignment = .center
         
-        let attributes = [NSFontAttributeName : UIFont.systemFontOfSize(17.0),
+        let attributes = [NSFontAttributeName : UIFont.systemFont(ofSize: 17.0),
             NSParagraphStyleAttributeName : paragraph]
         let attributedString = NSAttributedString.init(string: text, attributes: attributes)
         return attributedString
     }
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Womp womp..."
-        let attributes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(19.0),
-                          NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        let attributes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 19.0),
+                          NSForegroundColorAttributeName: UIColor.darkGray]
         let attributedString = NSAttributedString.init(string: text, attributes: attributes)
         return attributedString
     }
     
-    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         let text = "Invite Friends"
-        let attributes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(19.0),
-            NSForegroundColorAttributeName: UIColor.orangeColor()]
+        let attributes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 19.0),
+            NSForegroundColorAttributeName: UIColor.orange]
         let attributedString = NSAttributedString.init(string: text, attributes: attributes)
         return attributedString
     }
     
-    func spaceHeightForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+    func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return 20.0
     }
 }

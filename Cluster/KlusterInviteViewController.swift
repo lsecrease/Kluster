@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Spring
 
 class KlusterInviteViewController : UITableViewController {
     
     var users = [PFUser]()
     var usersToInvite = [PFUser]()
     var kluster: Kluster!
-    let hud = BLMultiColorLoader.init(frame: CGRectMake(0, 0, 40.0, 40.0))
+    let hud = BLMultiColorLoader.init(frame: CGRect(x: 0, y: 0, width: 40.0, height: 40.0))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +24,14 @@ class KlusterInviteViewController : UITableViewController {
         
         // Update the nav bar
         self.navigationItem.title = "Invite Friends"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Done", style: .Plain, target: self, action: "inviteDonePressed:")
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Done", style: .plain, target: self, action: #selector(KlusterInviteViewController.inviteDonePressed(_:)))
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         // Add the hud before fetching friends..
         // Add progress HUD
         self.hud.center = self.view.center
         self.hud.lineWidth = 2.0
-        self.hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGrayColor()]
+        self.hud.colorArray = [UIColor.klusterPurpleColor(), UIColor.lightGray]
         self.view.addSubview(hud)
         
         self.hud.startAnimation()
@@ -38,59 +39,59 @@ class KlusterInviteViewController : UITableViewController {
         self.fetchFacebookFriends()
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("KlusterInviteTableViewCell") as! KlusterInviteTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "KlusterInviteTableViewCell") as! KlusterInviteTableViewCell
         
         let user = self.users[indexPath.row]
-        if let firstName = user.objectForKey("firstName") as? String, lastName = user.objectForKey("lastName") as? String {
+        if let firstName = user.object(forKey: "firstName") as? String, let lastName = user.object(forKey: "lastName") as? String {
             cell.profileNameLabel.text = "\(firstName) \(lastName)"
         }
         
         cell.profileImageView.image = nil
-        cell.profileImageView.file = user.objectForKey("avatarThumbnail") as? PFFile
+        cell.profileImageView.file = user.object(forKey: "avatarThumbnail") as? PFFile
         cell.profileImageView.loadInBackground()
         
         // Format cell
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         cell.profileImageView.layer.cornerRadius = 17.5
         cell.profileImageView.clipsToBounds = true
         
         // Invite button actions
         cell.inviteButton.tag = indexPath.row
-        cell.inviteButton.addTarget(self, action: "inviteButtonPressed:", forControlEvents: .TouchUpInside)
+        cell.inviteButton.addTarget(self, action: #selector(KlusterInviteViewController.inviteButtonPressed(_:)), for: .touchUpInside)
         
         
         if (self.usersToInvite.contains(user)) {
-            cell.inviteButton.setTitle("Invited", forState: .Normal)
+            cell.inviteButton.setTitle("Invited", for: UIControlState())
         } else {
-            cell.inviteButton.setTitle("Invite", forState: .Normal)
+            cell.inviteButton.setTitle("Invite", for: UIControlState())
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.users.count
     }
     
     // Mark - Selectors
     
-    func inviteButtonPressed(sender: DesignableButton) {
+    func inviteButtonPressed(_ sender: DesignableButton) {
         let index = sender.tag
         let user = self.users[index]
         print("\(user) selected...")
         
         if self.usersToInvite.contains(user) {
-            if let index = self.usersToInvite.indexOf(user) {
-                self.usersToInvite.removeAtIndex(index)
+            if let index = self.usersToInvite.index(of: user) {
+                self.usersToInvite.remove(at: index)
             }
         } else {
             // add friend
@@ -100,7 +101,7 @@ class KlusterInviteViewController : UITableViewController {
         self.updateTableState()
     }
     
-    func inviteDonePressed(sender: UIBarButtonItem) {
+    func inviteDonePressed(_ sender: UIBarButtonItem) {
         // TODO: Send invites...
         
         var userIds = [String]()
@@ -112,7 +113,7 @@ class KlusterInviteViewController : UITableViewController {
         
         // Disable the bar button item... 
         if let barButtonItem = self.navigationItem.rightBarButtonItem {
-            barButtonItem.enabled = false
+            barButtonItem.isEnabled = false
         }
         
         // Add hud - Already added to the view hierarchy
@@ -122,20 +123,20 @@ class KlusterInviteViewController : UITableViewController {
             
             // Enable the bar button item...
             if let barButtonItem = self.navigationItem.rightBarButtonItem {
-                barButtonItem.enabled = true
+                barButtonItem.isEnabled = true
             }
             
             // Stop animating the hud..
             self.hud.stopAnimation()
             
             if error != nil {
-                let alertController = UIAlertController.init(title: "Invite Error", message: "Something went wrong when inviting users to this Kluster. Please try again.", preferredStyle: .Alert)
-                let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+                let alertController = UIAlertController.init(title: "Invite Error", message: "Something went wrong when inviting users to this Kluster. Please try again.", preferredStyle: .alert)
+                let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
                 alertController.addAction(okAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             } else {
                 if let navController = self.navigationController {
-                    navController.popViewControllerAnimated(true)
+                    navController.popViewController(animated: true)
                 }
             }
         }
@@ -144,21 +145,21 @@ class KlusterInviteViewController : UITableViewController {
     
     // Mark - Private
     
-    private func updateTableState() {
+    fileprivate func updateTableState() {
         
         // Reload tableview data
         self.tableView.reloadData()
         
         // Determine the activation state of the invite button
         if let navItem = self.navigationItem.rightBarButtonItem {
-            navItem.enabled = self.usersToInvite.count > 0
+            navItem.isEnabled = self.usersToInvite.count > 0
         }
     }
     
-    private func fetchFacebookFriends() {
+    fileprivate func fetchFacebookFriends() {
         // Fetch Facebook Friends
-        let request = FBSDKGraphRequest.init(graphPath: "me/friends", parameters: nil, HTTPMethod: "GET")
-        request.startWithCompletionHandler { (connection, result, error) -> Void in
+        let request = FBSDKGraphRequest.init(graphPath: "me/friends", parameters: nil, httpMethod: "GET")
+        request?.start { (connection, result, error) -> Void in
             
             if let result = result as? NSDictionary {
                 
@@ -197,15 +198,15 @@ class KlusterInviteViewController : UITableViewController {
                 self.hud.stopAnimation()
                 
                 //  Error fetching friends...
-                self.showRequestError(error)
+                self.showRequestError(error as NSError)
             }
         }
     }
     
-    private func showRequestError(error: NSError) {
-        let alert = UIAlertController.init(title: "Error", message: "Unable to fetch facebook friends.", preferredStyle: .Alert)
-        let okAction = UIAlertAction.init(title: "OK", style: .Default, handler: nil)
+    fileprivate func showRequestError(_ error: NSError) {
+        let alert = UIAlertController.init(title: "Error", message: "Unable to fetch facebook friends.", preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }

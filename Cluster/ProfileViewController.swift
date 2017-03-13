@@ -8,10 +8,12 @@
 
 import UIKit
 import Photos
+import Spring
+import ParseUI
 
 class ProfileViewController: UIViewController {
 
-    var user: PFUser! = PFUser.currentUser()
+    var user: PFUser! = PFUser.current()
     
     @IBOutlet weak var coverImage: PFImageView!
     @IBOutlet weak var editButton: DesignableButton!
@@ -23,15 +25,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var biographyLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBAction func menuButtonPressed(sender: AnyObject) {
+    @IBAction func menuButtonPressed(_ sender: AnyObject) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let editProfileController = storyboard.instantiateViewControllerWithIdentifier("EditProfileTableViewController")
-        self.presentViewController(editProfileController, animated: true, completion: nil)
+        let editProfileController = storyboard.instantiateViewController(withIdentifier: "EditProfileTableViewController")
+        self.present(editProfileController, animated: true, completion: nil)
     }
     
     //MARK: - Change Status Bar to White
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     override func viewDidLoad() {
@@ -46,7 +48,7 @@ class ProfileViewController: UIViewController {
         editButton.layer.masksToBounds = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.loadProfileInfo()
@@ -60,24 +62,24 @@ class ProfileViewController: UIViewController {
         self.scroller.contentSize.width = 0
     }
 
-    @IBAction func klusterNowButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func klusterNowButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
  
-    @IBAction func addPhotoClicked(sender: DesignableButton) {
+    @IBAction func addPhotoClicked(_ sender: DesignableButton) {
         let authorization = PHPhotoLibrary.authorizationStatus()
         
-        if authorization == .NotDetermined {
+        if authorization == .notDetermined {
             PHPhotoLibrary.requestAuthorization({ (status) -> Void in
                 //self.pickFeaturedImageClicked(sender)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.addPhotoClicked(sender)
                 })
             })
             return
         }
         //Do you want to Take a Photo or Video with the Camera
-        if authorization == .Authorized {
+        if authorization == .authorized {
             let controller = ImagePickerSheetController()
             controller.addAction(ImageAction(title: NSLocalizedString("Take Photo or Video", comment: "ActionTitle"), secondaryTitle: NSLocalizedString("Use This One", comment: "ActionTitle"), handler: { (_) -> () in
                 
@@ -89,9 +91,9 @@ class ProfileViewController: UIViewController {
                         let imageData = UIImagePNGRepresentation(image!)
                         let file = PFFile.init(name: "avatar.png", data: imageData!)
                         self.profileImageView.image = image
-                        let user = PFUser.currentUser()
+                        let user = PFUser.current()
                         user?.setObject(file!, forKey: "avatar")
-                        user?.saveInBackgroundWithBlock({ (save: Bool, error: NSError?) -> Void in
+                        user?.saveInBackground(block: { (save: Bool, error: NSError?) -> Void in
                             if (error != nil) {
                                 print("We have an error...")
                             }
@@ -99,9 +101,9 @@ class ProfileViewController: UIViewController {
                     })
             }))
             
-            controller.addAction(ImageAction(title: NSLocalizedString("Cancel", comment: "Action Title"),  style: .Cancel))
+            controller.addAction(ImageAction(title: NSLocalizedString("Cancel", comment: "Action Title"),  style: .cancel))
             
-            presentViewController(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
             
         }
 
@@ -112,39 +114,39 @@ class ProfileViewController: UIViewController {
 
     }
     
-    private func loadProfileInfo() {
+    fileprivate func loadProfileInfo() {
         // Load profile info
-        self.profileImageView.file = self.user.objectForKey("avatar") as? PFFile
+        self.profileImageView.file = self.user.object(forKey: "avatar") as? PFFile
         self.profileImageView.loadInBackground()
         
-        self.coverImage.file = self.user.objectForKey("coverImage") as? PFFile
+        self.coverImage.file = self.user.object(forKey: "coverImage") as? PFFile
         self.coverImage.loadInBackground()
         
-        let firstName = self.user.objectForKey("firstName") as! String
-        let lastName = self.user.objectForKey("lastName") as! String
+        let firstName = self.user.object(forKey: "firstName") as! String
+        let lastName = self.user.object(forKey: "lastName") as! String
         self.nameLabel.text = firstName + " " + lastName
         
-        if let location = self.user.objectForKey("location") as? String {
+        if let location = self.user.object(forKey: "location") as? String {
             self.locationLabel.text = location
         } else {
             self.locationLabel.text = "🌎"
         }
         
-        if let age = self.user.objectForKey("age") as? Int {
+        if let age = self.user.object(forKey: "age") as? Int {
             self.ageLabel.text = "\(age) yrs"
         } else {
             self.ageLabel.text = "🤔"
         }
 
-        if let bio = self.user.objectForKey("biography") as? String {
+        if let bio = self.user.object(forKey: "biography") as? String {
             self.biographyLabel.text = bio
         } else {
             self.biographyLabel.text = self.randomBiographyString()
         }
     }
     
-    private func randomBiographyString() -> String {
-        let firstName = self.user.objectForKey("firstName") as! String
+    fileprivate func randomBiographyString() -> String {
+        let firstName = self.user.object(forKey: "firstName") as! String
         return "Surely \(firstName) is clever, but they haven't shared anything with us."
     }
 }

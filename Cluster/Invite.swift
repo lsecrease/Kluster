@@ -23,7 +23,7 @@ class Invite : NSObject {
             return
         }
         
-        guard let fromUser = object.objectForKey("fromUser") as? PFUser else {
+        guard let fromUser = object.object(forKey: "fromUser") as? PFUser else {
             return
         }
         
@@ -32,19 +32,19 @@ class Invite : NSObject {
         }
         
         self.fromUser = fromUser
-        if let file = fromUser.objectForKey("avatarThumbnail") as? PFFile {
+        if let file = fromUser.object(forKey: "avatarThumbnail") as? PFFile {
             self.avatarFile = file
         }
         
-        if let firstName = fromUser.objectForKey("firstName") as? String, let lastName = fromUser.objectForKey("lastName") as? String {
+        if let firstName = fromUser.object(forKey: "firstName") as? String, let lastName = fromUser.object(forKey: "lastName") as? String {
             self.userName = "\(firstName) \(lastName)"
         }
         
-        if let k = object.objectForKey("kluster") as? PFObject {
+        if let k = object.object(forKey: "kluster") as? PFObject {
             self.kluster = Kluster.init(object: k)
         }
         
-        if let accepted = object.objectForKey("accepted") as? Bool {
+        if let accepted = object.object(forKey: "accepted") as? Bool {
             self.accepted = accepted
         }
     }
