@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController {
                         self.profileImageView.image = image
                         let user = PFUser.current()
                         user?.setObject(file!, forKey: "avatar")
-                        user?.saveInBackground(block: { (save: Bool, error: NSError?) -> Void in
+                        user?.saveInBackground(block: { (save: Bool, error: Error?) -> Void in
                             if (error != nil) {
                                 print("We have an error...")
                             }

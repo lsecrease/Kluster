@@ -5,6 +5,8 @@
 //  Created by lsecrease on 8/19/15.
 //  Copyright (c) 2015 ImagineME. All rights reserved.
 //
+
+import MBProgressHUD
 import ParseUI
 import UIKit
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
@@ -142,7 +144,7 @@ class HomeViewController: UIViewController {
     }
     
     fileprivate func fetchKlusters() {
-        var params = [:]
+        var params = [String : Any]()
         if let geoPoint = self.currentGeoPoint {
             params = ["latitude" : geoPoint.latitude,
                      "longitude" : geoPoint.longitude]
@@ -287,7 +289,7 @@ extension HomeViewController : UICollectionViewDataSource
                 let user = objects![i] as? PFUser
                 imageView?.file = user?.object(forKey: "avatarThumbnail") as? PFFile
                 imageView?.loadInBackground()
-                i++
+                i += 1
                 
                 imageView?.layer.cornerRadius = 12.5
             }
@@ -315,7 +317,7 @@ extension HomeViewController : UICollectionViewDataSource
         let k = Kluster.init(object: self.klusters[sender.tag])
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         KlusterDataSource.joinKluster(k.id as NSString!) { (object, error) -> Void in
-            hud.removeFromSuperview()
+            hud?.removeFromSuperview()
             if (error != nil) {
                 print("Error: %@", error)
             } else {

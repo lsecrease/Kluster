@@ -152,7 +152,7 @@ class MessagesTableViewController: UITableViewController {
             if (error != nil) {
                 print("Error fetching messages.")
             } else {
-                self.shouldContinueFetchingMessages = (objects? as AnyObject).count >= 20
+                self.shouldContinueFetchingMessages = (objects as AnyObject).count >= 20
                 self.messages = objects as! [PFObject]
 //                let newMessages = objects as! [PFObject]
 //                self.messages = newMessages.reverse() + self.messages

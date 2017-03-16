@@ -14,14 +14,13 @@ import ParseUI
 class LoginViewController: UIViewController {
     
     @IBAction func loginWithFacebookPressed(_ sender: AnyObject) {
-        
+
         let permissions = ["email", "public_profile", "user_friends"]
-        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) {
-            (user: PFUser?, error: NSError?) -> Void in
+        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (user: PFUser?, error: Error?) -> Void in
             if let user = user {
-                
                 let shouldMakeFacebookRequest: Bool = (user.isNew || user.object(forKey: "firstName") == nil || user.object(forKey: "lastName") == nil)
-                if  shouldMakeFacebookRequest {
+                
+                if shouldMakeFacebookRequest {
                     print("User signed up and logged in through Facebook!")
                     
                     // Make graph request for current user and get their information
@@ -29,7 +28,7 @@ class LoginViewController: UIViewController {
                     let params = ["fields" : "first_name, last_name, email, name, id, picture"]
                     
                     let request: FBSDKGraphRequest = FBSDKGraphRequest.init(graphPath: "me", parameters: params, httpMethod: "GET")
-                    request.start(completionHandler: { (connection: FBSDKGraphRequestConnection!, result: AnyObject?, graphRequestError: NSError?) -> Void in
+                    request.start(completionHandler: { (connection: FBSDKGraphRequestConnection?, result: Any?, graphRequestError: Error?) -> Void in
                         if let result = result {
                             print(result)
                             
@@ -44,9 +43,9 @@ class LoginViewController: UIViewController {
                             let imageData = try? Data(contentsOf: URL(string: avatarUrlString)!) // NSData(contentsOfFile: avatarUrlString)
                             let file = PFFile.init(name: "avatar.png", data: imageData!)
                             user.setObject(file!, forKey: "avatar")
-                            user.saveInBackground(block: { (succeed: Bool, saveError: NSError?) -> Void in
+                            user.saveInBackground(block: { (succeed: Bool, saveError: Error?) -> Void in
                                 if let saveError = saveError {
-                                    // Error saving the user.. 
+                                    // Error saving the user..
                                     self.showAlertWithMessage(saveError.localizedDescription)
                                 } else {
                                     // Successfully signed in a new user
@@ -73,6 +72,7 @@ class LoginViewController: UIViewController {
                     print("User cancelled Facebook login.")
                 }
             }
+            
         }
     }
     
@@ -89,3 +89,41 @@ class LoginViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

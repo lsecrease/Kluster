@@ -6,6 +6,7 @@
 //  Copyright © 2015 ImagineME. All rights reserved.
 //
 
+import MBProgressHUD
 import UIKit
 
 class MyKlusterViewController: UIViewController {
@@ -121,7 +122,7 @@ extension MyKlusterViewController : UITableViewDelegate {
                 
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 KlusterDataSource.deleteKluster(k.id, completion: { (object, error) -> Void in
-                    hud.removeFromSuperview()
+                    hud!.removeFromSuperview()
                     if (error != nil) {
                         let errorController = UIAlertController.init(title: "Error", message: "Something went wrong when deleting your Kluster.", preferredStyle: .alert)
                         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import Spring
 import Photos
 import ParseUI
@@ -277,13 +278,14 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         let okAction = UIAlertAction.init(title: "Delete", style: .destructive) { (action) -> Void in
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             KlusterDataSource.deleteUserAccount({ (object, error) -> Void in
-                hud.removeFromSuperview()
+                hud?.removeFromSuperview()
                 if (error != nil) {
                     self.showAccountDeleteError()
                 } else {
                     self.goToLoginController()
                 }
             })
+            
         }
         
         let cancelAction = UIAlertAction.init(title: "Cancel", style: .default, handler: nil)

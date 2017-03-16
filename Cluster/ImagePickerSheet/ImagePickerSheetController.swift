@@ -303,11 +303,11 @@ open class ImagePickerSheetController: UIViewController, UITableViewDataSource, 
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         let result = PHAsset.fetchAssets(with: .image, options: options)
         
-        result.enumerateObjects { obj, _, _ in
+        result.enumerateObjects({ obj, _, _ in
             if let asset = obj as? PHAsset, self.assets.count < 50 {
                 self.assets.append(asset)
             }
-        }
+        })
     }
     
     fileprivate func requestImageForAsset(_ asset: PHAsset, size: CGSize? = nil, deliveryMode: PHImageRequestOptionsDeliveryMode = .opportunistic, completion: @escaping (_ image: UIImage?) -> Void) {

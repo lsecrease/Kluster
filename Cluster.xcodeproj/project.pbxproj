@@ -75,6 +75,8 @@
 		CED4489D1BA5111900F11808 /* Kluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4489C1BA5111900F11808 /* Kluster.swift */; };
 		CED448A21BA5153800F11808 /* KlusterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */; };
 		CEFEBF4A1BDC9CB500E4070D /* NewKlusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */; };
+		D7A3DAB91E7A09DB003FCA19 /* UITextView+Placeholder.h in Resources */ = {isa = PBXBuildFile; fileRef = D7A3DAB81E7A09DB003FCA19 /* UITextView+Placeholder.h */; };
+		D7A3DABB1E7A09F2003FCA19 /* UIScrollView+EmptyDataSet.h in Resources */ = {isa = PBXBuildFile; fileRef = D7A3DABA1E7A09F2003FCA19 /* UIScrollView+EmptyDataSet.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		CED4489C1BA5111900F11808 /* Kluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kluster.swift; sourceTree = "<group>"; };
 		CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlusterCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEFEBF491BDC9CB500E4070D /* NewKlusterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewKlusterViewController.swift; sourceTree = "<group>"; };
+		D7A3DAB81E7A09DB003FCA19 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UITextView+Placeholder.h"; path = "../Pods/UITextView+Placeholder/UITextView+Placeholder/UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		D7A3DABA1E7A09F2003FCA19 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+EmptyDataSet.h"; path = "../Pods/DZNEmptyDataSet/Source/UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		E2C9AAE42CC4342FDCB5F76A /* Pods_Cluster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cluster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -359,6 +363,8 @@
 		CEA8EA0E1B854B2100DC2AA5 /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				D7A3DABC1E7A0A00003FCA19 /* UIScrollView+EmptyDataSet */,
+				D7A3DAB71E7A09BB003FCA19 /* UITextView+Placeholder */,
 				9D807F7C1C9082CD00FA5768 /* BLMultiColorLoader */,
 				9DAF9F8F1C89FB79000B8586 /* Extensions */,
 				9DAF9F8B1C89E022000B8586 /* CAPSPageMenu.swift */,
@@ -439,6 +445,22 @@
 				CED448A11BA5153800F11808 /* KlusterCollectionViewCell.swift */,
 			);
 			name = "Home Screen";
+			sourceTree = "<group>";
+		};
+		D7A3DAB71E7A09BB003FCA19 /* UITextView+Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				D7A3DAB81E7A09DB003FCA19 /* UITextView+Placeholder.h */,
+			);
+			name = "UITextView+Placeholder";
+			sourceTree = "<group>";
+		};
+		D7A3DABC1E7A0A00003FCA19 /* UIScrollView+EmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				D7A3DABA1E7A09F2003FCA19 /* UIScrollView+EmptyDataSet.h */,
+			);
+			name = "UIScrollView+EmptyDataSet";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,6 +550,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A3DABB1E7A09F2003FCA19 /* UIScrollView+EmptyDataSet.h in Resources */,
+				D7A3DAB91E7A09DB003FCA19 /* UITextView+Placeholder.h in Resources */,
 				28EE23741BDF1FF9009161AE /* Info.plist in Resources */,
 				9DAF9F8E1C89E7A4000B8586 /* Profile.storyboard in Resources */,
 				CE9A30C01BAE074300BC79FE /* BondoluoPeek.ttf in Resources */,

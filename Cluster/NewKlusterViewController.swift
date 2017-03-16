@@ -210,13 +210,13 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
                          "plans": plans!,
                       "latitude": self.klusterLocation.latitude,
                      "longitude": self.klusterLocation.longitude,
-                         "photo": base64String!]
+                         "photo": base64String!] as [String : Any]
             
             KlusterDataSource.createKlusterWithParams(params as [AnyHashable: Any], completion: { (object, error) -> Void in
                 if error != nil {
-                    hud.removeFromSuperview()
+                    hud?.removeFromSuperview()
                 } else {
-                    hud.removeFromSuperview()
+                    hud?.removeFromSuperview()
                     self.dismiss(animated: true, completion: nil)
                 }
             })
