@@ -50,5 +50,11 @@ class LocationSelectViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: AnyObject) {
         completion!(self.geoPoint)
+        
+//        if self.geoPoint == nil {
+//            return
+//        } else {
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
 }

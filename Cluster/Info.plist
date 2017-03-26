@@ -34,10 +34,9 @@
 	<key>FacebookDisplayName</key>
 	<string>Kluster</string>
 	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbauth2</string>
-	</array>
-	<key>LSRequiresIPhoneOS</key>
+    <array>
+        <string>fbauth2</string>
+    </array>	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>

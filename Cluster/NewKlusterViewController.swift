@@ -12,6 +12,7 @@ import Spring
 import MBProgressHUD
 
 
+// MARK: NewKlusterViewController
 
 class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -83,6 +84,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     
+    // MARK: IBActions
     
     @IBAction func dismiss(_ sender: UIButton) {
         hideKeyboard()
@@ -168,6 +170,7 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
+    // MARK: Camera
     
     func presentCamera() {
         let imagePicker = UIImagePickerController()
@@ -188,8 +191,10 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func createNewKlusterButtonClicked(_ sender: DesignableButton) {
         
-        
         if self.invalidTextData() {
+            
+            print("NEW KLUSTER TITLE IS VALID")
+            
             shakeTextField()
         } else if featuredImage == nil {
             shakePhotoButton()
