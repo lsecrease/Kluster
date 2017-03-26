@@ -47,6 +47,9 @@ class HomeViewController: UIViewController {
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
+    
+    
+    // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +96,24 @@ class HomeViewController: UIViewController {
         self.updateUserInfo()
     }
     
+    // MARK: IBActions
+    
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
+        self.searchBar.resignFirstResponder()
+        
+        self.updateUIForSearch(false)
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: AnyObject) {
+        self.updateUIForSearch(true)
+        
+        // Make searchbar the first responder
+        self.searchBar.becomeFirstResponder()
+    }
+
+    
+    // MARK: Custom functions
+    
     fileprivate func showLogin() {
         let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -110,18 +131,6 @@ class HomeViewController: UIViewController {
         })
     }
     
-    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
-        self.searchBar.resignFirstResponder()
-        
-        self.updateUIForSearch(false)
-    }
-    
-    @IBAction func searchButtonPressed(_ sender: AnyObject) {
-        self.updateUIForSearch(true)
-        
-        // Make searchbar the first responder
-        self.searchBar.becomeFirstResponder()
-    }
     
     func viewTapped(_ sender: UITapGestureRecognizer) {
         if (self.searchBar.isFirstResponder) {
@@ -219,6 +228,9 @@ class HomeViewController: UIViewController {
         self.present(profileController, animated: true, completion: nil)
     }
 }
+
+
+// MARK: - UICollectionViewDataSource
 
 extension HomeViewController : UICollectionViewDataSource
 {
@@ -332,6 +344,9 @@ extension HomeViewController : UICollectionViewDataSource
     }
 }
 
+
+// MARK: - CLLocationManager Delegate function(s)
+
 extension HomeViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -340,6 +355,7 @@ extension HomeViewController : CLLocationManagerDelegate {
         }
     }
 }
+
 
 //MARK: - Scrolling Experience
 extension HomeViewController : UIScrollViewDelegate
