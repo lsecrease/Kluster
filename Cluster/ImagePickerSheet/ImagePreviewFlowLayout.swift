@@ -8,7 +8,12 @@
 
 import UIKit
 
+// MARK: UICollectionViewFlowLayout
+
 class ImagePreviewFlowLayout: UICollectionViewFlowLayout {
+    
+    
+    // MARK: Properties
     
     var invalidationCenteredIndexPath: IndexPath?
     

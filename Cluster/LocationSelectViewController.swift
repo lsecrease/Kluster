@@ -10,12 +10,22 @@ import Foundation
 import MapKit
 import CoreLocation
 
+
+// MARK: - LocationSelectViewController
+
 class LocationSelectViewController: UIViewController {
+    
+    // MARK: IBOutlets
     
     @IBOutlet var mapView: MKMapView!
     
+    // MARK: Properties
+    
     open var completion: ((PFGeoPoint?) -> ())? 
     fileprivate var geoPoint: PFGeoPoint?
+    
+    
+    // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +36,8 @@ class LocationSelectViewController: UIViewController {
         gestureRecognizer.minimumPressDuration = 0.5
         self.mapView.addGestureRecognizer(gestureRecognizer)
     }
+    
+    // MARK: UI functions
     
     func mapPressed(_ sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
@@ -43,6 +55,8 @@ class LocationSelectViewController: UIViewController {
             self.geoPoint = PFGeoPoint.init(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
         }
     }
+    
+    // MARK: IBActions
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)

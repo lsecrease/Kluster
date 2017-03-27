@@ -8,11 +8,18 @@
 
 import UIKit
 
+
+// MARK: PopoverTableSection
+
 enum PopoverTableSection: Int {
     case title = 0, description, members, invite, count
 }
 
+// MARK: PopoverMenuController
+
 class PopoverMenuController : UIViewController {
+    
+    // MARK: Properties
     
     var tableView: UITableView = UITableView.init(frame: CGRect.zero, style: .plain)
     var dismissView: UIView = UIView()
@@ -24,6 +31,9 @@ class PopoverMenuController : UIViewController {
     var headerView: PopoverHeaderView!
     var headerFrame: CGRect!
     var originalHeaderImageViewFrame: CGRect!
+    
+    
+    // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +82,8 @@ class PopoverMenuController : UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    // MARK: UI functions
+    
     fileprivate func fadeInTableView() {
         
         // Make sure the table view is in the original animating position off screen
@@ -118,6 +130,9 @@ class PopoverMenuController : UIViewController {
     }
 }
 
+
+// MARK: - UITableViewDelegate
+
 extension PopoverMenuController : UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("Scrolled to y: %f", scrollView.bounds.origin.y)
@@ -132,6 +147,8 @@ extension PopoverMenuController : UITableViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension PopoverMenuController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

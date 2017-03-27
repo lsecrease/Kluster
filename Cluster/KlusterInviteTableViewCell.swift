@@ -10,7 +10,11 @@ import UIKit
 import ParseUI
 import Spring
 
+// MARK: KlusterInviteTableViewCell
+
 class KlusterInviteTableViewCell: UITableViewCell {
+    
+    // MARK: IBOutlets
 
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var profileNameLabel: UILabel!

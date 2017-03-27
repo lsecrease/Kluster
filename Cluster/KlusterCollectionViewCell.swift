@@ -35,12 +35,16 @@ class KlusterCollectionViewCell: UICollectionViewCell {
         distanceLabel?.text! = kluster.distanceString // kluster.location
     }
     
+    // MARK: Layout
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         self.layer.cornerRadius = 10.0
         self.clipsToBounds = true
     }
+    
+    // MARK: IBActions
 
     @IBAction func joinKlusterButtonTapped(_ sender: AnyObject) {
     }

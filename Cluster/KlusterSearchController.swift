@@ -32,9 +32,14 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
+// MARK: - KlusterSearchController
+
 class KlusterSearchController: UITableViewController, UISearchResultsUpdating {
     let searchController = UISearchController(searchResultsController: nil)
     var searchResults = [PFObject]()
+    
+    
+    // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +53,9 @@ class KlusterSearchController: UITableViewController, UISearchResultsUpdating {
         self.navigationItem.title = "Search For Klusters"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Dismiss", style: UIBarButtonItemStyle.plain, target: self, action: #selector(KlusterSearchController.dismissPressed(_:)))
     }
+    
+    
+    // MARK: UITableViewController DataSource and Delegate functions
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -75,6 +83,8 @@ class KlusterSearchController: UITableViewController, UISearchResultsUpdating {
         }
 
     }
+    
+    // MARK: UI functions
     
     func dismissPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)

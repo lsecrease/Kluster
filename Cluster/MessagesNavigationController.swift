@@ -8,7 +8,11 @@
 
 import UIKit
 
+// MARK: MessagesNavigationController
+
 class MessagesNavigationController : UINavigationController {
+    
+    // MARK: Initialization
     
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
@@ -22,9 +26,13 @@ class MessagesNavigationController : UINavigationController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    // MARK: Status Bar
+    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
+    
+    // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

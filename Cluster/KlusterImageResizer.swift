@@ -8,10 +8,13 @@
 
 import Foundation
 
-
+// MARK: - KlusterImageResizer
 
 class KlusterImageResizer: NSObject {
     let UploadWidth = 640
+    
+    
+    // MARK: Class functions
     
     class func resizeImageToWidth(_ image: UIImage, width: CGFloat) -> Data? {
         let height = (width * image.size.height) / image.size.width

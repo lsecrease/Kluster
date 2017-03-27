@@ -8,7 +8,11 @@
 
 import UIKit
 
+// MARK: - ImagePreviewTableViewCell
+
 class ImagePreviewTableViewCell : UITableViewCell {
+    
+    // MARK: Properties
     
     var collectionView: ImagePickerCollectionView? {
         willSet {
@@ -22,13 +26,13 @@ class ImagePreviewTableViewCell : UITableViewCell {
         }
     }
     
-    // MARK: - Other Methods
+    // MARK: Other Methods
     
     override func prepareForReuse() {
         collectionView = nil
     }
     
-    // MARK: - Layout
+    // MARK: Layout
     
     override func layoutSubviews() {
         super.layoutSubviews()

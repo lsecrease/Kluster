@@ -8,7 +8,12 @@
 
 import Foundation
 
+// MARK: - KlusterDataSource
+
 class KlusterDataSource: NSObject {
+    
+    
+    // MARK: Class functions
     
     class func createKlusterWithParams(_ params: [AnyHashable: Any]?, completion:@escaping PFIdResultBlock) -> Void
     {
