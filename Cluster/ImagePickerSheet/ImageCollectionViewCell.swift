@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - ImageCollectionCell
+
 class ImageCollectionViewCell : UICollectionViewCell {
     
     let imageView: UIImageView = {

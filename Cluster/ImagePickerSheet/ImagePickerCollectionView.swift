@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - ImagePickerCollectionView
+
 class ImagePickerCollectionView: UICollectionView {
     
     var bouncing: Bool {

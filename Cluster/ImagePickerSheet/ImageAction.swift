@@ -8,12 +8,16 @@
 
 import Foundation
 
+// MARK: ImageActionStyle
+
 public enum ImageActionStyle {
     case `default`
     case cancel
 }
 
 public typealias Title = (Int) -> String
+
+// MARK: - ImageAction
 
 open class ImageAction {
     
@@ -27,6 +31,8 @@ open class ImageAction {
     
     let handler: Handler?
     let secondaryHandler: SecondaryHandler?
+    
+    // MARK: Initialization
     
     public convenience init(title: String, secondaryTitle: String? = nil, style: ImageActionStyle = .default, handler: Handler? = nil, secondaryHandler: SecondaryHandler? = nil) {
         self.init(title: title, secondaryTitle: secondaryTitle.map { string in { _ in string }}, style: style, handler: handler, secondaryHandler: secondaryHandler)
@@ -47,6 +53,8 @@ open class ImageAction {
         self.secondaryHandler = secondaryHandler
     }
     
+    // MARK: Class functions
+    
     func handle(_ numberOfPhotos: Int = 0) {
         if numberOfPhotos > 0 {
             secondaryHandler?(self, numberOfPhotos)
@@ -57,6 +65,8 @@ open class ImageAction {
     }
     
 }
+
+// MARK:
 
 func ?? (left: Title?, right: @escaping Title) -> Title {
     if let left = left {

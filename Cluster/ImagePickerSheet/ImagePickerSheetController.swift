@@ -9,12 +9,17 @@
 import Foundation
 import Photos
 
+// MARK: Properties
+
 private let enlargementAnimationDuration = 0.3
 private let tableViewRowHeight: CGFloat = 50.0
 private let tableViewPreviewRowHeight: CGFloat = 140.0
 private let tableViewEnlargedPreviewRowHeight: CGFloat = 243.0
 private let collectionViewInset: CGFloat = 5.0
 private let collectionViewCheckmarkInset: CGFloat = 3.5
+
+
+// MARK: - sImagePickerSheetController 
 
 open class ImagePickerSheetController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate {
     
