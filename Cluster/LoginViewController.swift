@@ -17,8 +17,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginWithFacebookPressed(_ sender: AnyObject) {
 
-//        let permissions = ["email", "public_profile", "user_friends"]
-//        
+        let permissions = ["email", "public_profile", "user_friends"]
+        
 //        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (user: PFUser?, error: Error?) -> Void in
 //            if let user = user {
 //                let shouldMakeFacebookRequest: Bool = (user.isNew || user.object(forKey: "firstName") == nil || user.object(forKey: "lastName") == nil)
@@ -80,6 +80,7 @@ class LoginViewController: UIViewController {
 //        }
         
         self.goToMainMenu()
+
     }
     
     
