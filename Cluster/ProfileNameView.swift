@@ -10,10 +10,17 @@ import Foundation
 import Spring
 import ParseUI
 
+
+// MARK: - ProfileNameView
+
 class ProfileNameView : UIView {
+    
+    // MARK: Variables and constants
     
     var avatarImageView: PFImageView = PFImageView()
     var nameLabel: UILabel = UILabel()
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,6 +66,8 @@ class ProfileNameView : UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    // MARK: UI
     
     func layoutForUser(_ user: PFUser?) {
         if let user = user {

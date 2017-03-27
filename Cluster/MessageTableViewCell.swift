@@ -9,7 +9,11 @@
 import UIKit
 import ParseUI
 
+// MARK: MessageTableViewCell
+
 class MessageTableViewCell: UITableViewCell {
+    
+    // MARK: IBOutlets
     
     @IBOutlet weak var avatarImageView: PFImageView!
     @IBOutlet weak var nameLabel: UILabel!

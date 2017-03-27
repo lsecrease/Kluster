@@ -8,18 +8,33 @@
 
 import UIKit
 
+// MARK: KlusterHeaderViewDelegate
+
 protocol KlusterHeaderViewDelegate {
     func closeButtonClicked()
 }
 
+// MARK: - KlusterHeaderView
+
 class KlusterHeaderView: UIView {
+    
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var klusterTitleLabel: UILabel!
+    @IBOutlet weak var numberOfMembers: UILabel!
+    @IBOutlet var closeButton: UIButton!
+
 
     //MARK: - Public API
+    
     var kluster: Kluster! {
         didSet {
             updateUI()
         }
     }
+    
+    // MARK: Delegate
     
     var delegate: KlusterHeaderViewDelegate? {
         didSet {
@@ -27,6 +42,8 @@ class KlusterHeaderView: UIView {
         }
     }
 
+    
+    // MARK: UI functions
     
     fileprivate func updateUI() {
         backgroundImageView?.image! = UIImage.init(named: "fashion")! // kluster.featuredImage
@@ -36,9 +53,5 @@ class KlusterHeaderView: UIView {
         
     }
     
-@IBOutlet weak var backgroundImageView: UIImageView!
-@IBOutlet weak var klusterTitleLabel: UILabel!
-@IBOutlet weak var numberOfMembers: UILabel!
-@IBOutlet var closeButton: UIButton!
     
 }

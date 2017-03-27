@@ -8,10 +8,17 @@
 
 import Foundation
 
+
+// MARK: - MessageTextView
+
 class MessageTextView: UIView {
+    
+    // MARK: Variables and constants
     
     var textField: UITextField = UITextField.init()
     var sendButton: UIButton = UIButton.init()
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -9,7 +9,11 @@
 import UIKit
 import ParseUI
 
+// MARK: PopoverHeaderView
+
 class PopoverHeaderView: UIView {
+    
+    // MARK: Class properties
     
     var headerImageView: PFImageView = PFImageView()
     var headerLabel = UILabel()
@@ -18,6 +22,8 @@ class PopoverHeaderView: UIView {
             updateUI()
         }
     }
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +36,9 @@ class PopoverHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    
+    // MARK: UI
     
     fileprivate func updateUI() {
         self.headerImageView.file = self.kluster?.featuredImageFile

@@ -8,9 +8,16 @@
 
 import UIKit
 
+//MARK: - KlusterViewController
+
 class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
     
+    // MARK: IBOutlets
+    
     @IBOutlet weak var headerView: KlusterHeaderView!
+    
+    // MARK: Variables and constants
+    
     var kluster: Kluster!
     var pageMenu: CAPSPageMenu?
     var menuHeight: CGFloat = 150.0
@@ -70,6 +77,8 @@ class KlusterViewController: UIViewController, CAPSPageMenuDelegate {
         pageMenu!.delegate = self
         self.view.addSubview(pageMenu!.view)
     }
+    
+    // MARK: Custom functions
     
     func didMoveToPage(_ controller: UIViewController, index: Int) {
         print("did move to page")

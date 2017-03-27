@@ -11,6 +11,8 @@ import Photos
 import Spring
 import ParseUI
 
+// MARK: - ProfileViewController
+
 class ProfileViewController: UIViewController {
 
     var user: PFUser! = PFUser.current()

@@ -9,7 +9,11 @@
 import UIKit
 import ParseUI
 
+// MARK: MembersTableViewCell
+
 class MembersTableViewCell: UITableViewCell {
+    
+    // MARK: IBOutlets
     
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,11 +25,15 @@ class MembersTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: Layout
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         self.avatarImageView.contentMode = .scaleAspectFill
     }
+    
+    // MARK: UI functions
     
     fileprivate func updateUI() {
         let firstName = self.user.object(forKey: "firstName") as! String
