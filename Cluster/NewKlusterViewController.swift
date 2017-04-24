@@ -191,6 +191,8 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func createNewKlusterButtonClicked(_ sender: DesignableButton) {
         
+        print("KLUSTER BUTTON PRESSED!!!")
+        
         if self.invalidTextData() {
             
             print("NEW KLUSTER TITLE IS VALID")
@@ -219,9 +221,9 @@ class NewKlusterViewController: UIViewController, UIImagePickerControllerDelegat
             
             KlusterDataSource.createKlusterWithParams(params as [AnyHashable: Any], completion: { (object, error) -> Void in
                 if error != nil {
-                    hud?.removeFromSuperview()
+                    hud.removeFromSuperview()
                 } else {
-                    hud?.removeFromSuperview()
+                    hud.removeFromSuperview()
                     self.dismiss(animated: true, completion: nil)
                 }
             })

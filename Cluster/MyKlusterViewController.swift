@@ -28,7 +28,7 @@ class MyKlusterViewController: UIViewController {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         // Do any additional setup after loading the view.
         KlusterDataSource.fetchKlustersForUser { (objects, error) -> Void in
-            hud?.removeFromSuperview()
+            hud.removeFromSuperview()
             if (error != nil) {
                 let alertController = UIAlertController.init(title: "Error", message: "Something went wrong when fetching your Klusters", preferredStyle: .alert)
                 let action = UIAlertAction.init(title: "OK", style: .default, handler: nil)
@@ -122,7 +122,7 @@ extension MyKlusterViewController : UITableViewDelegate {
                 
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 KlusterDataSource.deleteKluster(k.id, completion: { (object, error) -> Void in
-                    hud!.removeFromSuperview()
+                    hud.removeFromSuperview()
                     if (error != nil) {
                         let errorController = UIAlertController.init(title: "Error", message: "Something went wrong when deleting your Kluster.", preferredStyle: .alert)
                         

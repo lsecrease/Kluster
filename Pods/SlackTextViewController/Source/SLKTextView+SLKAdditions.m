@@ -1,17 +1,9 @@
 //
-//   Copyright 2014-2016 Slack Technologies, Inc.
+//  SlackTextViewController
+//  https://github.com/slackhq/SlackTextViewController
 //
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
+//  Copyright 2014-2016 Slack Technologies, Inc.
+//  Licence: MIT-Licence
 //
 
 #import "SLKTextView+SLKAdditions.h"
@@ -21,7 +13,8 @@
 - (void)slk_clearText:(BOOL)clearUndo
 {
     // Important to call self implementation, as SLKTextView overrides setText: to add additional features.
-    [self setText:nil];
+    
+    [self setAttributedText:nil];
     
     if (self.undoManagerEnabled && clearUndo) {
         [self.undoManager removeAllActions];
@@ -74,34 +67,79 @@
     self.selectedRange = NSMakeRange(range.location, 0);
 }
 
+- (void)slk_insertTextAtCaretRange:(NSString *)text withAttributes:(NSDictionary<NSString *, id> *)attributes
+{
+    NSRange range = [self slk_insertText:text withAttributes:attributes inRange:self.selectedRange];
+    self.selectedRange = NSMakeRange(range.location, 0);
+}
+
 - (NSRange)slk_insertText:(NSString *)text inRange:(NSRange)range
 {
-    // Skip if the text is empty
-    if (text.length == 0) {
+    NSAttributedString *attributedText = [self slk_defaultAttributedStringForText:text];
+    
+    return [self slk_insertAttributedText:attributedText inRange:range];
+}
+
+- (NSRange)slk_insertText:(NSString *)text withAttributes:(NSDictionary<NSString *, id> *)attributes inRange:(NSRange)range
+{
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+    
+    return [self slk_insertAttributedText:attributedText inRange:range];
+}
+
+- (NSAttributedString *)slk_setAttributes:(NSDictionary<NSString *, id> *)attributes
+                                  inRange:(NSRange)range
+{
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
+    
+    [attributedText setAttributes:attributes range:range];
+    [self setAttributedText:attributedText];
+    
+    return self.attributedText;
+}
+
+- (void)slk_insertAttributedTextAtCaretRange:(NSAttributedString *)attributedText
+{
+    NSRange range = [self slk_insertAttributedText:attributedText inRange:self.selectedRange];
+    self.selectedRange = NSMakeRange(range.location, 0);
+}
+
+- (NSRange)slk_insertAttributedText:(NSAttributedString *)attributedText inRange:(NSRange)range
+{
+    // Skip if the attributed text is empty
+    if (attributedText.length == 0) {
         return NSMakeRange(0, 0);
     }
     
     // Registers for undo management
-    [self slk_prepareForUndo:@"Text appending"];
+    [self slk_prepareForUndo:@"Attributed text appending"];
     
     // Append the new string at the caret position
     if (range.length == 0)
     {
-        NSString *leftString = [self.text substringToIndex:range.location];
-        NSString *rightString = [self.text substringFromIndex: range.location];
+        NSAttributedString *leftAttributedString = [self.attributedText attributedSubstringFromRange:NSMakeRange(0, range.location)];
         
-        self.text = [NSString stringWithFormat:@"%@%@%@", leftString, text, rightString];
+        NSAttributedString *rightAttributedString = [self.attributedText attributedSubstringFromRange:NSMakeRange(range.location, self.attributedText.length-range.location)];
         
-        range.location += text.length;
-
+        NSMutableAttributedString *newAttributedText = [NSMutableAttributedString new];
+        [newAttributedText appendAttributedString:leftAttributedString];
+        [newAttributedText appendAttributedString:attributedText];
+        [newAttributedText appendAttributedString:rightAttributedString];
+        
+        [self setAttributedText:newAttributedText];
+        range.location += attributedText.length;
+        
         return range;
     }
     // Some text is selected, so we replace it with the new text
     else if (range.location != NSNotFound && range.length > 0)
     {
-        self.text = [self.text stringByReplacingCharactersInRange:range withString:text];
-
-        range.location += text.length;
+        NSMutableAttributedString *mutableAttributeText = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
+        
+        [mutableAttributeText replaceCharactersInRange:range withAttributedString:attributedText];
+    
+        [self setAttributedText:mutableAttributeText];
+        range.location += self.attributedText.length;
         
         return range;
     }
@@ -110,52 +148,27 @@
     return self.selectedRange;
 }
 
-- (NSString *)slk_wordAtCaretRange:(NSRangePointer)range
+- (void)slk_clearAllAttributesInRange:(NSRange)range
 {
-    return [self slk_wordAtRange:self.selectedRange rangeInText:range];
+    NSMutableAttributedString *mutableAttributedText = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
+    
+    [mutableAttributedText setAttributes:nil range:range];
+    [self setAttributedText:mutableAttributedText];
 }
 
-- (NSString *)slk_wordAtRange:(NSRange)range rangeInText:(NSRangePointer)rangePointer
+- (NSAttributedString *)slk_defaultAttributedStringForText:(NSString *)text
 {
-    NSString *text = self.text;
-    NSInteger location = range.location;
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     
-    // Aborts in case minimum requieres are not fufilled
-    if (text.length == 0 || location < 0 || (range.location+range.length) > text.length) {
-        *rangePointer = NSMakeRange(0, 0);
-        return nil;
+    if (self.textColor) {
+        attributes[NSForegroundColorAttributeName] = self.textColor;
     }
     
-    NSString *leftPortion = [text substringToIndex:location];
-    NSArray *leftComponents = [leftPortion componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *leftWordPart = [leftComponents lastObject];
-    
-    NSString *rightPortion = [text substringFromIndex:location];
-    NSArray *rightComponents = [rightPortion componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *rightPart = [rightComponents firstObject];
-    
-    if (location > 0) {
-        NSString *characterBeforeCursor = [text substringWithRange:NSMakeRange(location-1, 1)];
+    if (self.font) {
+        attributes[NSFontAttributeName] = self.font;
+    }
         
-        if ([characterBeforeCursor isEqualToString:@" "]) {
-            // At the start of a word, just use the word behind the cursor for the current word
-            *rangePointer = NSMakeRange(location, rightPart.length);
-            
-            return rightPart;
-        }
-    }
-    
-    // In the middle of a word, so combine the part of the word before the cursor, and after the cursor to get the current word
-    *rangePointer = NSMakeRange(location-leftWordPart.length, leftWordPart.length+rightPart.length);
-    NSString *word = [leftWordPart stringByAppendingString:rightPart];
-    
-    // If a break is detected, return the last component of the string
-    if ([word rangeOfString:@"\n"].location != NSNotFound) {
-        *rangePointer = [text rangeOfString:word];
-        word = [[word componentsSeparatedByString:@"\n"] lastObject];
-    }
-    
-    return word;
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (void)slk_prepareForUndo:(NSString *)description
@@ -167,23 +180,6 @@
     SLKTextView *prepareInvocation = [self.undoManager prepareWithInvocationTarget:self];
     [prepareInvocation setText:self.text];
     [self.undoManager setActionName:description];
-}
-
-+ (CGFloat)pointSizeDifferenceForCategory:(NSString *)category
-{
-    if ([category isEqualToString:UIContentSizeCategoryExtraSmall])                         return -3.0;
-    if ([category isEqualToString:UIContentSizeCategorySmall])                              return -2.0;
-    if ([category isEqualToString:UIContentSizeCategoryMedium])                             return -1.0;
-    if ([category isEqualToString:UIContentSizeCategoryLarge])                              return 0.0;
-    if ([category isEqualToString:UIContentSizeCategoryExtraLarge])                         return 2.0;
-    if ([category isEqualToString:UIContentSizeCategoryExtraExtraLarge])                    return 4.0;
-    if ([category isEqualToString:UIContentSizeCategoryExtraExtraExtraLarge])               return 6.0;
-    if ([category isEqualToString:UIContentSizeCategoryAccessibilityMedium])                return 8.0;
-    if ([category isEqualToString:UIContentSizeCategoryAccessibilityLarge])                 return 10.0;
-    if ([category isEqualToString:UIContentSizeCategoryAccessibilityExtraLarge])            return 11.0;
-    if ([category isEqualToString:UIContentSizeCategoryAccessibilityExtraExtraLarge])       return 12.0;
-    if ([category isEqualToString:UIContentSizeCategoryAccessibilityExtraExtraExtraLarge])  return 13.0;
-    return 0;
 }
 
 @end

@@ -11,6 +11,7 @@
 #endif
 
 #import "SLKInputAccessoryView.h"
+#import "SLKTextInput.h"
 #import "SLKTextInputbar.h"
 #import "SLKTextView+SLKAdditions.h"
 #import "SLKTextView.h"

@@ -329,7 +329,7 @@ extension HomeViewController : UICollectionViewDataSource
         let k = Kluster.init(object: self.klusters[sender.tag])
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         KlusterDataSource.joinKluster(k.id as NSString!) { (object, error) -> Void in
-            hud?.removeFromSuperview()
+            hud.removeFromSuperview()
             if (error != nil) {
                 print("Error: %@", error)
             } else {

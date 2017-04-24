@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
         let permissions = ["email", "public_profile", "user_friends"]
         
         PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (user: PFUser?, error: Error?) -> Void in
+                        
             if let user = user {
                 let shouldMakeFacebookRequest: Bool = (user.isNew || user.object(forKey: "firstName") == nil || user.object(forKey: "lastName") == nil)
                 
@@ -72,8 +73,12 @@ class LoginViewController: UIViewController {
                     self.goToMainMenu()
                 }
             } else {
+                print("COULDN't GET USER")
                 if let error = error {
-                    self.showAlertWithMessage(error.localizedDescription)
+                    let message = "GOT AN ERROR: \(error.localizedDescription)"
+                    // self.showAlertWithMessage(error.localizedDescription)
+                    self.showAlertWithMessage(message)
+
                 } else {
                     print("User cancelled Facebook login.")
                 }
@@ -81,8 +86,6 @@ class LoginViewController: UIViewController {
             
         }
         
-        // self.goToMainMenu()
-
     }
     
     
@@ -101,41 +104,5 @@ class LoginViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

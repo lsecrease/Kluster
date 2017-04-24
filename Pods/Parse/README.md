@@ -87,6 +87,8 @@ LICENSE file in the root directory of this source tree. An additional grant
 of patent rights can be found in the PATENTS file in the same directory.
 ```
 
+As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. 
+
  [parse.com]: https://www.parse.com/products/ios
  [docs]: https://www.parse.com/docs/ios/guide
  [blog]: https://blog.parse.com/
@@ -98,7 +100,7 @@ of patent rights can be found in the PATENTS file in the same directory.
  [releases]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/releases
  [contributing]: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/blob/master/CONTRIBUTING.md
 
- [bolts-framework]: https://github.com/BoltsFramework/Bolts-iOS
+ [bolts-framework]: https://github.com/BoltsFramework/Bolts-ObjC
  [ocmock-framework]: http://ocmock.org
 
  [build-status-svg]: https://img.shields.io/travis/ParsePlatform/Parse-SDK-iOS-OSX/master.svg

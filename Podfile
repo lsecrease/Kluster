@@ -9,7 +9,7 @@ pod 'ParseFacebookUtilsV4'
 pod 'MBProgressHUD'
 pod 'SlackTextViewController'
 pod 'SWRevealTableViewCell'
-pod 'UITextView+Placeholder'
+pod 'UITextView+Placeholder', '~> 1.1.1'
 pod 'DZNEmptyDataSet'
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 

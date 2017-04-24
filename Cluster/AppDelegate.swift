@@ -20,21 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("2UrICdAd91RWkvADdSampwkhmJGqbnU15GRz1I2X", clientKey: "ajvcEqDWkuLvT0ksCt6MWJQji7Zq6A3q9IexJ7uJ")
-        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
-        if (PFUser.current() == nil) {
-            // Show login
-            let storyboard: UIStoryboard = UIStoryboard.init(name: "Login", bundle: nil)
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.window?.rootViewController = loginVC
-        } else {
-            // Show home controller
-            let homeVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController() as! HomeViewController
-            self.window?.rootViewController = homeVC
-        }
+//        Parse.setApplicationId("2UrICdAd91RWkvADdSampwkhmJGqbnU15GRz1I2X", clientKey: "ajvcEqDWkuLvT0ksCt6MWJQji7Zq6A3q9IexJ7uJ")
+//        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
+//        
+//        if (PFUser.current() == nil) {
+//            // Show login
+//            let storyboard: UIStoryboard = UIStoryboard.init(name: "Login", bundle: nil)
+//            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//            self.window?.rootViewController = loginVC
+//        } else {
+//            // Show home controller
+//            let homeVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController() as! HomeViewController
+//            self.window?.rootViewController = homeVC
+//        }
+//        
+//        return true
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -61,10 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application,
             open: url,
             sourceApplication: sourceApplication,
             annotation: annotation)
+        
     }
 }
 

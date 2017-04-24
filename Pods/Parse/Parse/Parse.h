@@ -39,6 +39,8 @@
 #import <Parse/PFUser+Synchronous.h>
 #import <Parse/PFUser+Deprecated.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
+#import <Parse/PFFileUploadResult.h>
+#import <Parse/PFFileUploadController.h>
 
 #if TARGET_OS_IOS
 
@@ -97,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The current configuration in use by the SDK. Returns nil if the SDK has not been initialized yet.
  */
-+ (ParseClientConfiguration *)currentConfiguration;
++ (nullable ParseClientConfiguration *)currentConfiguration;
 
 /**
  The current application id that was used to configure Parse framework.
@@ -107,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The current client key that was used to configure Parse framework.
  */
-+ (NSString *)getClientKey;
++ (nullable NSString *)getClientKey;
 
 ///--------------------------------------
 #pragma mark - Enabling Local Datastore
